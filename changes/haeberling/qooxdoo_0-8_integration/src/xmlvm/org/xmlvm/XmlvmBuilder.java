@@ -1,3 +1,24 @@
+/*
+ * Copyright (c) 2004-2008 XMLVM --- An XML-based Programming Language
+ * 
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, write to the Free Software Foundation, Inc., 675 Mass
+ * Ave, Cambridge, MA 02139, USA.
+ * 
+ * For more information, visit the XMLVM Home Page at
+ * http://www.xmlvm.org
+ */
+
 package org.xmlvm;
 
 import java.io.BufferedReader;
@@ -35,8 +56,44 @@ public class XmlvmBuilder {
   protected boolean createAssembly = false;
   protected boolean compress = false;
 
-  public boolean build(boolean includeXmlvmBootstrap) throws Exception {
-    // Add all files needed by xmlvm to the lists, so that they are
+  public static void main(String[] args) {
+    XmlvmBuilder builder = new XmlvmBuilder(new XmlvmBuilderArguments(args));
+    builder.build();
+  }
+
+  public XmlvmBuilder(XmlvmBuilderArguments args) {
+    destination = args.option_destination();
+    // TODO(shaeberling): Support multiple entries & check for correctness
+    String classpath = args.option_classpath();
+    // TODO(shaeberling): Support multiple entries & check for correctness
+    String exepath = args.option_exepath();
+    // TODO(shaeberling): Support multiple entries & check for correctness
+    String resources = args.option_includeresource();
+    indexFileName = args.option_useindexfile();
+    createAssembly = args.option_createassembly();
+    compress = args.option_compress();
+
+    System.out.println("Packing application to: " + destination);
+    System.out.println(" * Classpath          : " + classpath);
+    System.out.println(" * Exepath            : " + exepath);
+    System.out.println(" * Resources          : " + resources);
+    System.out.println(" * Index file         : " + indexFileName);
+    System.out.println(" * Create Assembly    : " + createAssembly);
+    System.out.println(" * Compress Assembly  : " + compress);
+
+    if (!classpath.equals("")) {
+      addJavaClasspath(new LocationEntry(classpath));
+    }
+    if (!exepath.equals("")) {
+      addExePath(new LocationEntry(exepath));
+    }
+    if (!resources.equals("")) {
+      addResource(new LocationEntry(resources));
+    }
+  }
+
+  public boolean build(boolean includeXmlvmBootstrap) {
+    // Add all files needed by XMLVM to the lists, so that they are
     // added to the final build
     if (includeXmlvmBootstrap) {
       includeXmlvmBootstrap();
@@ -69,7 +126,12 @@ public class XmlvmBuilder {
           System.out.print(i + " ");
         }
         System.out.println("\n");
-        Main.main(mainArgs);
+        try {
+          Main.main(mainArgs);
+        } catch (Exception ex) {
+          ex.printStackTrace();
+          return false;
+        }
       } else {
         System.err
             .println("ERROR: Only directories are supported as classpaths right now");
@@ -90,8 +152,12 @@ public class XmlvmBuilder {
           System.out.print(i + " ");
         }
         System.out.println("\n");
-
-        Main.main(mainArgs);
+        try {
+          Main.main(mainArgs);
+        } catch (Exception ex) {
+          ex.printStackTrace();
+          return false;
+        }
       } else {
         System.err
             .println("ERROR: Only directories are supported as exepaths right now");
@@ -349,7 +415,7 @@ public class XmlvmBuilder {
     return true;
   }
 
-  public boolean build() throws Exception {
+  public boolean build() {
     // By default, include xmlvm bootstrap
     return build(true);
   }
@@ -544,10 +610,6 @@ public class XmlvmBuilder {
     return indexFileName;
   }
 
-  public void setIndexFileName(String indexFileName) {
-    this.indexFileName = indexFileName;
-  }
-
   public String getMainClass() {
     return mainClass;
   }
@@ -558,10 +620,6 @@ public class XmlvmBuilder {
 
   public String getDestination() {
     return destination;
-  }
-
-  public void setDestination(String destination) {
-    this.destination = destination;
   }
 
   /**
@@ -698,16 +756,8 @@ public class XmlvmBuilder {
     return createAssembly;
   }
 
-  public void setCreateAssembly(boolean createAssembly) {
-    this.createAssembly = createAssembly;
-  }
-
   public boolean isCompress() {
     return compress;
-  }
-
-  public void setCompress(boolean compress) {
-    this.compress = compress;
   }
 }
 

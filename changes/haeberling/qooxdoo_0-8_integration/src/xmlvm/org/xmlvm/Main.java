@@ -524,105 +524,8 @@ public class Main {
     return returnDoc;
   }
 
-  private static void pack(String argv[]) throws Exception {
-    final String ARG_DESTINATION = "--destination=";
-    final String ARG_CLASSPATH = "--classpath=";
-    final String ARG_EXEPATH = "--exepath=";
-    final String ARG_JSRESOURCE = "--javascriptresource=";
-    final String ARG_RESOURCE = "--includeresource=";
-    final String ARG_USEINDEXFILE = "--useindexfile=";
-    final String ARG_CREATEASSEMBLY = "--createassembly";
-    final String ARG_COMPRESS = "--compress";
-
-    String destination = "";
-    String classpath = "";
-    String exepath = "";
-    String resources = "";
-    String indexFile = null;
-    boolean createAssembly = false;
-    boolean compress = false;
-
-    for (String arg : argv) {
-      if (arg.startsWith(ARG_DESTINATION)) {
-        destination = arg.substring(ARG_DESTINATION.length());
-      } else if (arg.startsWith(ARG_CLASSPATH)) {
-        // TODO: Support multiple entries & check for correctness
-        classpath = arg.substring(ARG_CLASSPATH.length());
-      } else if (arg.startsWith(ARG_EXEPATH)) {
-        // TODO: Support multiple entries & check for correctness
-        exepath = arg.substring(ARG_EXEPATH.length());
-      } else if (arg.startsWith(ARG_RESOURCE)) {
-        // TODO: Support multiple entries & check for correctness
-        resources = arg.substring(ARG_RESOURCE.length());
-      } else if (arg.startsWith(ARG_JSRESOURCE)) {
-        // TODO
-        System.err
-            .println("JavaScript resources not supported by command line, yet.");
-      } else if (arg.startsWith(ARG_USEINDEXFILE)) {
-        indexFile = arg.substring(ARG_USEINDEXFILE.length());
-      } else if (arg.startsWith(ARG_CREATEASSEMBLY)) {
-        createAssembly = true;
-      } else if (arg.startsWith(ARG_COMPRESS)) {
-        compress = true;
-      }
-    }
-    System.out.println("Packing application to: " + destination);
-    System.out.println(" * Classpath          : " + classpath);
-    System.out.println(" * Exepath            : " + exepath);
-    System.out.println(" * Resources          : " + resources);
-    System.out.println(" * Index file         : " + indexFile);
-    System.out.println(" * Create Assembly    : " + createAssembly);
-    System.out.println(" * Compress Assembly  : " + compress);
-
-    XmlvmBuilder builder = new XmlvmBuilder();
-    builder.setDestination(destination);
-    if (!classpath.equals(""))
-      builder.addJavaClasspath(new LocationEntry(classpath));
-    if (!exepath.equals(""))
-      builder.addExePath(new LocationEntry(exepath));
-    if (!resources.equals(""))
-      builder.addResource(new LocationEntry(resources));
-    if (indexFile != null) {
-      builder.setIndexFileName(indexFile);
-    }
-    builder.setCreateAssembly(createAssembly);
-    builder.setCompress(compress);
-    builder.build();
-  }
-
-  private static void usage(String error) {
-    String[] msg = {
-        "Usage: xmlvm [--js|--cpp] [--import] [--recursive] [--console|--out=<file>] <class>",
-        "  --js            : Generate JavaScript",
-        "  --createassembly: Create assembly file",
-        "  --compress      : Compress JavaScript assembly file",
-        "  --cpp           : Generate C++",
-        "  --import        : Generate import list of referenced externals",
-        "  --console       : Output is to be written to the console.",
-        "  --out           : Output directory.",
-        "  --recursive     : Recursivley scan through the referenced externals",
-        "  <class>         : Byte code to be translated. If <class> ends on '.exe',",
-        "                    the bytecode is assumed to the a .NET executable file",
-        "                    with the same name. If <class> ends on '.class', the",
-        "                    bytecode is assumed to be of JVM format in a file with",
-        "                    the same name. Otherwise, <class> is looked up via CLASSPATH.",
-        "  If neither --js nor --cpp is specified, the output will be XMLVM.",
-        "  If the option --console is not given, the output will be written to a",
-        "  file with the same name as <class> and suffix one of .xmlvm, .js, or .cpp" };
-
-    System.err.println("Error: " + error);
-    for (int i = 0; i < msg.length; i++)
-      System.err.println(msg[i]);
-    System.exit(-1);
-  }
-
   public static void main(String[] argv) throws Exception {
-
     XmlvmArguments args = new XmlvmArguments(argv);
-    if (args.option_pack()) {
-      pack(argv);
-      return;
-    }
     if (args.option_class() == null) {
       System.out.println("Opt class : " + args.option_class());
     }
@@ -666,7 +569,6 @@ public class Main {
                 .option_python(), args.option_exe());
       }
       if (args.option_js()) {
-
         // This chunk of code generates 1 JS file per class so we can maintain 1
         // class per file
         // which makes dependency resolution easier.
