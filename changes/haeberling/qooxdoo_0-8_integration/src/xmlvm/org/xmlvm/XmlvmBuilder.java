@@ -169,6 +169,12 @@ public class XmlvmBuilder {
     return true;
   }
 
+  /**
+   * Performs sanity checks that have to be passed in order for the builder to
+   * run successfully. This way the application is able to fail early.
+   * 
+   * @throws XmlvmBuilderException
+   */
   private void peformSanityChecks() throws XmlvmBuilderException {
     // Check if qooxdoo-path exists.
     if (!(new File(QX_PATH)).isDirectory()) {
@@ -187,6 +193,12 @@ public class XmlvmBuilder {
     }
   }
 
+  /**
+   * Uses the qooxdoo application creator to create a temporary project that is
+   * used during the building process.
+   * 
+   * @throws XmlvmBuilderException
+   */
   private void initQxSkeleton() throws XmlvmBuilderException {
     try {
       Process process = createPythonProcess(QX_CREATOR_SCRIPT + " --name "
@@ -272,7 +284,7 @@ public class XmlvmBuilder {
         System.out.println("\n");
         try {
           // Actually invoke main.
-          // TODO(shaeberling): Oh boy, we should make this a proper API.
+          // TODO(shaeberling): Oh boy, we should make this a proper API!
           Main.main(mainArgs);
         } catch (Exception ex) {
           throw new XmlvmBuilderException("Error while invoking Main.main.", ex);
