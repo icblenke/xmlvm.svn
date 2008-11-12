@@ -61,6 +61,7 @@ public class XmlvmBuilderArguments {
    *          information.
    */
   private static void usage(String error) {
+    System.err.println(error + '\n');
     // TODO(haeberling): Complete.
     String[] msg = { "Usage: XmlvmBuilder ..... TODO",
         "  --destination=        :                  ",
@@ -84,22 +85,21 @@ public class XmlvmBuilderArguments {
     // Read command line arguments
     for (int i = 0; i < argv.length; i++) {
       String arg = argv[i];
-
-      if (arg.equals(ARG_DESTINATION)) {
+      if (arg.startsWith(ARG_DESTINATION)) {
         option_destination = arg.substring(ARG_DESTINATION.length());
-      } else if (arg.equals(ARG_CLASSPATH)) {
+      } else if (arg.startsWith(ARG_CLASSPATH)) {
         option_classpath = arg.substring(ARG_CLASSPATH.length());
-      } else if (arg.equals(ARG_EXEPATH)) {
+      } else if (arg.startsWith(ARG_EXEPATH)) {
         option_exepath = arg.substring(ARG_EXEPATH.length());
-      } else if (arg.equals(ARG_JSRESOURCE)) {
+      } else if (arg.startsWith(ARG_JSRESOURCE)) {
         option_javascriptresource = arg.substring(ARG_JSRESOURCE.length());
-      } else if (arg.equals(ARG_RESOURCE)) {
+      } else if (arg.startsWith(ARG_RESOURCE)) {
         option_includeresource = arg.substring(ARG_RESOURCE.length());
-      } else if (arg.equals(ARG_USEINDEXFILE)) {
+      } else if (arg.startsWith(ARG_USEINDEXFILE)) {
         option_useindexfile = arg.substring(ARG_USEINDEXFILE.length());
-      } else if (arg.equals(ARG_CREATEASSEMBLY)) {
+      } else if (arg.startsWith(ARG_CREATEASSEMBLY)) {
         option_createassembly = true;
-      } else if (arg.equals(ARG_COMPRESS)) {
+      } else if (arg.startsWith(ARG_COMPRESS)) {
         option_compress = true;
       } else {
         usage("Unknown parameter: " + arg);

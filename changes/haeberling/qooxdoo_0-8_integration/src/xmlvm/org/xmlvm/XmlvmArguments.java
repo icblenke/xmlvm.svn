@@ -107,11 +107,11 @@ public class XmlvmArguments {
     // Read command line arguments
     for (int i = 0; i < argv.length; i++) {
       String arg = argv[i];
-      if (arg.equals(ARG_JS)) {
+      if (arg.startsWith(ARG_JS)) {
         option_js = true;
-      } else if (arg.equals(ARG_CPP)) {
+      } else if (arg.startsWith(ARG_CPP)) {
         option_cpp = true;
-      } else if (arg.equals(ARG_OBJC)) {
+      } else if (arg.startsWith(ARG_OBJC)) {
         option_objc = true;
       } else if (arg.startsWith(ARG_OBJC_HEADER)) {
         option_objc_header = arg.substring(ARG_OBJC_HEADER.length());
@@ -137,8 +137,8 @@ public class XmlvmArguments {
         option_import = true;
       } else if (arg.equals(ARG_RECURSIVE)) {
         option_recursive = true;
-      } else if (arg.equals(ARG_FILE)) {
-        option_class = arg.substring(7);
+      } else if (arg.startsWith(ARG_FILE)) {
+        option_class = arg.substring(ARG_FILE.length());
       } else {
         usage("Unknown parameter: " + arg);
         System.exit(-1);

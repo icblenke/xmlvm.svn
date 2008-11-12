@@ -28,6 +28,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -45,10 +46,45 @@ import com.crazilec.util.UtilCopy;
 import com.yahoo.platform.yui.compressor.JavaScriptCompressor;
 
 public class XmlvmBuilder {
+  /**
+   * Class file pattern.
+   */
+  public static final String CLASS_FILE_PATTERN = "*.class";
+  /**
+   * Exe file pattern.
+   */
+  public static final String EXE_FILE_PATTERN = "*.exe";
+  /**
+   * Temporary subdirectory in output directory which is used to assemble the
+   * final output using qooxdoo.
+   */
+  public static final String TEMP_CACHE_SUBDIR = "temp_cache";
+  /**
+   * Name of the environment variable that holds the Python executable that
+   * should be used during this process to execute the qooxdoo scripts.
+   */
+  public static final String ENV_PYTHON_BIN = System.getenv("XMLVM_PYTHON_BIN");
+
+  public static final String QX_PATH = "./lib/qooxdoo-0.8-sdk";
+  public static final String QX_CREATOR_SCRIPT = QX_PATH
+      + "/tool/bin/create-application.py";
+  /**
+   * The name of the temporary qooxdoo app that is used during the process.
+   */
+  public static final String QX_TEMP_APP_NAME = "XMLVM-QX-APP";
+
   protected String applicationName;
   protected String indexFileName;
   protected String mainClass;
+  /**
+   * This is where the final compilation will be put in.
+   */
   protected String destination;
+  /**
+   * This is where the temporary computation output is put. The directory will
+   * be deleted after the process is done.
+   */
+  protected String tempDestination;
   protected List<LocationEntry> javaClasspaths = new ArrayList<LocationEntry>();
   protected List<LocationEntry> exePaths = new ArrayList<LocationEntry>();
   protected List<LocationEntry> javaScriptResources = new ArrayList<LocationEntry>();
@@ -58,11 +94,17 @@ public class XmlvmBuilder {
 
   public static void main(String[] args) {
     XmlvmBuilder builder = new XmlvmBuilder(new XmlvmBuilderArguments(args));
-    builder.build();
+    try {
+      builder.newBuild();
+      System.out.println("Build successful!");
+    } catch (XmlvmBuilderException e) {
+      e.printStackTrace();
+    }
   }
 
   public XmlvmBuilder(XmlvmBuilderArguments args) {
     destination = args.option_destination();
+    tempDestination = destination + File.separator + TEMP_CACHE_SUBDIR;
     // TODO(shaeberling): Support multiple entries & check for correctness
     String classpath = args.option_classpath();
     // TODO(shaeberling): Support multiple entries & check for correctness
@@ -73,13 +115,15 @@ public class XmlvmBuilder {
     createAssembly = args.option_createassembly();
     compress = args.option_compress();
 
-    System.out.println("Packing application to: " + destination);
+    System.out.println(" * Destination        : " + destination);
     System.out.println(" * Classpath          : " + classpath);
     System.out.println(" * Exepath            : " + exepath);
     System.out.println(" * Resources          : " + resources);
     System.out.println(" * Index file         : " + indexFileName);
-    System.out.println(" * Create Assembly    : " + createAssembly);
-    System.out.println(" * Compress Assembly  : " + compress);
+    // System.out.println(" * Compress Assembly  : " + compress);
+    System.out.println("-------------------------");
+    System.out.println(" * " + ENV_PYTHON_BIN + "   : "
+        + System.getenv(ENV_PYTHON_BIN));
 
     if (!classpath.equals("")) {
       addJavaClasspath(new LocationEntry(classpath));
@@ -89,6 +133,174 @@ public class XmlvmBuilder {
     }
     if (!resources.equals("")) {
       addResource(new LocationEntry(resources));
+    }
+    System.out.print("\n");
+  }
+
+  /**
+   * A new build that will eventually replace the old one.
+   * 
+   * @return Whether the building process was successful.
+   */
+  private boolean newBuild() throws XmlvmBuilderException {
+    // STEP 0: Sanity checks the environment.
+    System.out.println("Sanity checks... ");
+    peformSanityChecks();
+    System.out.println("Sanity checks PASSED");
+
+    // STEP 1: Preparation of destination directory.
+    System.out.println("> STEP 1/7: Preparation of destination directory:  "
+        + destination);
+    clearDestination();
+
+    // STEP 2: Compile class and exe files to JavaScript and copy them to
+    // destination.
+    System.out.println("> STEP 2/7: Translating class/exe files to JS ...");
+    compileToJS(javaClasspaths, CLASS_FILE_PATTERN);
+    compileToJS(exePaths, EXE_FILE_PATTERN);
+
+    // STEP 3: Copy XMLVM JS compatibility library into temporary directory so
+    // it can be picked up by qooxdoo.
+    System.out.println("> STEP 3/7: Copying compatibility library.");
+
+    // STEP 4: Executing qooxdoo application creator.
+    System.out.println("> STEP 4/7: Executing qooxdoo application creator.");
+    initQxSkeleton();
+    return true;
+  }
+
+  private void peformSanityChecks() throws XmlvmBuilderException {
+    // Check if qooxdoo-path exists.
+    if (!(new File(QX_PATH)).isDirectory()) {
+      throw new XmlvmBuilderException("QX directory cannot be found: "
+          + QX_PATH);
+    }
+    // Check if creator script is present.
+    if (!(new File(QX_CREATOR_SCRIPT)).isFile()) {
+      throw new XmlvmBuilderException("QX creator cannot be found: "
+          + QX_CREATOR_SCRIPT);
+    }
+    // Check if Python is present
+    if (!(new File(ENV_PYTHON_BIN)).isFile()) {
+      throw new XmlvmBuilderException("Python executable cannot be found: "
+          + ENV_PYTHON_BIN);
+    }
+  }
+
+  private void initQxSkeleton() throws XmlvmBuilderException {
+    try {
+      Process process = createPythonProcess(QX_CREATOR_SCRIPT + " --name "
+          + QX_TEMP_APP_NAME + " --out " + tempDestination);
+      printOutputOfProcess(process, "CREATOR");
+      int exitCode = process.waitFor();
+      if (exitCode != 0) {
+        throw new XmlvmBuilderException(
+            "Error while executing python. Exit Code: " + exitCode);
+      }
+    } catch (IOException e) {
+      throw new XmlvmBuilderException("Error while executing python.", e);
+    } catch (InterruptedException e) {
+      throw new XmlvmBuilderException("Error while executing python.", e);
+    }
+  }
+
+  /**
+   * Creates a Python process.
+   * 
+   * @param Arguments
+   *          arguments to the python process.
+   * @return A process object to monitor.
+   * @throws IOException
+   */
+  private static Process createPythonProcess(String arguments)
+      throws IOException {
+    return Runtime.getRuntime().exec(ENV_PYTHON_BIN + " " + arguments);
+  }
+
+  /**
+   * Takes a process and reads it output till the end. The output is prefixed
+   * with the given line prefix.
+   * 
+   * @param process
+   *          The process to take the output from.
+   * @param linePrefix
+   *          The line prefix to mark the output.
+   * @throws IOException
+   */
+  private static void printOutputOfProcess(Process process, String linePrefix)
+      throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(process
+        .getInputStream()));
+    String line;
+    while ((line = input.readLine()) != null) {
+      System.out.println(linePrefix + " > " + line);
+    }
+    input.close();
+  }
+
+  /**
+   * Goes through all the given locations, searched for files with the given
+   * pattern and compiled matching files to JavaScript.
+   * 
+   * This uses Main to filter files and translate them.
+   * 
+   * @param locations
+   *          Directories in which the source files are found.
+   * @param filePattern
+   *          The pattern of the files to be translated.
+   * @throws XmlvmBuilderException
+   */
+  private void compileToJS(List<LocationEntry> locations, String filePattern)
+      throws XmlvmBuilderException {
+    // For every location...
+    for (LocationEntry loc : locations) {
+      // Check if location is actually a directory
+      if (loc.getType().equals("dir")) {
+        // Add file separator (directory sign) if it is not trailing the
+        // location name.
+        if (!loc.getLocation().endsWith(File.separator)) {
+          loc.setLocation(loc.getLocation() + File.separator);
+        }
+        // Build main arguments for compiling all files with given pattern in
+        // the given locations to JavaScript.
+        String mainArgs[] = { "--js", "--out=" + destination,
+            "--file=" + loc.getLocation() + filePattern };
+        System.out.print("Exec: ");
+        for (String i : mainArgs) {
+          System.out.print(i + " ");
+        }
+        System.out.println("\n");
+        try {
+          // Actually invoke main.
+          // TODO(shaeberling): Oh boy, we should make this a proper API.
+          Main.main(mainArgs);
+        } catch (Exception ex) {
+          throw new XmlvmBuilderException("Error while invoking Main.main.", ex);
+        }
+      } else {
+        System.err
+            .println("ERROR: Only directories are supported as classpaths right now");
+        continue;
+      }
+    }
+  }
+
+  /**
+   * If destination directory exists, it will be deleted. If not, it will be
+   * created.
+   */
+  private void clearDestination() throws XmlvmBuilderException {
+    // Create destination and temporary destination directories, if they do not
+    // already exist. If they do exist, remove their contents.
+    for (String directory : new String[] { destination, tempDestination }) {
+      File dir = new File(directory);
+      if (dir.exists()) {
+        if (!deleteDirectory(dir)) {
+          throw new XmlvmBuilderException(
+              "Couldn't clear destination directory");
+        }
+      }
+      dir.mkdirs();
     }
   }
 
@@ -120,7 +332,6 @@ public class XmlvmBuilder {
           loc.setLocation(loc.getLocation() + File.separator);
         String mainArgs[] = { "--js", "--out=" + destinationDir,
             loc.getLocation() + "*.class" };
-
         System.out.print("Exec: ");
         for (String i : mainArgs) {
           System.out.print(i + " ");
@@ -168,8 +379,6 @@ public class XmlvmBuilder {
     // Find library classes written by us.
     List<JsFile> libFiles = new ArrayList<JsFile>();
 
-    // Sun File IO API sucks BIG TIME when compared to Microsofts .NET
-    // System.Io.
     List<File> subDirsToProcess = new ArrayList<File>();
     subDirsToProcess.add(new File("./src/xmlvm2js"));
 
@@ -646,7 +855,6 @@ public class XmlvmBuilder {
    * contents as well as all the dependencies of the class within.
    */
   static class JsFile {
-
     private static final String QX_CLASS_DEFINE = "qx.Class.define(\"";
     private static final String CHECKCLASS = "checkClass(\"";
     private String className = null;
@@ -834,4 +1042,22 @@ class LocationEntry {
   public void setIncludeInIndex(boolean includeInIndex) {
     this.includeInIndex = includeInIndex;
   }
+}
+
+/**
+ * Used to indicates error during the building process.
+ * 
+ * @author Sascha Haeberling
+ * 
+ */
+class XmlvmBuilderException extends Exception {
+  public XmlvmBuilderException(String message) {
+    super(message);
+  }
+
+  public XmlvmBuilderException(String message, Throwable throwable) {
+    super(message, throwable);
+  }
+
+  private static final long serialVersionUID = 1L;
 }
