@@ -65,7 +65,7 @@ public class XmlvmBuilder {
    */
   public static final String ENV_PYTHON_BIN = System.getenv("XMLVM_PYTHON_BIN");
 
-  public static final String QX_PATH = "./lib/qooxdoo-0.8-sdk";
+  public static final String QX_PATH = System.getenv("XMLVM_QOOXDOO_PATH");
   public static final String QX_CREATOR_SCRIPT = QX_PATH
       + "/tool/bin/create-application.py";
   /**
