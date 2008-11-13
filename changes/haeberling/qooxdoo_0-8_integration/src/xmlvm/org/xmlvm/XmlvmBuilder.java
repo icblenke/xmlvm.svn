@@ -22,6 +22,7 @@ package org.xmlvm;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -65,12 +66,14 @@ public class XmlvmBuilder {
   public static final String ENV_PYTHON_BIN = System.getenv("XMLVM_PYTHON_BIN");
 
   public static final String QX_PATH = System.getenv("XMLVM_QOOXDOO_PATH");
-  public static final String QX_CREATOR_SCRIPT =
-      QX_PATH + "/tool/bin/create-application.py";
+  public static final String QX_CREATOR_SCRIPT = QX_PATH
+      + "/tool/bin/create-application.py";
   /**
    * The name of the temporary qooxdoo app that is used during the process.
    */
-  public static final String QX_TEMP_APP_NAME = "XMLVM-QX-APP";
+  public static final String QX_TEMP_APP_NAME = "temp_qx_app";
+
+  public static final String JS_EMULATION_LIB_PATH = "./src/xmlvm2js";
 
   protected String applicationName;
   protected String indexFileName;
@@ -86,8 +89,7 @@ public class XmlvmBuilder {
   protected String tempDestination;
   protected List<LocationEntry> javaClasspaths = new ArrayList<LocationEntry>();
   protected List<LocationEntry> exePaths = new ArrayList<LocationEntry>();
-  protected List<LocationEntry> javaScriptResources =
-      new ArrayList<LocationEntry>();
+  protected List<LocationEntry> javaScriptResources = new ArrayList<LocationEntry>();
   protected List<LocationEntry> resources = new ArrayList<LocationEntry>();
   protected boolean createAssembly = false;
   protected boolean compress = false;
@@ -142,7 +144,7 @@ public class XmlvmBuilder {
    * 
    * @return Whether the building process was successful.
    */
-  private boolean newBuild() throws XmlvmBuilderException {
+  private void newBuild() throws XmlvmBuilderException {
     // STEP 0: Sanity checks the environment.
     System.out.println("Sanity checks... ");
     peformSanityChecks();
@@ -159,14 +161,87 @@ public class XmlvmBuilder {
     compileToJS(javaClasspaths, CLASS_FILE_PATTERN);
     compileToJS(exePaths, EXE_FILE_PATTERN);
 
-    // STEP 3: Copy XMLVM JS compatibility library into temporary directory so
-    // it can be picked up by qooxdoo.
-    System.out.println("> STEP 3/7: Copying compatibility library.");
-
-    // STEP 4: Executing qooxdoo application creator.
-    System.out.println("> STEP 4/7: Executing qooxdoo application creator.");
+    // STEP 3: Executing qooxdoo application creator.
+    System.out.println("> STEP 3/7: Executing qooxdoo application creator.");
     initQxSkeleton();
-    return true;
+
+    // STEP 4: Copy XMLVM JS compatibility library into temporary directory so
+    // it can be picked up by qooxdoo.
+    System.out.println("> STEP 4/7: Copying compatibility library.");
+    // The path where qooxdoo expects all source to be in the temporary project.
+    String tempQxSourcePath = tempDestination + "/" + QX_TEMP_APP_NAME
+        + "/source/class/" + QX_TEMP_APP_NAME;
+    prepareEmulationLibrary(new File(JS_EMULATION_LIB_PATH), new File(
+        tempQxSourcePath));
+  }
+
+  /**
+   * Takes the emulation library and puts it into the destination so it is ready
+   * to be used by qooxdoo's build system.
+   */
+  private void prepareEmulationLibrary(File basePath, File destination)
+      throws XmlvmBuilderException {
+    // Check, whether the destination directory actually exists.
+    if (!destination.isDirectory()) {
+      throw new XmlvmBuilderException("Destination directory does not exist: "
+          + destination.getAbsolutePath());
+    }
+    // Recursively rename and copy all JS files.
+    renameAndCopyJsFiles(basePath, basePath, destination);
+  }
+
+  /**
+   * Recursively go through all sub-directories and look for JS files. When
+   * found, rename file to match to internal class-name (required by qooxdoo),
+   * and copy files into destination directory.
+   * 
+   * @param absoluteBasePath
+   *          The root of the emulation library.
+   * @param basePath
+   *          The path where to search for JS files.
+   * @param destination
+   *          The path where the renamed JS files should be copied to.
+   */
+  private void renameAndCopyJsFiles(File absoluteBasePath, File basePath,
+      File destination) throws XmlvmBuilderException {
+    // Accepts files
+    FileFilter jsFileFilter = new FileFilter() {
+      public boolean accept(File pathname) {
+        return !pathname.isDirectory()
+            && pathname.getName().toLowerCase().endsWith(".js");
+      }
+    };
+    // Accepts directories
+    FileFilter directoryFilter = new FileFilter() {
+      public boolean accept(File pathname) {
+        return pathname.isDirectory();
+      }
+    };
+    // Go through all files in this directory ...
+    for (File entry : basePath.listFiles(jsFileFilter)) {
+      renameAndCopyJsFile(absoluteBasePath, entry, destination);
+    }
+    // ... then recursively go through subdirectories.
+    for (File entry : basePath.listFiles(directoryFilter)) {
+      renameAndCopyJsFiles(absoluteBasePath, entry, destination);
+    }
+  }
+
+  private void renameAndCopyJsFile(File absoluteBasePath, File jsFile,
+      File destination) throws XmlvmBuilderException {
+    // +1 to remove trailing slash.
+    String cutPath = jsFile.getAbsolutePath().substring(
+        (int) absoluteBasePath.getAbsolutePath().length() + 1);
+    String outputFileName = cutPath.replace(File.separatorChar, '_');
+    try {
+      UtilCopy uc = new UtilCopy();
+      uc.binCopy(destination.getAbsolutePath() + File.separator
+          + outputFileName, jsFile.getAbsolutePath());
+    } catch (FileNotFoundException e) {
+      throw new XmlvmBuilderException("Error while copying file.", e);
+    } catch (Exception e) {
+      throw new XmlvmBuilderException("Error while copying file.", e);
+    }
   }
 
   /**
@@ -191,6 +266,12 @@ public class XmlvmBuilder {
       throw new XmlvmBuilderException("Python executable cannot be found: "
           + ENV_PYTHON_BIN);
     }
+    // Check if JS emulation library is present.
+    // Check if Python is present
+    if (!(new File(JS_EMULATION_LIB_PATH)).isDirectory()) {
+      throw new XmlvmBuilderException("Emulation library cannot be found: "
+          + JS_EMULATION_LIB_PATH);
+    }
   }
 
   /**
@@ -201,9 +282,8 @@ public class XmlvmBuilder {
    */
   private void initQxSkeleton() throws XmlvmBuilderException {
     try {
-      Process process =
-          createPythonProcess(QX_CREATOR_SCRIPT + " --name " + QX_TEMP_APP_NAME
-              + " --out " + tempDestination);
+      Process process = createPythonProcess(QX_CREATOR_SCRIPT + " --name "
+          + QX_TEMP_APP_NAME + " --out " + tempDestination);
       printOutputOfProcess(process, "CREATOR");
       int exitCode = process.waitFor();
       if (exitCode != 0) {
@@ -220,7 +300,8 @@ public class XmlvmBuilder {
   /**
    * Creates a Python process.
    * 
-   * @param Arguments arguments to the python process.
+   * @param Arguments
+   *          arguments to the python process.
    * @return A process object to monitor.
    * @throws IOException
    */
@@ -233,14 +314,16 @@ public class XmlvmBuilder {
    * Takes a process and reads it output till the end. The output is prefixed
    * with the given line prefix.
    * 
-   * @param process The process to take the output from.
-   * @param linePrefix The line prefix to mark the output.
+   * @param process
+   *          The process to take the output from.
+   * @param linePrefix
+   *          The line prefix to mark the output.
    * @throws IOException
    */
   private static void printOutputOfProcess(Process process, String linePrefix)
       throws IOException {
-    BufferedReader input =
-        new BufferedReader(new InputStreamReader(process.getInputStream()));
+    BufferedReader input = new BufferedReader(new InputStreamReader(process
+        .getInputStream()));
     String line;
     while ((line = input.readLine()) != null) {
       System.out.println(linePrefix + " > " + line);
@@ -254,8 +337,10 @@ public class XmlvmBuilder {
    * 
    * This uses Main to filter files and translate them.
    * 
-   * @param locations Directories in which the source files are found.
-   * @param filePattern The pattern of the files to be translated.
+   * @param locations
+   *          Directories in which the source files are found.
+   * @param filePattern
+   *          The pattern of the files to be translated.
    * @throws XmlvmBuilderException
    */
   private void compileToJS(List<LocationEntry> locations, String filePattern)
@@ -271,9 +356,8 @@ public class XmlvmBuilder {
         }
         // Build main arguments for compiling all files with given pattern in
         // the given locations to JavaScript.
-        String mainArgs[] =
-            {"--js", "--out=" + destination,
-                "--file=" + loc.getLocation() + filePattern};
+        String mainArgs[] = { "--js", "--out=" + destination,
+            "--file=" + loc.getLocation() + filePattern };
         System.out.print("Exec: ");
         for (String i : mainArgs) {
           System.out.print(i + " ");
@@ -301,7 +385,7 @@ public class XmlvmBuilder {
   private void clearDestination() throws XmlvmBuilderException {
     // Create destination and temporary destination directories, if they do not
     // already exist. If they do exist, remove their contents.
-    for (String directory : new String[] {destination, tempDestination}) {
+    for (String directory : new String[] { destination, tempDestination }) {
       File dir = new File(directory);
       if (dir.exists()) {
         if (!deleteDirectory(dir)) {
@@ -339,8 +423,8 @@ public class XmlvmBuilder {
       if (loc.getType().equals("dir")) {
         if (!loc.getLocation().endsWith(File.separator))
           loc.setLocation(loc.getLocation() + File.separator);
-        String mainArgs[] =
-            {"--js", "--out=" + destinationDir, loc.getLocation() + "*.class"};
+        String mainArgs[] = { "--js", "--out=" + destinationDir,
+            loc.getLocation() + "*.class" };
         System.out.print("Exec: ");
         for (String i : mainArgs) {
           System.out.print(i + " ");
@@ -364,8 +448,8 @@ public class XmlvmBuilder {
       if (loc.getType().equals("dir")) {
         if (!loc.getLocation().endsWith(File.separator))
           loc.setLocation(loc.getLocation() + File.separator);
-        String mainArgs[] =
-            {"--js", "--out=" + destinationDir, loc.getLocation() + "*.exe"};
+        String mainArgs[] = { "--js", "--out=" + destinationDir,
+            loc.getLocation() + "*.exe" };
 
         System.out.print("Exec: ");
         for (String i : mainArgs) {
@@ -436,7 +520,8 @@ public class XmlvmBuilder {
      * 
      * System.out.println( userFile.getClassName() + " Depends on library");
      * 
-     * for(String s : userFile.getAllDependencies()) { System.out.println(s); } }
+     * for(String s : userFile.getAllDependencies()) { System.out.println(s); }
+     * }
      */
 
     // Find what set of the library we need to add
@@ -704,7 +789,8 @@ public class XmlvmBuilder {
   static private boolean copyDirectory(String from, String to) {
     UtilCopy uc = new UtilCopy();
     try {
-      if (!to.endsWith(File.separator)) to += File.separator;
+      if (!to.endsWith(File.separator))
+        to += File.separator;
       uc.xCopy(to + (new File(from)).getName(), from);
       return true;
     } catch (FileNotFoundException e) {
@@ -719,10 +805,12 @@ public class XmlvmBuilder {
   static private boolean copyFile(String from, String to) {
     UtilCopy uc = new UtilCopy();
     File f = new File(from);
-    if (!f.isFile()) return false;
+    if (!f.isFile())
+      return false;
 
     String fileName = f.getName();
-    if (!to.endsWith(File.separator)) to += File.separator;
+    if (!to.endsWith(File.separator))
+      to += File.separator;
 
     try {
       uc.binCopy(to + fileName, from);
@@ -874,12 +962,10 @@ public class XmlvmBuilder {
 
       // Check if we find a class definition within the file
       if ((classDefinePosition = fileContent.indexOf(QX_CLASS_DEFINE)) != -1) {
-        int defineEnd =
-            fileContent.indexOf("\"", classDefinePosition
-                + QX_CLASS_DEFINE.length() + 1);
-        this.className =
-            fileContent.substring(classDefinePosition
-                + QX_CLASS_DEFINE.length(), defineEnd);
+        int defineEnd = fileContent.indexOf("\"", classDefinePosition
+            + QX_CLASS_DEFINE.length() + 1);
+        this.className = fileContent.substring(classDefinePosition
+            + QX_CLASS_DEFINE.length(), defineEnd);
       } else {
         // If there is no class definition, we don't have a qooxdoo
         // class in this file
@@ -887,9 +973,8 @@ public class XmlvmBuilder {
         return;
       }
       HashSet<String> depends = new HashSet<String>();
-      Matcher m =
-          Pattern.compile(".*checkClass\\(\\\"(.*)\\\"\\)")
-              .matcher(fileContent);
+      Matcher m = Pattern.compile(".*checkClass\\(\\\"(.*)\\\"\\)").matcher(
+          fileContent);
       while (m.find()) {
         if (m.start(0) > classDefinePosition) {
           if (!depends.contains(m.group(1))) {
@@ -977,7 +1062,6 @@ public class XmlvmBuilder {
   }
 }
 
-
 class LocationEntry {
   private String type = "dir";
   private String kind;
@@ -990,7 +1074,8 @@ class LocationEntry {
    * Create a new Location Entry
    * 
    * @param location
-   * @param dir true: location points to directory. false to a file
+   * @param dir
+   *          true: location points to directory. false to a file
    */
   public LocationEntry(String location, boolean dir) {
     this.type = (dir ? "dir" : "file");
@@ -1051,7 +1136,6 @@ class LocationEntry {
     this.includeInIndex = includeInIndex;
   }
 }
-
 
 /**
  * Used to indicates error during the building process.
