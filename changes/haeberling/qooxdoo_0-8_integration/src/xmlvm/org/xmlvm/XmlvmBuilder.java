@@ -145,6 +145,10 @@ public class XmlvmBuilder {
    * @return Whether the building process was successful.
    */
   private void newBuild() throws XmlvmBuilderException {
+    // This is the path, where the source for the temporary qooxdoo project will
+    // be wlocated.
+    String tempQxSourcePath = tempDestination + "/" + QX_TEMP_APP_NAME
+        + "/source/class";
     // STEP 0: Sanity checks the environment.
     System.out.println("Sanity checks... ");
     peformSanityChecks();
@@ -155,22 +159,21 @@ public class XmlvmBuilder {
         + destination);
     clearDestination();
 
-    // STEP 2: Compile class and exe files to JavaScript and copy them to
-    // destination.
-    System.out.println("> STEP 2/7: Translating class/exe files to JS ...");
-    compileToJS(javaClasspaths, CLASS_FILE_PATTERN);
-    compileToJS(exePaths, EXE_FILE_PATTERN);
-
-    // STEP 3: Executing qooxdoo application creator.
-    System.out.println("> STEP 3/7: Executing qooxdoo application creator.");
+    // STEP 2: Executing qooxdoo application creator.
+    System.out.println("> STEP 2/7: Executing qooxdoo application creator.");
     initQxSkeleton();
+
+    // STEP 3: Compile class and exe files to JavaScript and copy them to
+    // destination.
+    System.out.println("> STEP 3/7: Translating class/exe files to JS ...");
+    compileToJS(javaClasspaths, CLASS_FILE_PATTERN, tempQxSourcePath);
+    compileToJS(exePaths, EXE_FILE_PATTERN, tempQxSourcePath);
 
     // STEP 4: Copy XMLVM JS compatibility library into temporary directory so
     // it can be picked up by qooxdoo.
     System.out.println("> STEP 4/7: Copying compatibility library.");
     // The path where qooxdoo expects all source to be in the temporary project.
-    String tempQxSourcePath = tempDestination + "/" + QX_TEMP_APP_NAME
-        + "/source/class/" + QX_TEMP_APP_NAME;
+
     prepareEmulationLibrary(new File(JS_EMULATION_LIB_PATH), new File(
         tempQxSourcePath));
   }
@@ -343,8 +346,8 @@ public class XmlvmBuilder {
    *          The pattern of the files to be translated.
    * @throws XmlvmBuilderException
    */
-  private void compileToJS(List<LocationEntry> locations, String filePattern)
-      throws XmlvmBuilderException {
+  private void compileToJS(List<LocationEntry> locations, String filePattern,
+      String compileDestination) throws XmlvmBuilderException {
     // For every location...
     for (LocationEntry loc : locations) {
       // Check if location is actually a directory
@@ -356,7 +359,7 @@ public class XmlvmBuilder {
         }
         // Build main arguments for compiling all files with given pattern in
         // the given locations to JavaScript.
-        String mainArgs[] = { "--js", "--out=" + destination,
+        String mainArgs[] = { "--js", "--out=" + compileDestination,
             "--file=" + loc.getLocation() + filePattern };
         System.out.print("Exec: ");
         for (String i : mainArgs) {
