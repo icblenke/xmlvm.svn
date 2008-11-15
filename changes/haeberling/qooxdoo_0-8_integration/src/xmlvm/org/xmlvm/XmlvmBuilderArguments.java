@@ -38,8 +38,7 @@ public class XmlvmBuilderArguments {
   public static final String ARG_EXEPATH = "--exepath=";
   public static final String ARG_JSRESOURCE = "--javascriptresource=";
   public static final String ARG_RESOURCE = "--includeresource=";
-  public static final String ARG_USEINDEXFILE = "--useindexfile=";
-  public static final String ARG_CREATEASSEMBLY = "--createassembly";
+  public static final String ARG_MAIN = "--main=";
   public static final String ARG_COMPRESS = "--compress";
 
   // The parsed values will be stored here.
@@ -48,8 +47,7 @@ public class XmlvmBuilderArguments {
   private String option_exepath = "";
   private String option_javascriptresource = "";
   private String option_includeresource = "";
-  private String option_useindexfile = "";
-  private boolean option_createassembly = false;
+  private String option_main = "";
   private boolean option_compress = false;
 
   /**
@@ -64,15 +62,13 @@ public class XmlvmBuilderArguments {
     System.err.println(error + '\n');
     // TODO(haeberling): Complete.
     String[] msg = { "Usage: XmlvmBuilder ..... TODO",
-        "  --destination=        :                  ",
-        "  --classpath=          :                  ",
-        "  --exepath=            :                  ",
-        "  --javascriptresource= :                  ",
-        "  --includeresource=    :                  ",
-        "  --useindexfile=       :                  ",
-        "  --createassembly      : Create assembly file",
+        "  --destination=        : Destination path",
+        "  --classpath=          : Path where class files are picked up",
+        "  --exepath=            : Path where exe files are picked up",
+        "  --javascriptresource= : TODO                 ",
+        "  --includeresource=    : TODO                 ",
+        "  --main=               : <(package.)ClassName>.[main|Main]",
         "  --compress            : Compress JavaScript assembly file", };
-
     for (int i = 0; i < msg.length; i++) {
       System.err.println(msg[i]);
     }
@@ -95,10 +91,8 @@ public class XmlvmBuilderArguments {
         option_javascriptresource = arg.substring(ARG_JSRESOURCE.length());
       } else if (arg.startsWith(ARG_RESOURCE)) {
         option_includeresource = arg.substring(ARG_RESOURCE.length());
-      } else if (arg.startsWith(ARG_USEINDEXFILE)) {
-        option_useindexfile = arg.substring(ARG_USEINDEXFILE.length());
-      } else if (arg.startsWith(ARG_CREATEASSEMBLY)) {
-        option_createassembly = true;
+      } else if (arg.startsWith(ARG_MAIN)) {
+        option_main = arg.substring(ARG_MAIN.length());
       } else if (arg.startsWith(ARG_COMPRESS)) {
         option_compress = true;
       } else {
@@ -128,12 +122,8 @@ public class XmlvmBuilderArguments {
     return option_includeresource;
   }
 
-  public String option_useindexfile() {
-    return option_useindexfile;
-  }
-
-  public boolean option_createassembly() {
-    return option_createassembly;
+  public String option_main() {
+    return option_main;
   }
 
   public boolean option_compress() {

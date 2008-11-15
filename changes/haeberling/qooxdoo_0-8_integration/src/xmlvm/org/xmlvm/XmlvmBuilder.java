@@ -60,23 +60,32 @@ public class XmlvmBuilder {
    */
   public static final String TEMP_CACHE_SUBDIR = "temp_cache";
   /**
-   * Name of the environment variable that holds the Python executable that
-   * should be used during this process to execute the qooxdoo scripts.
+   * The path to the qooxdoo distribution.
    */
-  public static final String ENV_PYTHON_BIN = System.getenv("XMLVM_PYTHON_BIN");
-
   public static final String QX_PATH = System.getenv("XMLVM_QOOXDOO_PATH");
+  /**
+   * The name of the script that is used to build the application.
+   */
+  public static final String QX_GENERATOR_SCRIPT_NAME = "generate.py";
+  /**
+   * The absolute path to the script that is used to create the qooxdoo
+   * application skeleton.
+   */
   public static final String QX_CREATOR_SCRIPT = QX_PATH
       + "/tool/bin/create-application.py";
   /**
    * The name of the temporary qooxdoo app that is used during the process.
    */
   public static final String QX_TEMP_APP_NAME = "temp_qx_app";
-
+  /**
+   * The path to the XMLVM emulation library.
+   */
   public static final String JS_EMULATION_LIB_PATH = "./src/xmlvm2js";
+  public static final String APPLICATION_JS_PATH = JS_EMULATION_LIB_PATH
+      + "/Application.js.template";
 
   protected String applicationName;
-  protected String indexFileName;
+  // protected String indexFileName;
   protected String mainClass;
   /**
    * This is where the final compilation will be put in.
@@ -91,6 +100,9 @@ public class XmlvmBuilder {
   protected List<LocationEntry> exePaths = new ArrayList<LocationEntry>();
   protected List<LocationEntry> javaScriptResources = new ArrayList<LocationEntry>();
   protected List<LocationEntry> resources = new ArrayList<LocationEntry>();
+  protected String mainMethod;
+
+  // TODO(haeberling): Will go away.
   protected boolean createAssembly = false;
   protected boolean compress = false;
 
@@ -113,18 +125,16 @@ public class XmlvmBuilder {
     String exepath = args.option_exepath();
     // TODO(shaeberling): Support multiple entries & check for correctness
     String resources = args.option_includeresource();
-    indexFileName = args.option_useindexfile();
-    createAssembly = args.option_createassembly();
+    mainMethod = args.option_main();
     compress = args.option_compress();
 
     System.out.println(" * Destination        : " + destination);
     System.out.println(" * Classpath          : " + classpath);
     System.out.println(" * Exepath            : " + exepath);
     System.out.println(" * Resources          : " + resources);
-    System.out.println(" * Index file         : " + indexFileName);
+    System.out.println(" * Main Method        : " + mainMethod);
     // System.out.println(" * Compress Assembly : " + compress);
     System.out.println("-------------------------");
-    System.out.println(" * XMLVM_PYTHON_BIN   : " + ENV_PYTHON_BIN);
     System.out.println(" * XMLVM_QOOXDOO_PATH : " + QX_PATH);
 
     if (!classpath.equals("")) {
@@ -146,21 +156,23 @@ public class XmlvmBuilder {
    */
   private void newBuild() throws XmlvmBuilderException {
     // This is the path, where the source for the temporary qooxdoo project will
-    // be wlocated.
+    // be allocated.
     String tempQxSourcePath = tempDestination + "/" + QX_TEMP_APP_NAME
         + "/source/class";
     // STEP 0: Sanity checks the environment.
-    System.out.println("Sanity checks... ");
+    System.out.println("Sanity checks ... ");
     peformSanityChecks();
     System.out.println("Sanity checks PASSED");
 
     // STEP 1: Preparation of destination directory.
+    // TODO(haeberling): If the directory exists, don't remove it completely.
+    // This will speed up the process. Instead just clear the classes.
     System.out.println("> STEP 1/7: Preparation of destination directory:  "
-        + destination);
+        + destination + " ...");
     clearDestination();
 
     // STEP 2: Executing qooxdoo application creator.
-    System.out.println("> STEP 2/7: Executing qooxdoo application creator.");
+    System.out.println("> STEP 2/7: Executing qooxdoo application creator ...");
     initQxSkeleton();
 
     // STEP 3: Compile class and exe files to JavaScript and copy them to
@@ -171,11 +183,79 @@ public class XmlvmBuilder {
 
     // STEP 4: Copy XMLVM JS compatibility library into temporary directory so
     // it can be picked up by qooxdoo.
-    System.out.println("> STEP 4/7: Copying compatibility library.");
+    System.out.println("> STEP 4/7: Copying compatibility library ...");
     // The path where qooxdoo expects all source to be in the temporary project.
-
     prepareEmulationLibrary(new File(JS_EMULATION_LIB_PATH), new File(
         tempQxSourcePath));
+
+    // STEP 5: Replace generated Application.js with our own, which will execute
+    // the main method to start the application.
+    System.out.println("> STEP 5/7: Inject custom Application.js ...");
+    injectCustomApplicationJs(tempQxSourcePath);
+
+    // STEP 6: Execute Qooxdoo's generator script in order to build the
+    // application.
+    System.out.println("> STEP 6/7: Building application ...");
+    executeGenerator();
+
+    // STEP 7: Copy build directory to final output directory.
+    // TODO(haeberling)
+  }
+
+  private void injectCustomApplicationJs(String jsClassPath)
+      throws XmlvmBuilderException {
+    String applicationJs = readFileAsString(new File(APPLICATION_JS_PATH));
+
+    // We replace the variables in the template with the requires values.
+    applicationJs = applicationJs.replace("{{XMLVM_TEMP_PROJECT_NAME}}",
+        QX_TEMP_APP_NAME);
+    applicationJs = applicationJs.replace("{{XMLVM_MAIN_METHOD_CALL}}",
+        generateMainCall());
+    String filename = jsClassPath + "/" + QX_TEMP_APP_NAME + "/Application.js";
+    try {
+      FileWriter writer = new FileWriter(filename);
+      writer.write(applicationJs);
+      writer.close();
+    } catch (IOException e) {
+      throw new XmlvmBuilderException("Couldn't not write: " + filename, e);
+    }
+  }
+
+  /**
+   * Based on the --main argument, the actual main call is generated.
+   */
+  private String generateMainCall() {
+    String mainClass = mainMethod.substring(0, mainMethod.lastIndexOf('.'));
+    mainClass = mainClass.replace('.', '_');
+    if (mainMethod.endsWith("Main")) {
+      // If the format is <ClassName>.Main we expect this to be a C# main method
+      // call.
+      return mainClass + ".__Main();";
+    } else {
+      return mainClass + "._main___java_lang_String_ARRAYTYPE(undefined);";
+    }
+  }
+
+  /**
+   * Executed Qooxdoo's generator to build the application.
+   * 
+   * @throws XmlvmBuilderException
+   */
+  private void executeGenerator() throws XmlvmBuilderException {
+    try {
+      Process process = createPythonProcess(tempDestination + "/"
+          + QX_TEMP_APP_NAME + "/" + QX_GENERATOR_SCRIPT_NAME + " build");
+      printOutputOfProcess(process, "GENERATOR");
+      int exitCode = process.waitFor();
+      if (exitCode != 0) {
+        throw new XmlvmBuilderException(
+            "Error while executing python. Exit Code: " + exitCode);
+      }
+    } catch (IOException e) {
+      throw new XmlvmBuilderException("Error while executing python.", e);
+    } catch (InterruptedException e) {
+      throw new XmlvmBuilderException("Error while executing python.", e);
+    }
   }
 
   /**
@@ -230,6 +310,16 @@ public class XmlvmBuilder {
     }
   }
 
+  /**
+   * Renames and copies a single JS file. The renaming will integrate the
+   * pathname from a given root path, so the file name matches the class name
+   * within the file.
+   * 
+   * @param absoluteBasePath
+   * @param jsFile
+   * @param destination
+   * @throws XmlvmBuilderException
+   */
   private void renameAndCopyJsFile(File absoluteBasePath, File jsFile,
       File destination) throws XmlvmBuilderException {
     // +1 to remove trailing slash.
@@ -254,26 +344,57 @@ public class XmlvmBuilder {
    * @throws XmlvmBuilderException
    */
   private void peformSanityChecks() throws XmlvmBuilderException {
-    // Check if qooxdoo-path exists.
+    // Check whether qooxdoo-path exists.
     if (!(new File(QX_PATH)).isDirectory()) {
       throw new XmlvmBuilderException("QX directory cannot be found: "
           + QX_PATH);
     }
-    // Check if creator script is present.
+    // Check whether creator script is present.
     if (!(new File(QX_CREATOR_SCRIPT)).isFile()) {
       throw new XmlvmBuilderException("QX creator cannot be found: "
           + QX_CREATOR_SCRIPT);
     }
-    // Check if Python is present
-    if (!(new File(ENV_PYTHON_BIN)).isFile()) {
-      throw new XmlvmBuilderException("Python executable cannot be found: "
-          + ENV_PYTHON_BIN);
+    // Check whether Python is present
+    if (!isPythonPresent()) {
+      throw new XmlvmBuilderException(
+          "Python executable cannot be found. Make sure python.exe is on your PATH ");
     }
-    // Check if JS emulation library is present.
-    // Check if Python is present
+    // Check whether JS emulation library is present.
     if (!(new File(JS_EMULATION_LIB_PATH)).isDirectory()) {
       throw new XmlvmBuilderException("Emulation library cannot be found: "
           + JS_EMULATION_LIB_PATH);
+    }
+    // Check whether the custom Application.js template is present
+    if (!(new File(APPLICATION_JS_PATH)).isFile()) {
+      throw new XmlvmBuilderException("Custom Application.js file not found: "
+          + APPLICATION_JS_PATH);
+    }
+    // Check whether mainMethod is defined and has the required format
+    if (mainMethod.indexOf('.') == -1) {
+      throw new XmlvmBuilderException(
+          "--main must be of format: <ClassName>.(main|Main");
+    }
+  }
+
+  /**
+   * Returns whether python can be executed.
+   */
+  private static boolean isPythonPresent() {
+    String line = "";
+    try {
+      Process process;
+      process = Runtime.getRuntime().exec("python --version");
+      BufferedReader input = new BufferedReader(new InputStreamReader(process
+          .getErrorStream()));
+      line = input.readLine();
+      process.destroy();
+    } catch (IOException e) {
+      return false;
+    }
+    if (line != null && line.startsWith("Python")) {
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -310,7 +431,7 @@ public class XmlvmBuilder {
    */
   private static Process createPythonProcess(String arguments)
       throws IOException {
-    return Runtime.getRuntime().exec(ENV_PYTHON_BIN + " " + arguments);
+    return Runtime.getRuntime().exec("python " + arguments);
   }
 
   /**
@@ -327,9 +448,14 @@ public class XmlvmBuilder {
       throws IOException {
     BufferedReader input = new BufferedReader(new InputStreamReader(process
         .getInputStream()));
+    BufferedReader errorInput = new BufferedReader(new InputStreamReader(
+        process.getErrorStream()));
     String line;
     while ((line = input.readLine()) != null) {
       System.out.println(linePrefix + " > " + line);
+    }
+    while ((line = errorInput.readLine()) != null) {
+      System.err.println("(ERROR) " + linePrefix + " > " + line);
     }
     input.close();
   }
@@ -911,10 +1037,6 @@ public class XmlvmBuilder {
     this.applicationName = applicationName;
   }
 
-  public String getIndexFileName() {
-    return indexFileName;
-  }
-
   public String getMainClass() {
     return mainClass;
   }
@@ -947,6 +1069,37 @@ public class XmlvmBuilder {
   }
 
   /**
+   * Get the content of a file.
+   * 
+   * @param file
+   * @return
+   */
+  public static String readFileAsString(File file) {
+    final int READ_BUFFER = 4096;
+
+    FileInputStream is;
+    try {
+      is = new FileInputStream(file);
+      StringBuffer buffer = new StringBuffer();
+      byte b[] = new byte[READ_BUFFER];
+      int l = 0;
+      if (is == null) {
+        return "";
+      } else {
+        while ((l = is.read(b)) > 0) {
+          buffer.append(new String(b, 0, l));
+        }
+      }
+      return buffer.toString();
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return "";
+  }
+
+  /**
    * Defines a JavaScript file that contains one class. It holds the file's
    * contents as well as all the dependencies of the class within.
    */
@@ -960,7 +1113,7 @@ public class XmlvmBuilder {
 
     public JsFile(File file) {
       // Read contents of the file
-      fileContent = getFileAsString(file);
+      fileContent = readFileAsString(file);
       int classDefinePosition = 0;
 
       // Check if we find a class definition within the file
@@ -996,37 +1149,6 @@ public class XmlvmBuilder {
           this.dependsOnAll.add(dep.replace(".", "_"));
         }
       }
-    }
-
-    /**
-     * Get the content of a file. Quite fast.
-     * 
-     * @param file
-     * @return
-     */
-    private String getFileAsString(File file) {
-      final int READ_BUFFER = 4096;
-
-      FileInputStream is;
-      try {
-        is = new FileInputStream(file);
-        StringBuffer buffer = new StringBuffer();
-        byte b[] = new byte[READ_BUFFER];
-        int l = 0;
-        if (is == null) {
-          return "";
-        } else {
-          while ((l = is.read(b)) > 0) {
-            buffer.append(new String(b, 0, l));
-          }
-        }
-        return buffer.toString();
-      } catch (FileNotFoundException e) {
-        e.printStackTrace();
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-      return "";
     }
 
     public String[] getLoadDependencies() {
