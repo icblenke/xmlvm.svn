@@ -578,7 +578,7 @@ public class Main {
         // This chunk of code generates 1 JS file per class so we can maintain 1
         // class per file
         // which makes dependency resolution easier.
-        out.close(); // Don't use this...
+//        out.close(); // Don't use this...
         List<Element> clazzes = doc.getRootElement().getChildren("class",
             Namespace.getNamespace("vm", "http://xmlvm.org"));
         for (Element clazz : clazzes) {
