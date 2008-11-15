@@ -1,7 +1,7 @@
 qx.Class.define("javax_swing_JLabel", {
 	extend: java_awt_Component,
 	construct: function() {
-		this.qxCanvasLayout = new qx.ui.layout.CanvasLayout();
+		this.qxCanvasLayout = new qx.ui.layout.Canvas();
 		this.qxLabel = new qx.ui.basic.Label("");
 		this.qxCanvasLayout.add(this.qxLabel);
 	},

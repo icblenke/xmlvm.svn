@@ -1,7 +1,7 @@
 qx.Class.define("java_awt_NullLayoutManager", {
 	extend: java_lang_Object,
 	construct: function() {
-		this.qxCanvasLayout = new qx.ui.layout.CanvasLayout();
+		this.qxCanvasLayout = new qx.ui.layout.Canvas();
 	},
 	members:
 	{

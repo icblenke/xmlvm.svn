@@ -5,12 +5,12 @@ qx.Class.define("java_awt_Frame", {
 		if(this.anchor != undefined){
 			console.log("Embedding Window into XML11_ROOT");
 			this.xml11Embeded = true;
-			this.qxWindow = new qx.ui.layout.CanvasLayout();
+			this.qxWindow = new qx.ui.layout.Canvas();
 			this.anchor.id = "XML11_ROOT_OCCUPIED";
 		}else{
 			this.xml11Embeded = false;
 			this.qxWindow = new qx.ui.window.Window();
-			this.qxCanvasLayout = new qx.ui.layout.CanvasLayout();
+			this.qxCanvasLayout = new qx.ui.layout.Canvas();
 			this.qxCanvasLayout.setLocation(0,-10);
 			//Right now we don't support minimizing, as windows would
 			//go to nowhere
