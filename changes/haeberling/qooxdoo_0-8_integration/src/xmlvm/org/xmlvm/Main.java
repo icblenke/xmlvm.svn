@@ -571,7 +571,7 @@ public class Main {
         rec.startRecursion(doc);
       }
       OutputStream out = null;
-      if (!(args.option_java() || args.option_objc())) {
+      if (!(args.option_java() || args.option_objc() || args.option_js())) {
         out = main.getOutputStream(args);
       }
       if (args.option_js()) {
