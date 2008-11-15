@@ -1,5 +1,3 @@
-checkClass("java.lang.Object");
-checkClass("org.jdom.Document");
 qx.Class.define("org_jdom_Element", {
 	extend: java_lang_Object,
 	members:
@@ -28,7 +26,6 @@ qx.Class.define("org_jdom_Element", {
 					jsArray.push(e);
 				}
 			}
-			checkClass("java.util.ArrayList");
 			var result = new java_util_ArrayList();
 			result.setJsArray(jsArray);
 			return result;
@@ -42,11 +39,9 @@ qx.Class.define("org_jdom_Element", {
 			return result;
 		},
 		_getText: function() {
-			checkClass("java.lang.String");
 			return new java_lang_String(qx.xml.Element.getText(this.xmlElement));
 		},
 		_getAttributeValue___java_lang_String: function(attrName) {
-			checkClass("java.lang.String");			
 			return new java_lang_String(this.xmlElement.getAttribute(attrName._str));
 		},
 		_getChildText___java_lang_String: function(childName) {

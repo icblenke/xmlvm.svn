@@ -1,4 +1,3 @@
-checkClass("java.lang.Object");
 qx.Class.define("org_jdom_output_XMLOutputter", {
 	extend: java_lang_Object,
 	members:

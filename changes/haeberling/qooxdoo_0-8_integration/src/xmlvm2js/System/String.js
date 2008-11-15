@@ -1,4 +1,3 @@
-checkClass("System.Object");
 qx.Class.define("System_String", {
   extend: System_Object,
   construct: function(str)

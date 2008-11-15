@@ -1,5 +1,3 @@
-checkClass("java.awt.Component");
-checkClass("java.awt.event.ActionEvent");
 qx.Class.define("java_awt_Button", {
 	extend: java_awt_Component,
 	construct: function() {

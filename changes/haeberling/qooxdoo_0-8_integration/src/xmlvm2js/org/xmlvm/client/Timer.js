@@ -1,4 +1,3 @@
-checkClass("java.lang.Object");
 qx.Class.define("org_xmlvm_client_Timer", {
   extend: java_lang_Object,
   construct: function() {

@@ -1,4 +1,3 @@
-checkClass("java.lang.Object");
 qx.Class.define("java_awt_event_ItemEvent", {
 	extend: java_lang_Object,
 	statics: {
@@ -14,7 +13,6 @@ qx.Class.define("java_awt_event_ItemEvent", {
 			return this.kind;
 		},
 		_getItem: function() {
-			checkClass("java.lang.Integer");
 			var result = new java_lang_Integer();
 			result.__init____int(this.listIndex);
 			return result;

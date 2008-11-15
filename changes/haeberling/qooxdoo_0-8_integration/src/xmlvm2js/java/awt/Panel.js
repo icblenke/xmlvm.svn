@@ -1,5 +1,3 @@
-checkClass("java.awt.Container");
-checkClass("java.awt.NullLayoutManager");
 qx.Class.define("java_awt_Panel", {
 	extend: java_awt_Container,
 	construct: function() {

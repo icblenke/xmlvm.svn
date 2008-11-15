@@ -1,5 +1,3 @@
-checkClass("org.gmap.GMapEvent");
-
 qx.Class.define("org_gmap_GMapClickEvent", {
   extend: org_gmap_GMapEvent,
   construct: function() {

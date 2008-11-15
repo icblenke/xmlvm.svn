@@ -1,5 +1,3 @@
-checkClass("System.Object");
-
 qx.Class.define("System_Windows_Forms_Control", {
   extend: System_Object,
   members:
@@ -73,7 +71,6 @@ qx.Class.define("System_Windows_Forms_Control", {
 	 },
 	 _get_Controls: function()
 	 {
-  	 	checkClass("System.Windows.Forms.Control$ControlCollection");
   	 	if (this._controlCollection == 0)
 	  	 	this._controlCollection = new System_Windows_Forms_Control$ControlCollection(this);
 	 	return this._controlCollection;
@@ -93,7 +90,6 @@ qx.Class.define("System_Windows_Forms_Control", {
 	 _add_Click___System_EventHandler: function(handler)
 	 {
 	 	handler.senderObj = this;
-	 	checkClass("org.xmlvm.clr.EventManager");
 	 	org_xmlvm_clr_EventManager.registerClickEventHandler(handler);
 	 	var _this = this;
 		this._component.addEventListener("execute", function(e) {

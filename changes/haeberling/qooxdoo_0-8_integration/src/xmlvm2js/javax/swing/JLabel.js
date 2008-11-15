@@ -1,4 +1,3 @@
-checkClass("java.awt.Component");
 qx.Class.define("javax_swing_JLabel", {
 	extend: java_awt_Component,
 	construct: function() {

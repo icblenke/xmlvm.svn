@@ -1,4 +1,3 @@
-checkClass("java.lang.Object");
 qx.Class.define("org_jdom_output_Format", {
 	extend: java_lang_Object,
 	statics:
@@ -11,6 +10,5 @@ qx.Class.define("org_jdom_output_Format", {
 	},
 	members:
 	{
-	
 	}
 });

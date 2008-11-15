@@ -1,4 +1,3 @@
-checkClass("java.lang.Object");
 qx.Class.define("org_gmap_GLatLng", {
 	extend: java_lang_Object,
 	members:

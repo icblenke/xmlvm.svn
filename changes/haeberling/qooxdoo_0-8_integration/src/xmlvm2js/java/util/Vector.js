@@ -1,4 +1,3 @@
-checkClass("java.lang.Object");
 qx.Class.define("java_util_Vector", {
   extend: java_lang_Object,
   construct: function() {

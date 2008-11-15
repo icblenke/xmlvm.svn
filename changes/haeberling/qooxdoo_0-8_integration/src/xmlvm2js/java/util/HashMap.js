@@ -1,5 +1,3 @@
-checkClass("java.lang.Object");
-checkClass("java_lang_null");
 qx.Class.define("java_util_HashMap", {
   extend: java_lang_Object,
   construct: function() {

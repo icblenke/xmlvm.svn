@@ -1,5 +1,3 @@
-checkClass("java.lang.String");
-
 qx.Class.define("java_io_PrintStream",  {
 	extend: java_lang_Object,
 	construct: function() {

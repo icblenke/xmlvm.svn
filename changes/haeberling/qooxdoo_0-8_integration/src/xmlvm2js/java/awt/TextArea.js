@@ -1,4 +1,3 @@
-checkClass("java.awt.Component");
 qx.Class.define("java_awt_TextArea", {
 	extend: java_awt_Component,
 	construct: function() {

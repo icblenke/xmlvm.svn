@@ -1,4 +1,3 @@
-checkClass("java.lang.Object");
 qx.Class.define("org_jdom_Document", {
 	extend: java_lang_Object,
 	statics:
@@ -27,7 +26,6 @@ qx.Class.define("org_jdom_Document", {
 			return this.xmlDocument;
 		},
 		_getRootElement: function() {
-			checkClass("org.jdom.Element");
 			var result = new org_jdom_Element();
 			result.setXmlElement(this.xmlDocument.documentElement);
 			return result;

@@ -1,7 +1,3 @@
-checkClass("java.awt.Container");
-checkClass("org.gmap.GMapCustomEvent");
-checkClass("org.gmap.GMapEvent");
-
 qx.Class.define("org_gmap_GMap2", {
 	extend: java_awt_Container,
 	construct: function() {

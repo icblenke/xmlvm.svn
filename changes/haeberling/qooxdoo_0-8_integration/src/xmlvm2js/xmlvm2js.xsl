@@ -1014,15 +1014,12 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 
 <!-- Added for Dynamic Loading -->
 <xsl:template name="checkClass">
-  <xsl:param name="string" />
+<!--  <xsl:param name="string" />
   <xsl:text>
              checkClass("</xsl:text>
-				<!-- <xsl:call-template name="emitScopedName">
-			      <xsl:with-param name="string" select="$string"/>
-			    </xsl:call-template> -->
 			    <xsl:value-of select="$string" />
 			 <xsl:text>");
-</xsl:text>
+</xsl:text> -->
 </xsl:template>
 
 

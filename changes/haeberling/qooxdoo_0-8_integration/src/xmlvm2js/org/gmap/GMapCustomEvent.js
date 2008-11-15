@@ -1,5 +1,3 @@
-checkClass("java.awt.event.ActionEvent");
-
 qx.Class.define("org_gmap_GMapCustomEvent", {
   extend: org_gmap_GMapEvent,
   construct: function() {

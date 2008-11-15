@@ -1,5 +1,3 @@
-checkClass("System.Windows.Forms.Control");
-
 qx.Class.define("System_Windows_Forms_Button", {
   extend: System_Windows_Forms_Control,
   members:
@@ -14,7 +12,6 @@ qx.Class.define("System_Windows_Forms_Button", {
   	 },
   	 _get_Text: function()
   	 {
-		checkClass("System.String");
   	 	return new System_String(this._component.getLabel());
   	 }
   }

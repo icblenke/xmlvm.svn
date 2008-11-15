@@ -1,4 +1,3 @@
-checkClass("java.lang.Object");
 qx.Class.define("java_awt_NullLayoutManager", {
 	extend: java_lang_Object,
 	construct: function() {

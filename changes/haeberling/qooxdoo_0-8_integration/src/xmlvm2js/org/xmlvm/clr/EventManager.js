@@ -1,5 +1,3 @@
-
-qx.Class.define("org_xmlvm_clr_EventManager", {
   statics:
   {
     clickEventHandlers: new Array(),
@@ -15,7 +13,6 @@ qx.Class.define("org_xmlvm_clr_EventManager", {
         for (i = 0; i < this.clickEventHandlers.length; i++) {
         	var handler = this.clickEventHandlers[i];
             var idx = handler.signatureIndex;
-            checkClass("org.xmlvm.clr.DelegateManager");
             var signature = org_xmlvm_clr_DelegateManager.getSignature(idx);
             if (signature._str != "void;System.Object;System.EventArgs")
                throw "Bad signature";

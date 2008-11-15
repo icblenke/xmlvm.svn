@@ -1,6 +1,3 @@
-checkClass("System.Object");
-checkClass("System.String");
-
 qx.Class.define("System_Convert", {
   extend: System_Object,
   statics:

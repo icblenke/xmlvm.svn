@@ -1,4 +1,3 @@
-checkClass("java.awt.Window");
 qx.Class.define("java_awt_Frame", {
 	extend: java_awt_Window,
 	construct: function () {

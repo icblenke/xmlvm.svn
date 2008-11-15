@@ -1,4 +1,3 @@
-checkClass("java.awt.Frame");
 qx.Class.define("java_awt_Dialog", {
 	extend: java_awt_Frame,
 	members:

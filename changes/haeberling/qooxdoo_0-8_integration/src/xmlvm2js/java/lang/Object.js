@@ -1,4 +1,3 @@
-qx.Class.define("java_lang_Object", {
   extend: qx.core.Object,
   statics:
   {
@@ -18,5 +17,3 @@ qx.Class.define("java_lang_Object", {
     }
   }
 });
-
-checkClass("java.lang.null");

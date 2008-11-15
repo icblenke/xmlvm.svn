@@ -1,6 +1,3 @@
-checkClass("java.lang.Object");
-checkClass("org.apache.commons.httpclient.methods.GetMethod");
-checkClass("org.apache.commons.httpclient.methods.PutMethod");
 qx.Class.define("org_apache_commons_httpclient_HttpClient", {
 	extend: java_lang_Object,
 	members:

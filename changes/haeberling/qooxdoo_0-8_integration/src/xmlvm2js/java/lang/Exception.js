@@ -1,4 +1,3 @@
-checkClass("java.lang.Object");
 qx.Class.define("java_lang_Exception", {
   construct: function() {
   	this._message = new java_lang_String("");

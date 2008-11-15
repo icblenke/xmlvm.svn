@@ -1,4 +1,3 @@
-checkClass("java.lang.Object");
 qx.Class.define("System_Object", {
   extend: java_lang_Object,
   members:

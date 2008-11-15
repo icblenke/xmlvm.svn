@@ -1,4 +1,3 @@
-checkClass("java.awt.LayoutManager");
 qx.Class.define("java_awt_GridLayout", {
 	extend: java_awt_LayoutManager,
 	construct: function() {

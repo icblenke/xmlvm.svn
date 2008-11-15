@@ -1,4 +1,3 @@
-checkClass("java.awt.Component");
 qx.Class.define("java_awt_TextField", {
 	extend: java_awt_Component,
 	construct: function() {
@@ -28,7 +27,6 @@ qx.Class.define("java_awt_TextField", {
 		_addActionListener___java_awt_event_ActionListener : function(listener) {
 			this.qxTextField.addEventListener("keyup", function(e) {
 				if(e.getKeyCode() == 13) { //ENTER KEY
-					checkClass("java.awt.event.ActionEvent");
 					var actionEvent = new java_awt_event_ActionEvent();
 			  		actionEvent.setQxEvent(e);
 			  		listener._actionPerformed___java_awt_event_ActionEvent(actionEvent);
@@ -37,7 +35,6 @@ qx.Class.define("java_awt_TextField", {
 			
 			/* Execute is not working as expected */
 			/*this.qxTextField.addEventListener("execute", function(e) {
-				checkClass("java.awt.event.ActionEvent");
 				var actionEvent = new java_awt_event_ActionEvent();
 		  		actionEvent.setQxEvent(e);
 		  		listener._actionPerformed___java_awt_event_ActionEvent(actionEvent);

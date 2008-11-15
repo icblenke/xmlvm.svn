@@ -1,4 +1,3 @@
-checkClass("java.lang.Object");
 qx.Class.define("java_awt_Toolkit", {
 	extend: java_lang_Object,
 	statics:
@@ -15,7 +14,6 @@ qx.Class.define("java_awt_Toolkit", {
 	members:
 	{
 		_getScreenSize: function() {
-			checkClass("java.awt.Dimension");
 			var result = new java_awt_Dimension();
 			//TODO: This might not work on every browser? Is there a qooxdoo
 			//      function for obtaining this size?

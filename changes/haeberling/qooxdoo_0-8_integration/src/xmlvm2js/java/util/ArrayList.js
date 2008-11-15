@@ -1,4 +1,3 @@
-checkClass("java.util.List");
 qx.Class.define("java_util_ArrayList", {
   extend: java_util_List,
   construct: function() {

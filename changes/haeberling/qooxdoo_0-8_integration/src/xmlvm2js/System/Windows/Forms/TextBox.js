@@ -1,5 +1,3 @@
-checkClass("System.Windows.Forms.TextBoxBase");
-
 qx.Class.define("System_Windows_Forms_TextBox", {
   extend: System_Windows_Forms_TextBoxBase,
   members:

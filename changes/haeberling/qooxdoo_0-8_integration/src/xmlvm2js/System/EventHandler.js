@@ -1,5 +1,3 @@
-checkClass("System.Object");
-
 qx.Class.define("System_EventHandler", {
   extend: System_Object,
   construct: function(targetObj, signatureIndex)

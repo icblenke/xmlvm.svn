@@ -1,4 +1,3 @@
-checkClass("java.lang.Object");
 qx.Class.define("org_apache_commons_httpclient_methods_GetMethod", {
 	extend: java_lang_Object,
 	members:

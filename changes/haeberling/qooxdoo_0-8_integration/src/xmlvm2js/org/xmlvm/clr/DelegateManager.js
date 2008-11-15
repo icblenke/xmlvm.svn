@@ -1,14 +1,8 @@
-checkClass("System.Object");
-checkClass("java.lang.String");
-checkClass("org.xmlvm.clr.Delegate");
-
-
 qx.Class.define("org_xmlvm_clr_DelegateManager", {
   extend: System_Object,
   statics:
   {
       signatures: new Array(),
-  
   	 _registerFunctionPtr___java_lang_String_java_lang_String_java_lang_String:
   	     function(classType, method, signature)
   	 {

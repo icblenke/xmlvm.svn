@@ -1,5 +1,3 @@
-checkClass("java.awt.Component");
-checkClass("java.lang.String");
 qx.Class.define("java_awt_List", {
 	extend: java_awt_Component,
 	construct: function() {
@@ -46,7 +44,6 @@ qx.Class.define("java_awt_List", {
 		_addItemListener___java_awt_event_ItemListener: function(listener) {
 			var pane = this.qxListView.getPane();
 			var listData = this.listData;
-			checkClass("java.awt.event.ItemEvent");
 			pane.getManager().addEventListener("changeSelection", function(e) {
 				console.log("Change Selection");
 				var event = new java_awt_event_ItemEvent();

@@ -1,6 +1,3 @@
-checkClass("java.lang.Object");
-checkClass("java.io.PrintStream");
-
 qx.Class.define("java_lang_System", {
   extend: java_lang_Object,
   statics:

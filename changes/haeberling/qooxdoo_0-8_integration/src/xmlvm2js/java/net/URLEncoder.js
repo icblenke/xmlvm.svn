@@ -1,4 +1,3 @@
-checkClass("java.lang.Object");
 qx.Class.define("java_net_URLEncoder", {
   extend: java_lang_Object,
   statics:
