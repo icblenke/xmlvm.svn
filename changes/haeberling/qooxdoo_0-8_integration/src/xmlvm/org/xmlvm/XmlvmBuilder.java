@@ -28,7 +28,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.io.Reader;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -444,20 +446,15 @@ public class XmlvmBuilder {
    *          The line prefix to mark the output.
    * @throws IOException
    */
-  private static void printOutputOfProcess(Process process, String linePrefix)
-      throws IOException {
-    BufferedReader input = new BufferedReader(new InputStreamReader(process
-        .getInputStream()));
-    BufferedReader errorInput = new BufferedReader(new InputStreamReader(
-        process.getErrorStream()));
-    String line;
-    while ((line = input.readLine()) != null) {
-      System.out.println(linePrefix + " > " + line);
-    }
-    while ((line = errorInput.readLine()) != null) {
-      System.err.println("(ERROR) " + linePrefix + " > " + line);
-    }
-    input.close();
+  private static void printOutputOfProcess(final Process process,
+      final String linePrefix) throws IOException {
+
+    InpuReaderThread inputThread = new InpuReaderThread(process
+        .getInputStream(), System.out, linePrefix);
+    InpuReaderThread errorThread = new InpuReaderThread(process
+        .getErrorStream(), System.err, "(ERROR) " + linePrefix);
+    inputThread.start();
+    errorThread.start();
   }
 
   /**
@@ -1279,3 +1276,33 @@ class XmlvmBuilderException extends Exception {
 
   private static final long serialVersionUID = 1L;
 }
+
+/**
+ * Takes the input of an InputStream and writes it to the given output stream.
+ * 
+ * @author Sascha Haeberling
+ * 
+ */
+class InpuReaderThread extends Thread {
+  private BufferedReader in;
+  private PrintStream out;
+  private String prefix;
+
+  public InpuReaderThread(InputStream inputStream, PrintStream outStream,
+      String linePrefix) {
+    in = new BufferedReader(new InputStreamReader(inputStream));
+    out = outStream;
+    prefix = linePrefix;
+  }
+
+  public void run() {
+    String line;
+    try {
+      while ((line = in.readLine()) != null) {
+        out.println(prefix + " > " + line);
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+};
