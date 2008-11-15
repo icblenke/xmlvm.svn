@@ -111,35 +111,43 @@ public class Main {
    * Returns an output stream created based on the given options.
    * 
    */
-  public OutputStream getOutputStream(boolean option_console,
+  public OutputStream getOutputStream(XmlvmArguments args)/*boolean option_console,
       String option_out, boolean option_js, boolean option_cpp,
-      boolean option_objc, boolean option_python, boolean option_exe) {
+      boolean option_objc, boolean option_python, boolean option_exe*/ {
     OutputStream out = null;
     try {
-      if (option_console) {
+      if (args.option_console()) {
         out = System.out;
-      } else if (option_exe) {
+      } else if (args.option_exe()) {
         // TODO Should check that option_out is set
-        out = new FileOutputStream(option_out);
+        out = new FileOutputStream(args.option_out());
+      } else if (args.option_js()) {
+        String suffix = ".js";
+        String path = args.option_out() != null ? args.option_out() : "";
+        class_name = class_name.replace('.', '_');
+        String outputFileName = path + File.separatorChar + class_name + suffix;
+        out = new FileOutputStream(outputFileName);
+        System.out.println("Generate JS " + outputFileName);
       } else {
         int index = class_name.lastIndexOf('.');
         String path = class_name.substring(0, index + 1).replace('.',
             File.separatorChar);
-        if (option_out != null)
-          path = option_out + File.separatorChar + path;
+        if (args.option_out() != null) {
+          path = args.option_out() + File.separatorChar + path;
+        }
         class_name = class_name.substring(index + 1);
         if (!path.equals("")) {
           File f = new File(path);
           f.mkdirs();
         }
         String suffix = ".xmlvm";
-        if (option_js)
+        if (args.option_js())
           suffix = ".js";
-        if (option_cpp)
+        if (args.option_cpp())
           suffix = ".cpp";
-        if (option_objc)
+        if (args.option_objc())
           suffix = ".m";
-        if (option_python)
+        if (args.option_python())
           suffix = ".py";
         out = new FileOutputStream(path + class_name + suffix);
         System.out.println("Generate " + path + class_name + suffix);
@@ -564,9 +572,7 @@ public class Main {
       }
       OutputStream out = null;
       if (!(args.option_java() || args.option_objc())) {
-        out = main.getOutputStream(args.option_console(), args.option_out(),
-            args.option_js(), args.option_cpp(), args.option_objc(), args
-                .option_python(), args.option_exe());
+        out = main.getOutputStream(args);
       }
       if (args.option_js()) {
         // This chunk of code generates 1 JS file per class so we can maintain 1
@@ -576,10 +582,8 @@ public class Main {
         List<Element> clazzes = doc.getRootElement().getChildren("class",
             Namespace.getNamespace("vm", "http://xmlvm.org"));
         for (Element clazz : clazzes) {
-          main.class_name = clazz.getAttributeValue("name");
-          out = main.getOutputStream(args.option_console(), args.option_out(),
-              args.option_js(), args.option_cpp(), args.option_objc(), args
-                  .option_python(), args.option_exe());
+          //main.class_name = clazz.getAttributeValue("name");
+          out = main.getOutputStream(args);
           Document newDoc = new Document();
           Element newRoot = new Element(doc.getRootElement().getName(), doc
               .getRootElement().getNamespace());
