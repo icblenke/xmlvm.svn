@@ -2,30 +2,6 @@ checkClass("java.awt.Container");
 checkClass("org.gmap.GMapCustomEvent");
 checkClass("org.gmap.GMapEvent");
 
-// Internal Events are stored in an queue of GMap2. This is necessary, as it is
-// possible to call methods like addOverlay on the Map, while the map is not
-// yet added to the DOM (because it is not yet set visible). It doesn't seem to
-// be possible to create the GMap before it is set to its final destination
-// easily.
-qx.Class.define("Xml11_InternalEvent", {
-	extend: qx.core.Object,
-	construct: function(_eventType, _obj) {
-		this.eventType = _eventType;
-		this.obj = _obj;
-	},
-	statics:
-	{
-		EVENT_ADD_OVERLAY: 1,
-		EVENT_CLEAR_OVERLAYS: 2,
-		EVENT_PAN_TO: 3
-	},
-	members:
-	{
-		eventType: 0,
-		obj: 0
-	}
-});
-
 qx.Class.define("org_gmap_GMap2", {
 	extend: java_awt_Container,
 	construct: function() {
@@ -80,13 +56,13 @@ qx.Class.define("org_gmap_GMap2", {
 				for(var i = 0; i < this.internalEvents.length; ++i) {
 					var event = this.internalEvents[i];
 					switch(event.eventType) {
-						case Xml11_InternalEvent.EVENT_ADD_OVERLAY:
+						case org_gmap_InternalEvent.EVENT_ADD_OVERLAY:
 				    		this.map.addOverlay(event.obj);
 				    		break;
-				    	case Xml11_InternalEvent.EVENT_CLEAR_OVERLAYS:
+				    	case org_gmap_InternalEvent.EVENT_CLEAR_OVERLAYS:
 				    		this.map.clearOverlays();
 				    		break;
-				    	case Xml11_InternalEvent.EVENT_PAN_TO:
+				    	case org_gmap_InternalEvent.EVENT_PAN_TO:
 				    		this.map.panTo(event.obj);
 				    		break;
 					}
@@ -137,8 +113,8 @@ qx.Class.define("org_gmap_GMap2", {
 			if(this.map != 0) {
 				this.map.addOverlay(marker);
 			} else {
-				this.internalEvents.push(new Xml11_InternalEvent(
-				    Xml11_InternalEvent.EVENT_ADD_OVERLAY, marker));
+				this.internalEvents.push(new org_gmap_InternalEvent(
+				    org_gmap_InternalEvent.EVENT_ADD_OVERLAY, marker));
 			}
 		},
 		_clearOverlays: function()
@@ -146,8 +122,8 @@ qx.Class.define("org_gmap_GMap2", {
 			if(this.map != 0) {
 				this.map.clearOverlays();
 			} else {
-				this.internalEvents.push(new Xml11_InternalEvent(
-				    Xml11_InternalEvent.EVENT_CLEAR_OVERLAYS, 0));
+				this.internalEvents.push(new org_gmap_InternalEvent(
+				    org_gmap_InternalEvent.EVENT_CLEAR_OVERLAYS, 0));
 			}
 		},
 		_addActionListener___java_awt_event_ActionListener: function(listener) {
@@ -158,8 +134,8 @@ qx.Class.define("org_gmap_GMap2", {
 			if(this.map != 0) {
 				this.map.panTo(point2);
 			} else {
-				this.internalEvents.push(new Xml11_InternalEvent(
-				    Xml11_InternalEvent.EVENT_PAN_TO, point2));
+				this.internalEvents.push(new org_gmap_InternalEvent(
+				    org_gmap_InternalEvent.EVENT_PAN_TO, point2));
 			}
 		},
 		_setGMapEventListener___org_gmap_GMapEventListener: function(listener) {
