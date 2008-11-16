@@ -9,7 +9,7 @@ qx.Class.define("java_awt_Button", {
 		qxButton: 0,
 		actionListeners: 0,
 		$$init____java_lang_String: function(value) {
-			this.qxButton.setLabel(value._str);
+			this.qxButton.setLabel(value.$str);
 		},
 		$addActionListener___java_awt_event_ActionListener: function(listener) {
 			this.qxButton.addEventListener("execute", function(e) {
@@ -31,7 +31,7 @@ qx.Class.define("java_awt_Button", {
 			this.qxButton.setEnabled(enabled);
 		},
 		$setLabel___java_lang_String: function(value) {
-			this.qxButton.setLabel(value._str);
+			this.qxButton.setLabel(value.$str);
 		},
 		$getLabel: function() {
 			return new java_lang_String(this.qxButton.getLabel());
