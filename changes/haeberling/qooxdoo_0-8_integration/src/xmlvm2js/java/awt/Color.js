@@ -7,8 +7,8 @@ qx.Class.define("java_awt_Color", {
 	},
 	statics:
 	{
-		_BLACK: 0,
-		_WHITE: 0
+		$BLACK: 0,
+		$WHITE: 0
 	},
 	members:
 	{
@@ -23,7 +23,7 @@ qx.Class.define("java_awt_Color", {
 	}
 });
 
-java_awt_Color._BLACK = new java_awt_Color();
-java_awt_Color._BLACK.$$init____float_float_float(0,0,0);
-java_awt_Color._WHITE = new java_awt_Color();
-java_awt_Color._WHITE.$$init____float_float_float(255,255,255);
+java_awt_Color.$BLACK = new java_awt_Color();
+java_awt_Color.$BLACK.$$init____float_float_float(0,0,0);
+java_awt_Color.$WHITE = new java_awt_Color();
+java_awt_Color.$WHITE.$$init____float_float_float(255,255,255);
