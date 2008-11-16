@@ -2,7 +2,7 @@ qx.Class.define("org_apache_commons_httpclient_HttpClient", {
 	extend: java_lang_Object,
 	members:
 	{
-		_executeMethod___org_apache_commons_httpclient_HttpMethod: function(method) {
+		$executeMethod___org_apache_commons_httpclient_HttpMethod: function(method) {
 			if(method instanceof org_apache_commons_httpclient_methods_GetMethod) {
 		  		var response = XHRFunc.getURL(method.getURL(), "", "", "", [['Content-Type','text/plain']]);
     			if (response.status == 200) {

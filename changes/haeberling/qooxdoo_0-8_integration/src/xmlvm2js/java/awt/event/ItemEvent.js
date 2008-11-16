@@ -8,13 +8,13 @@ qx.Class.define("java_awt_event_ItemEvent", {
 	{
 		listIndex: 0,
 		kind: 0,
-		_getStateChange: function() {
+		$getStateChange: function() {
 			console.log("TODO: ItemEvent.getStateChange()");
 			return this.kind;
 		},
-		_getItem: function() {
+		$getItem: function() {
 			var result = new java_lang_Integer();
-			result.__init____int(this.listIndex);
+			result.$$init____int(this.listIndex);
 			return result;
 		},
 		// Not part of the official API

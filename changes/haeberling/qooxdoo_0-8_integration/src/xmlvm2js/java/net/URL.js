@@ -3,10 +3,10 @@ qx.Class.define("java_net_URL", {
   members:
   {
   	url: 0,
-  	__init____java_lang_String: function(url) {
+  	$$init____java_lang_String: function(url) {
   		this.url = url._str;
   	},
-  	_openStream: function() {
+  	$openStream: function() {
   		var result = new java_io_InputStream();
   		var response = XHRFunc.getURL(this.url, "", "", "", [['Content-Type','text/plain']]);
     	if (response.status == 200) {

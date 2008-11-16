@@ -4,10 +4,10 @@ qx.Class.define("org_apache_commons_httpclient_methods_PutMethod", {
 	{
 		url: 0,
 		entity: 0,
-		__init____java_lang_String: function(url) {
-			this.url = url._str;
+		$$init____java_lang_String: function(url) {
+			this.url = url.$str;
 		},
-		_setRequestEntity___org_apache_commons_httpclient_methods_RequestEntity: function(entity) {
+		$setRequestEntity___org_apache_commons_httpclient_methods_RequestEntity: function(entity) {
 			this.entity = entity;
 		},
 		//Not part of official API

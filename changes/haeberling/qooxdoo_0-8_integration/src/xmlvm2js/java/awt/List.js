@@ -14,34 +14,33 @@ qx.Class.define("java_awt_List", {
 		qxListView: 0,
 		listData: 0,
 		itemListeners: 0,
-		__init_: function() {
+		$$init_: function() {
 		},
-		_addActionListener___java_awt_event_ActionListener: function(listener) {
+		$addActionListener___java_awt_event_ActionListener: function(listener) {
 		  //TODO: Don't call actionPerformed directly, as is needs an ActionEvent. Instead create a wrapper
 		  // method like actionPerformedQx, create an appropriate ActionEvent Object and pass that.
 		  //this.qxButton.addEventListener("execute", listener._actionPerformed___java_awt_event_ActionEvent, listener);
-
 		},
 		getQx: function() {
 			return this.qxListView;
 		},
-		_setMultipleMode___boolean: function(mm) {
+		$setMultipleMode___boolean: function(mm) {
 			/*mm = (mm == 0)?false:true;
 			this.qxListView.getPane().getManager().setMultiSelection(mm);
 			this.qxListView.getPane().getManager().setCanDeselect(true);*/
 			//TODO
 			console.log("TODO: List.setMultipleMode()");
 		},
-		_setBounds___int_int_int_int : function(x, y, width, height) {
+		$setBounds___int_int_int_int : function(x, y, width, height) {
 			this.qxListView.setLocation(x, y);
 			this.qxListView.setDimension(width, height);
 		},
-		_add___java_lang_String: function(str) {
-			this.listData.push({name : { text : str._str }});
+		$add___java_lang_String: function(str) {
+			this.listData.push({name : { text : str.$str }});
 			this.qxListView.updateContent();
 			this.qxListView.update();
 		},
-		_addItemListener___java_awt_event_ItemListener: function(listener) {
+		$addItemListener___java_awt_event_ItemListener: function(listener) {
 			var pane = this.qxListView.getPane();
 			var listData = this.listData;
 			pane.getManager().addEventListener("changeSelection", function(e) {
@@ -55,14 +54,14 @@ qx.Class.define("java_awt_List", {
 							event.setKind(java_awt_event_ItemEvent.SELECTED);
 						else
 							event.setKind(java_awt_event_ItemEvent.DESELECTED);
-						listener._itemStateChanged___java_awt_event_ItemEvent(event);
+						listener.$itemStateChanged___java_awt_event_ItemEvent(event);
 						return
 					}
 				}
 				console.log("ERROR: List: Failed to get index of selected item.");
 			});
 		},
-		_setVisible___boolean: function(visible) {
+		$setVisible___boolean: function(visible) {
 			if(visible == 0)
 				visible = false;
 			else
@@ -74,7 +73,7 @@ qx.Class.define("java_awt_List", {
 				this.qxListView.setVisibility(visible);
 			}catch(e){/*Ignore*/}
 		},
-		_removeAll: function() {
+		$removeAll: function() {
 			var l = this.listData.length;
 			for(i=0 ;i<l; ++i) {
 				this.listData.pop();
@@ -82,7 +81,7 @@ qx.Class.define("java_awt_List", {
 			this.qxListView.updateContent();
 			this.qxListView.update();
 		},
-		_getSelectedItems: function() {
+		$getSelectedItems: function() {
 			var result = new Array();
 			var selectedItems = this.qxListView.getPane().getSelectedItems();
 			
@@ -91,19 +90,19 @@ qx.Class.define("java_awt_List", {
 			}
 			return result;
 		},
-		_getItem___int: function(index) {
+		$getItem___int: function(index) {
 			return new java_lang_String(this.listData[index].name.text);
 		},
-		_getItemCount: function() {
+		$getItemCount: function() {
 			return this.listData.length;
 		},
-		_deselect___int: function(index) {
+		$deselect___int: function(index) {
 			this.qxListView.getPane().getManager().setItemSelected(this.listData[index], false);
 		},
-		_select___int: function(index) {
+		$select___int: function(index) {
 			this.qxListView.getPane().getManager().setItemSelected(this.listData[index], true);
 		},
-		_getSelectedItem: function() {
+		$getSelectedItem: function() {
 			var selectedItem = this.qxListView.getPane().getSelectedItem();
 			if(selectedItem == undefined)
 				return new java_lang_null();
@@ -112,10 +111,9 @@ qx.Class.define("java_awt_List", {
 		},
 		//There is no such method in the qooxdoo API, so we have to
 		//obtain that data in a more complex way
-		_getSelectedIndexes: function() {
+		$getSelectedIndexes: function() {
 			var result = new Array();
 			var selectedItems = this.qxListView.getPane().getSelectedItems();
-			
 			for(i=0; i < this.listData.length; ++i) {
 				for(j=0; j < selectedItems.length; ++j) {
 					if(this.listData[i].name.text == selectedItems[j].name.text) {

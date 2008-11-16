@@ -4,14 +4,14 @@ qx.Class.define("org_gmap_GLatLng", {
 	{
 		lat: 0,
 		lng: 0,
-		__init____double_double: function(lat, lng) {
+		$$init____double_double: function(lat, lng) {
 			this.lat = lat;
 			this.lng = lng;
 		},
-		_lng: function() {
+		$lng: function() {
 			return this.lng;
 		},
-		_lat: function() {
+		$lat: function() {
 			return this.lat;
 		}
 	}

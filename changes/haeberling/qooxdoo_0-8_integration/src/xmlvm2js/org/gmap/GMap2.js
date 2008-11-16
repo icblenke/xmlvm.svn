@@ -30,17 +30,17 @@ qx.Class.define("org_gmap_GMap2", {
 		gmapListeners: 0,
 		internalEvents: 0,
 		initialized: 0,
-		__init_: function() {
+		$$init_: function() {
 			
 		},
 		getQx: function() {
 			return this.qxCanvasLayout;
 		},
-		_setBounds___int_int_int_int : function(x, y, width, height) {
+		$setBounds___int_int_int_int : function(x, y, width, height) {
 			this.qxCanvasLayout.setDimension(width, height);
 			this.qxCanvasLayout.setLocation(x, y);
 		},
-		__init____org_gmap_GLatLng_int: function(latLng, zoom) {
+		$$init____org_gmap_GLatLng_int: function(latLng, zoom) {
 			this.initLatLng = latLng;
 			this.initZoom = zoom;
 		},
@@ -71,18 +71,18 @@ qx.Class.define("org_gmap_GMap2", {
 				this.map = new GMap2(document.getElementById(this.uniqueId));
 				this.map.addControl(new GLargeMapControl());
 				this.map.addControl(new GMapTypeControl());
-				this.map.setCenter(new GLatLng(this.initLatLng._lat(), this.initLatLng._lng()), this.initZoom);
+				this.map.setCenter(new GLatLng(this.initLatLng.$lat(), this.initLatLng.$lng()), this.initZoom);
 				this.map.enableScrollWheelZoom();
 				gmapListeners = this.gmapListeners;
 				GEvent.addListener(this.map, 'click', function(overlay, point) {
 					if (point) {
 						var event = new org_gmap_GMapClickEvent();
 						var point2 = new org_gmap_GLatLng();
-						point2.__init____double_double(point.lat(), point.lng());
-						event.__init____java_lang_Object_org_gmap_GLatLng(this, point2);
+						point2.$$init____double_double(point.lat(), point.lng());
+						event.$$init____java_lang_Object_org_gmap_GLatLng(this, point2);
 						for(var i = 0; i < gmapListeners.length; ++i) {
-							// actionListeners[i]._actionPerformed___java_awt_event_ActionEvent(event);
-						    gmapListeners[i]._mapClicked___org_gmap_GMapClickEvent(event);
+							// actionListeners[i].$actionPerformed___java_awt_event_ActionEvent(event);
+						    gmapListeners[i].$mapClicked___org_gmap_GMapClickEvent(event);
 						}
 					}
 				});
@@ -113,7 +113,7 @@ qx.Class.define("org_gmap_GMap2", {
 				    org_gmap_InternalEvent.EVENT_ADD_OVERLAY, marker));
 			}
 		},
-		_clearOverlays: function()
+		$clearOverlays: function()
 		{
 			if(this.map != 0) {
 				this.map.clearOverlays();
@@ -122,11 +122,11 @@ qx.Class.define("org_gmap_GMap2", {
 				    org_gmap_InternalEvent.EVENT_CLEAR_OVERLAYS, 0));
 			}
 		},
-		_addActionListener___java_awt_event_ActionListener: function(listener) {
+		$addActionListener___java_awt_event_ActionListener: function(listener) {
 			this.actionListeners.push(listener);
 		},
-		_panTo___org_gmap_GLatLng: function(point) {
-			var point2 = new GLatLng(point._lat(), point._lng()); 
+		$panTo___org_gmap_GLatLng: function(point) {
+			var point2 = new GLatLng(point.$lat(), point.$lng()); 
 			if(this.map != 0) {
 				this.map.panTo(point2);
 			} else {
@@ -134,7 +134,7 @@ qx.Class.define("org_gmap_GMap2", {
 				    org_gmap_InternalEvent.EVENT_PAN_TO, point2));
 			}
 		},
-		_setGMapEventListener___org_gmap_GMapEventListener: function(listener) {
+		$setGMapEventListener___org_gmap_GMapEventListener: function(listener) {
 		  // TODO: Right now we only have a 'set' method but we do a push. Change to add or
 		  // remove all other listeners before pushing this one to confirm with the
 		  // semantics of a 'set' method.
@@ -147,7 +147,7 @@ function _gmap2_raiseCustomEvent(mapId, eventCode) {
   var listeners = org_gmap_GMap2.instances[mapId].gmapListeners;
   for(var i = 0; i < listeners.length; ++i) {
   	var customEvent = new org_gmap_GMapCustomEvent();
-  	customEvent.__init____java_lang_Object_java_lang_String(0, new java_lang_String(eventCode));
-	listeners[i]._customEventPerformed___org_gmap_GMapCustomEvent(customEvent);
+  	customEvent.$$init____java_lang_Object_java_lang_String(0, new java_lang_String(eventCode));
+	listeners[i].$customEventPerformed___org_gmap_GMapCustomEvent(customEvent);
   }
 }

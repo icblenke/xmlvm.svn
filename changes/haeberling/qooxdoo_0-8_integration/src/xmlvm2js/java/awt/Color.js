@@ -15,7 +15,7 @@ qx.Class.define("java_awt_Color", {
 		r:0,
 		g:0,
 		b:0,
-		__init____float_float_float: function(newR, newG, newB) {
+		$$init____float_float_float: function(newR, newG, newB) {
 			this.r = newR;
 			this.g = newG;
 			this.b = newB;
@@ -24,6 +24,6 @@ qx.Class.define("java_awt_Color", {
 });
 
 java_awt_Color._BLACK = new java_awt_Color();
-java_awt_Color._BLACK.__init____float_float_float(0,0,0);
+java_awt_Color._BLACK.$$init____float_float_float(0,0,0);
 java_awt_Color._WHITE = new java_awt_Color();
-java_awt_Color._WHITE.__init____float_float_float(255,255,255);
+java_awt_Color._WHITE.$$init____float_float_float(255,255,255);

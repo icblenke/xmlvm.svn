@@ -9,13 +9,13 @@ qx.Class.define("java_util_ArrayList", {
 	setJsArray: function(jsArray) {
 		this.jsArray = jsArray;
 	},
-	_size: function() {
+	$size: function() {
 		return this.jsArray.length;
 	},
-	_get___int: function(i) {
+	$get___int: function(i) {
 		return this.jsArray[i];
 	},
-	_add___java_lang_Object: function(obj) {
+	$add___java_lang_Object: function(obj) {
 		this.jsArray.push(obj);
 	}
   }

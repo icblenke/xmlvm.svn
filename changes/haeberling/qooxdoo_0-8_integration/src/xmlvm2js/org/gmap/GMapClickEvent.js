@@ -5,15 +5,15 @@ qx.Class.define("org_gmap_GMapClickEvent", {
   },
   members:
   {
-    _point: 0,
-    __init____java_lang_Object_org_gmap_GLatLng : function(source,  point)
+    $point: 0,
+    $$init____java_lang_Object_org_gmap_GLatLng : function(source,  point)
     {
-		this._point = point;
+		this.$point = point;
     },
-    _getPoint : function()
+    $getPoint : function()
     {
 		console.log(this._point);
-    	return this._point;
+    	return this.$point;
     }
   }
 });

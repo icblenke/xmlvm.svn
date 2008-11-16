@@ -4,7 +4,7 @@ qx.Class.define("org_gmap_GPoint", {
 	{
 		x: 0,
 		y: 0,
-		__init____double_double: function(x, y) {
+		$$init____double_double: function(x, y) {
 			this.x = x;
 			this.y = y;
 		},

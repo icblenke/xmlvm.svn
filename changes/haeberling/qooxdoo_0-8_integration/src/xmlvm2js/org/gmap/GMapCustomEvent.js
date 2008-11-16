@@ -5,14 +5,14 @@ qx.Class.define("org_gmap_GMapCustomEvent", {
   },
   members:
   {
-    _message: 0,
-    __init____java_lang_Object_java_lang_String : function(source,  message)
+    $message: 0,
+    $$init____java_lang_Object_java_lang_String : function(source,  message)
     {
-		this._message = message;
+		this.$message = message;
     },
-    _getMessage : function()
+    $getMessage : function()
     {
-    	return this._message;
+    	return this.$message;
     }
   }
 });
