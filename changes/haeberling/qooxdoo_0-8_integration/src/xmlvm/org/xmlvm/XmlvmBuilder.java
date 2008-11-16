@@ -232,9 +232,10 @@ public class XmlvmBuilder {
     if (mainMethod.endsWith("Main")) {
       // If the format is <ClassName>.Main we expect this to be a C# main method
       // call.
-      return mainClass + ".__Main();";
+      // TODO(haeberling): Is this how it will be called now in CS?
+      return mainClass + ".$_Main();";
     } else {
-      return mainClass + "._main___java_lang_String_ARRAYTYPE(undefined);";
+      return mainClass + ".$main___java_lang_String_ARRAYTYPE(undefined);";
     }
   }
 
@@ -808,9 +809,9 @@ public class XmlvmBuilder {
       for (JsFile file : requiredLib) {
         if (file.getClassName() != null) {
           String c = file.getClassName();
-          sb.append("if (" + c + ".__clinit_ != undefined) " + c
+          sb.append("if (" + c + ".$$clinit_ != undefined) " + c
               + ".__clinit_();\n");
-          sb.append("if (" + c + ".__cctor != undefined) " + c
+          sb.append("if (" + c + ".$$cctor != undefined) " + c
               + ".__cctor();\n");
         }
       }
@@ -1279,6 +1280,7 @@ class XmlvmBuilderException extends Exception {
 
 /**
  * Takes the input of an InputStream and writes it to the given output stream.
+ * Useful if e.g. the stream comes from a process.
  * 
  * @author Sascha Haeberling
  * 
