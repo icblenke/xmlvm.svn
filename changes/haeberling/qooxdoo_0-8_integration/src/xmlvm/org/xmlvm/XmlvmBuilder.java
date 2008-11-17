@@ -165,17 +165,22 @@ public class XmlvmBuilder {
     System.out.println("Sanity checks ... ");
     peformSanityChecks();
     System.out.println("Sanity checks PASSED");
-
-    // STEP 1: Preparation of destination directory.
-    // TODO(haeberling): If the directory exists, don't remove it completely.
-    // This will speed up the process. Instead just clear the classes.
-    System.out.println("> STEP 1/7: Preparation of destination directory:  "
-        + destination + " ...");
-    clearDestination();
-
-    // STEP 2: Executing qooxdoo application creator.
-    System.out.println("> STEP 2/7: Executing qooxdoo application creator ...");
-    initQxSkeleton();
+    boolean destinationExists = isDestinationNotEmpty();
+    if (!destinationExists) {
+      // STEP 1: Preparation of destination directory.
+      // TODO(haeberling): If the directory exists, don't remove it completely.
+      // This will speed up the process. Instead just clear the classes.
+      System.out.println("> STEP 1/7: Preparation of destination directory:  "
+          + destination + " ...");
+      prepareDestination();
+      // STEP 2: Executing qooxdoo application creator.
+      System.out
+          .println("> STEP 2/7: Executing qooxdoo application creator ...");
+      initQxSkeleton();
+    } else {
+      System.out
+          .println("Skipping Step 1 & 2, as it seems that a valid QX project already exists.");
+    }
 
     // STEP 3: Compile class and exe files to JavaScript and copy them to
     // destination.
@@ -202,6 +207,11 @@ public class XmlvmBuilder {
 
     // STEP 7: Copy build directory to final output directory.
     // TODO(haeberling)
+  }
+
+  private boolean isDestinationNotEmpty() {
+    File outputDir = new File(destination);
+    return outputDir.isDirectory() && (outputDir.list().length != 0);
   }
 
   private void injectCustomApplicationJs(String jsClassPath)
@@ -377,6 +387,18 @@ public class XmlvmBuilder {
       throw new XmlvmBuilderException(
           "--main must be of format: <ClassName>.(main|Main");
     }
+    // If the destination directory exists and has content, we check whether
+    // there is already a valid QX project. If not, something is wrong.
+    if (isDestinationNotEmpty()) {
+      String generateScript = tempDestination + "/" + QX_TEMP_APP_NAME + "/"
+          + QX_GENERATOR_SCRIPT_NAME;
+      File generateScriptFile = new File(generateScript);
+      if (!generateScriptFile.isFile()) {
+        throw new XmlvmBuilderException(
+            "Output directory exists, but doesn't seem to be a valid QX project as the following file could not be found"
+                + generateScriptFile.getAbsolutePath());
+      }
+    }
   }
 
   /**
@@ -509,7 +531,7 @@ public class XmlvmBuilder {
    * If destination directory exists, it will be deleted. If not, it will be
    * created.
    */
-  private void clearDestination() throws XmlvmBuilderException {
+  private void prepareDestination() throws XmlvmBuilderException {
     // Create destination and temporary destination directories, if they do not
     // already exist. If they do exist, remove their contents.
     for (String directory : new String[] { destination, tempDestination }) {
