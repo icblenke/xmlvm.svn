@@ -23,14 +23,16 @@ package org.xmlvm.demo;
 
 import java.awt.Component;
 import java.awt.Panel;
+import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class ImagePanel extends Panel {
+  private JLabel backgroundLabel;
   public ImagePanel(String fileName) {
     ImageIcon backgroundIcon = new ImageIcon(fileName);
-    JLabel backgroundLabel = new JLabel(backgroundIcon);
+    backgroundLabel = new JLabel(backgroundIcon);
     backgroundLabel.setBounds(0, 0, backgroundIcon.getIconWidth(),
         backgroundIcon.getIconHeight());
     this.add(backgroundLabel, 0);
@@ -39,5 +41,16 @@ public class ImagePanel extends Panel {
   @Override
   public Component add(Component comp) {
     return super.add(comp, 1);
+  }
+
+  @Override
+  public void setBounds(int x, int y, int width, int height) {
+    backgroundLabel.setBounds(0, 0, width, height);
+    super.setBounds(x, y, width, height);
+  }
+
+  @Override
+  public void setBounds(Rectangle r) {
+    setBounds(r.x, r.y, r.width, r.height);
   }
 }

@@ -40,13 +40,15 @@ public class Fireworks implements ActionListener {
   int pointer = 0;
 
   Bomb[] bombs;
+  
+  private Frame frame;
 
   public static void main(String args[]) {
     new Fireworks();
   }
 
   public Fireworks() {
-    Frame frame = new Frame("XML11 - Fireworks");
+    frame = new Frame("XML11 - Fireworks");
     frame.setTitle("XML11 - Fireworks");
     frame.setLayout(null);
     frame.setSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
@@ -66,6 +68,10 @@ public class Fireworks implements ActionListener {
     Timer timer = new Timer();
     timer.addActionListener(this);
     timer.runRepeating(60);
+  }
+  
+  public void setLocation(int x, int y) {
+    frame.setLocation(x, y);
   }
 
   public void actionPerformed(ActionEvent e) {
