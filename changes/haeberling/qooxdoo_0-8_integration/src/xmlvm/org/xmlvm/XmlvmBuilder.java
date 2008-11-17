@@ -106,7 +106,7 @@ public class XmlvmBuilder {
 
   // TODO(haeberling): Will go away.
   protected boolean createAssembly = false;
-  protected boolean compress = false;
+  protected boolean qxSourceBuild = false;
 
   public static void main(String[] args) {
     XmlvmBuilder builder = new XmlvmBuilder(new XmlvmBuilderArguments(args));
@@ -128,7 +128,7 @@ public class XmlvmBuilder {
     // TODO(shaeberling): Support multiple entries & check for correctness
     String resources = args.option_includeresource();
     mainMethod = args.option_main();
-    compress = args.option_compress();
+    qxSourceBuild = args.option_qxsourcebuild();
 
     System.out.println(" * Destination        : " + destination);
     System.out.println(" * Classpath          : " + classpath);
@@ -255,9 +255,11 @@ public class XmlvmBuilder {
    * @throws XmlvmBuilderException
    */
   private void executeGenerator() throws XmlvmBuilderException {
+    String buildType = qxSourceBuild ? " source" : " build";
+    System.out.println("QX '" + buildType + " '");
     try {
       Process process = createPythonProcess(tempDestination + "/"
-          + QX_TEMP_APP_NAME + "/" + QX_GENERATOR_SCRIPT_NAME + " build");
+          + QX_TEMP_APP_NAME + "/" + QX_GENERATOR_SCRIPT_NAME + buildType);
       printOutputOfProcess(process, "GENERATOR");
       int exitCode = process.waitFor();
       if (exitCode != 0) {
@@ -842,14 +844,14 @@ public class XmlvmBuilder {
       String assemblyFileName = this.destination + "\\assembly.js";
 
       // STEP 6: Compress output if set
-      if (compress) {
-        System.out.print("Compressing... ");
-        int sizeBefore = serializedContent.length();
-        serializedContent = compress(serializedContent);
-        int sizeAfter = serializedContent.length();
-        System.out.println("Done. (" + sizeBefore + " - " + sizeAfter + " = "
-            + (sizeBefore - sizeAfter) + ")");
-      }
+      // if (compress) {
+      // System.out.print("Compressing... ");
+      // int sizeBefore = serializedContent.length();
+      // serializedContent = compress(serializedContent);
+      // int sizeAfter = serializedContent.length();
+      // System.out.println("Done. (" + sizeBefore + " - " + sizeAfter + " = "
+      // + (sizeBefore - sizeAfter) + ")");
+      // }
 
       // STEP 7: - Create one single JS file that works
       try {
@@ -1202,9 +1204,9 @@ public class XmlvmBuilder {
     return createAssembly;
   }
 
-  public boolean isCompress() {
-    return compress;
-  }
+  // public boolean isCompress() {
+  // return compress;
+  // }
 }
 
 class LocationEntry {

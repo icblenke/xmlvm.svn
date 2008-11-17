@@ -39,7 +39,7 @@ public class XmlvmBuilderArguments {
   public static final String ARG_JSRESOURCE = "--javascriptresource=";
   public static final String ARG_RESOURCE = "--includeresource=";
   public static final String ARG_MAIN = "--main=";
-  public static final String ARG_COMPRESS = "--compress";
+  public static final String ARG_QXSOURCEBUILD = "--qxsourcebuild";
 
   // The parsed values will be stored here.
   private String option_destination = "";
@@ -48,7 +48,7 @@ public class XmlvmBuilderArguments {
   private String option_javascriptresource = "";
   private String option_includeresource = "";
   private String option_main = "";
-  private boolean option_compress = false;
+  private boolean option_qxsourcebuild = false;
 
   /**
    * Prints out usage information for XmlvmBuilder's parameters and exit the
@@ -61,14 +61,15 @@ public class XmlvmBuilderArguments {
   private static void usage(String error) {
     System.err.println(error + '\n');
     // TODO(haeberling): Complete.
-    String[] msg = { "Usage: XmlvmBuilder ..... TODO",
+    String[] msg = {
+        "Usage: XmlvmBuilder ..... TODO",
         "  --destination=        : Destination path",
         "  --classpath=          : Path where class files are picked up",
         "  --exepath=            : Path where exe files are picked up",
         "  --javascriptresource= : TODO                 ",
         "  --includeresource=    : TODO                 ",
         "  --main=               : <(package.)ClassName>.[main|Main]",
-        "  --compress            : Compress JavaScript assembly file", };
+        "  --qxsourcebuild       : Creates a 'source' instead of a 'build' package.", };
     for (int i = 0; i < msg.length; i++) {
       System.err.println(msg[i]);
     }
@@ -93,8 +94,8 @@ public class XmlvmBuilderArguments {
         option_includeresource = arg.substring(ARG_RESOURCE.length());
       } else if (arg.startsWith(ARG_MAIN)) {
         option_main = arg.substring(ARG_MAIN.length());
-      } else if (arg.startsWith(ARG_COMPRESS)) {
-        option_compress = true;
+      } else if (arg.startsWith(ARG_QXSOURCEBUILD)) {
+        option_qxsourcebuild = true;
       } else {
         usage("Unknown parameter: " + arg);
         System.exit(-1);
@@ -126,7 +127,7 @@ public class XmlvmBuilderArguments {
     return option_main;
   }
 
-  public boolean option_compress() {
-    return option_compress;
+  public boolean option_qxsourcebuild() {
+    return option_qxsourcebuild;
   }
 }
