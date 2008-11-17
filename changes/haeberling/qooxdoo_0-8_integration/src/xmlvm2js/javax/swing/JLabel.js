@@ -1,7 +1,7 @@
 qx.Class.define("javax_swing_JLabel", {
 	extend: java_awt_Component,
 	construct: function() {
-		this.qxCanvasLayout = new qx.ui.layout.Canvas();
+		this.qxCanvasLayout = new qx.ui.container.Composite(new qx.ui.layout.Basic());
 		this.qxLabel = new qx.ui.basic.Label("");
 		this.qxCanvasLayout.add(this.qxLabel);
 	},
@@ -18,8 +18,9 @@ qx.Class.define("javax_swing_JLabel", {
 		$setBounds___int_int_int_int: function(x, y, width, height) {
 			//TODO
 			//console.log("TODO: JLabel._setBounds___int_int_int_int");
-			this.qxCanvasLayout.setDimension(width, height);
-			this.qxCanvasLayout.setLocation(x, y);
+			this.qxCanvasLayout.setUserBounds(x, y, width, height);
+//			this.qxCanvasLayout.setDimension(width, height);
+//			this.qxCanvasLayout.setLocation(x, y);
 			//TODO: Maybe also resize dimension of enclosing label?
 		},
 		getQx: function() {

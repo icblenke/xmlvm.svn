@@ -21,11 +21,10 @@ qx.Class.define("java_awt_TextField", {
 			return this.qxTextField;
 		},
 		$setBounds___int_int_int_int : function(x, y, width, height) {
-			this.qxTextField.setLocation(x, y);
-			this.qxTextField.setDimension(width, height);
+			this.qxTextField.setUserBounds(x, y, width, height);
 		},
 		$addActionListener___java_awt_event_ActionListener : function(listener) {
-			this.qxTextField.addEventListener("keyup", function(e) {
+			this.qxTextField.addListener("keyUp", function(e) {
 				if(e.getKeyCode() == 13) { //ENTER KEY
 					var actionEvent = new java_awt_event_ActionEvent();
 			  		actionEvent.setQxEvent(e);

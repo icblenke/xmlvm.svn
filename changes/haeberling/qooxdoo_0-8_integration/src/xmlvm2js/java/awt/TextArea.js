@@ -22,8 +22,7 @@ qx.Class.define("java_awt_TextArea", {
 			return this.qxTextArea;
 		},
 		$setBounds___int_int_int_int : function(x, y, width, height) {
-			this.qxTextArea.setLocation(x, y);
-			this.qxTextArea.setDimension(width, height);
+			this.qxTextArea.setUserBounds(x, y, width, height);
 		},
 		$setEditable___boolean: function(editable) {
 			if(editable == 0)

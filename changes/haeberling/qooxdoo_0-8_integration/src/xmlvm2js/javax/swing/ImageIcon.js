@@ -12,13 +12,13 @@ qx.Class.define("javax_swing_ImageIcon", {
 		},
 		$getIconWidth: function() {
 			//TODO
-			console.log("TODO: ImageIcon.getIconWidth");
-			return 0;
+			console.log("TODO: ImageIcon.getIconWidth. Defaulting to 20");
+			return 20;
 		},
 		$getIconHeight: function() {
 			//TODO
-			console.log("TODO: ImageIcon.getIconHeight");
-			return 0;
+			console.log("TODO: ImageIcon.getIconHeight. Defaulting to 20");
+			return 20;
 		},
 		getFileName: function() {
 			return this.fileName;

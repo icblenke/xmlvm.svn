@@ -1,7 +1,7 @@
 qx.Class.define("java_awt_NullLayoutManager", {
 	extend: java_lang_Object,
 	construct: function() {
-		this.qxCanvasLayout = new qx.ui.layout.Canvas();
+		this.qxCanvasLayout = new qx.ui.container.Composite(new qx.ui.layout.Basic());
 	},
 	members:
 	{
@@ -13,8 +13,7 @@ qx.Class.define("java_awt_NullLayoutManager", {
 			this.qxCanvasLayout.add(component.getQx());
 		},
 		$setBounds___int_int_int_int : function(x, y, width, height) {
-			this.qxCanvasLayout.setLocation(x, y);
-			this.qxCanvasLayout.setDimension(width, height);
+			this.qxCanvasLayout.setUserBounds(x, y, width, height);
 		}
 	}
 });

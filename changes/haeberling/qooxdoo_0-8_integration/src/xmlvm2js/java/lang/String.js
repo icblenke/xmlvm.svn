@@ -26,7 +26,6 @@ qx.Class.define("java_lang_String", {
         else
           return new java_lang_String("false");
 	 }
-	 
   },
   members:
   {

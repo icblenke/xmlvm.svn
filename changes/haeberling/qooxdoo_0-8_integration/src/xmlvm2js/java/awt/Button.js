@@ -12,9 +12,11 @@ qx.Class.define("java_awt_Button", {
 			this.qxButton.setLabel(value.$str);
 		},
 		$addActionListener___java_awt_event_ActionListener: function(listener) {
-			this.qxButton.addEventListener("execute", function(e) {
+			var this_ = this;
+			this.qxButton.addListener("execute", function(e) {
 				var actionEvent = new java_awt_event_ActionEvent();
 		  		actionEvent.setQxEvent(e);
+		  		actionEvent.$setActionCommand(new java_lang_String(this_.qxButton.getLabel()));
 		  		listener.$actionPerformed___java_awt_event_ActionEvent(actionEvent);
 			});
 			this.actionListeners.push(listener);
@@ -23,8 +25,7 @@ qx.Class.define("java_awt_Button", {
 			return this.qxButton;
 		},
 		$setBounds___int_int_int_int : function(x, y, width, height) {
-			this.qxButton.setLocation(x, y);
-			this.qxButton.setDimension(width, height);
+			this.qxButton.setUserBounds(x, y, width, height);
 		},
 		$setEnabled___boolean: function(enabled) {
 			enabled = (enabled == 0 ? false : true);
