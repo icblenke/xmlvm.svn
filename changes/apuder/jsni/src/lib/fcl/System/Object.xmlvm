@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vm:xmlvm xmlns:vm="http://xmlvm.org">
+
+<vm:class name="Object" package="System" extends="java.lang.Object">
+
+<vm:method name="&lt;init&gt;">
+  <vm:signature>
+    <vm:return type="void"/>
+  </vm:signature>
+  <vm:code language="javascript">
+  </vm:code>
+</vm:method>
+
+<vm:method name="ToString">
+  <vm:signature>
+    <vm:return type="System.String"/>
+  </vm:signature>
+  <vm:code language="javascript">
+   	return new System_String("" + this);
+  </vm:code>
+</vm:method>
+
+</vm:class>
+
+</vm:xmlvm>

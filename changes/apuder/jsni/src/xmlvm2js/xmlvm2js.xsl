@@ -163,18 +163,27 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 
 
 
-<xsl:template match="vm:code[count(../@nativeInterface) = 0]">
-  <xsl:text>
+<xsl:template match="vm:code">
+  <xsl:choose>
+    <xsl:when test="@language = 'javascript'">
+      <xsl:copy-of select="."/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:if test="count(../@nativeInterface) = 0">
+        <xsl:text>
         var __next_label = -1;
         while (1) {
             switch (__next_label) {
             case -1:</xsl:text>
-  <xsl:apply-templates/>
-  <xsl:text>
+        <xsl:apply-templates/>
+        <xsl:text>
             default:
                 alert("XMLVM internal error: reached default of switch");
             }
         }</xsl:text>
+      </xsl:if>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 
