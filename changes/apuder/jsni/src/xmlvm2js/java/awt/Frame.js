@@ -9,14 +9,15 @@ qx.Class.define("java_awt_Frame", {
 			this.anchor.id = "XML11_ROOT_OCCUPIED";
 		}else{
 			this.xml11Embeded = false;
-			this.qxWindow = new qx.ui.window.Window("...");
-			this.qxWindow.setLayout(new qx.ui.layout.Basic());
-			this.qxCanvas = new qx.ui.container.Composite(new qx.ui.layout.Basic());
-			this.qxWindow.add(this.qxCanvas);
+			this.qxComponent = new qx.ui.window.Window("...");
+			this.qxComponent.setContentPadding(0);
+			this.qxComponent.setLayout(new qx.ui.layout.Basic());
+			//this.qxCanvas = new qx.ui.container.Composite(new qx.ui.layout.Basic());
+			//this.qxWindow.add(this.qxCanvas);
 			//this.qxCanvas.setLocation(0,-10);
 			//Right now we don't support minimizing, as windows would
 			//go to nowhere
-			this.qxWindow.setAllowMinimize(false);
+			this.qxComponent.setAllowMinimize(false);
 		}
 	},
 	members:
@@ -34,6 +35,7 @@ qx.Class.define("java_awt_Frame", {
 		//a CanvasLayout to push AWT elements up a little again.
 		//TODO
 		qxCanvas: 0,
+		layoutManager: 0,
 		$$init_: function() {
 //			this.qxWindow.addEventListener("appear", function(e) {
 //				document.getElementsByTagName("body")[0].style.backgroundColor = "#FFFFFF";
@@ -42,17 +44,7 @@ qx.Class.define("java_awt_Frame", {
 		$$init____java_lang_String: function(title) {
 			this.$$init_();
 			if(!this.xml11Embeded)
-				this.qxWindow.setCaption(title.$str);
-		},
-		$add___java_awt_Component: function(component) {
-			this.qxCanvas.add(component.getQx());
-		},
-		$add___java_awt_Component_java_lang_Object: function(component, constraints) {
-			this.qxCanvas.add(component.getQx());
-		},
-		// Not part of official API
-		getQx: function() {
-			return this.qxWindow;
+				this.qxComponent.setCaption(title.$str);
 		},
 		$pack: function() {
 		},
@@ -64,10 +56,10 @@ qx.Class.define("java_awt_Frame", {
 					//this.qxWindow.addToDocument();
 				}else {
 					//this.qxWindow.addToDocument();
-					this.qxWindow.open();
+					this.qxComponent.open();
 				}
 			}else{
-				this.qxWindow.close();
+				this.qxComponent.close();
 			}
 		},
 		$setResizable___boolean: function(resizable) {
@@ -75,45 +67,53 @@ qx.Class.define("java_awt_Frame", {
 				return;
 			if(resizable == 0) resizable = false;
 			else resizable = true;
-			this.qxWindow.setResizable(resizable, resizable, resizable, resizable);
+			this.qxComponent.setResizable(resizable, resizable, resizable, resizable);
 		},
 		$setSize___java_awt_Dimension: function(size) {
 			this.$setSize___int_int(size.$getWidth(), size.$getHeight());
 		},
 		$setSize___int_int: function(width, height) {
 			// Compensates the native title bar of the window.
+			//this.qxCanvas.setUserBounds(-10, -30, width + 10, height + 30);
+			this.qxComponent.setWidth(width);
+			this.qxComponent.setHeight(height + 30);
+			this.width = width;
+			this.height = height;
+		},
+		$setBounds___int_int_int_int: function(x, y, width, height) {
+			// TODO: What to do with x and y???
+			this.$setSize___int_int(width, height);
+			/*
+			// Compensates the native title bar of the window.
 			this.qxCanvas.setUserBounds(-10, -30, width + 10, height + 30);
 			this.qxWindow.setWidth(width);
 			this.qxWindow.setHeight(height);
 			this.width = width;
 			this.height = height;
+			*/
 		},
 		$setTitle___java_lang_String: function(title) {
 			if(this.xml11Embeded) {
 				return;
 			}
-			this.qxWindow.setCaption(title.$str);
+			this.qxComponent.setCaption(title.$str);
 		},
 		$setBackground___java_awt_Color: function(color) {
 			if(color == undefined){
-				this.qxCanvas.setBackgroundColor("white");
+				this.qxComponent.setBackgroundColor("white");
 				return;
 			}
 			console.log("SPECIAL COLOR!: rgb(" + color.r + "," + color.g + "," + color.b + ")");
-			this.qxCanvas.setBackgroundColor("rgb(" + color.r + "," + color.g + "," + color.b + ")");
-		},
-		$setLayout___java_awt_LayoutManager: function(manager) {
-			//TODO
-			console.log("TODO: Frame.$setLayout___java_awt_LayoutManager");
+			this.qxComponent.setBackgroundColor("rgb(" + color.r + "," + color.g + "," + color.b + ")");
 		},
 		$getWidth: function() {
-			return this.qxWindow.getWidth();
+			return this.qxComponent.getWidth();
 		},
 		$getHeight: function() {
-			return this.qxWindow.getHeight();
+			return this.qxComponent.getHeight();
 		},
 		$setLocation___int_int: function(x, y) {
-			this.qxWindow.setUserBounds(x, y, this.width, this.height);
+			this.qxComponent.setUserBounds(x, y, this.width, this.height);
 		},
 		$validate: function() {
 			//Is there a need to implement this?

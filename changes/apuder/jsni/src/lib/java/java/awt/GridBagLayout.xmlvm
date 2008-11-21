@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vm:xmlvm xmlns:vm="http://xmlvm.org" xmlns:jvm="http://xmlvm.org/jvm">
+  <vm:class name="GridBagLayout" package="java.awt" isPublic="true" isSynchronized="true" extends="java.lang.Object" interfaces="java.awt.LayoutManager2,java.io.Serializable">
+    <vm:field isStatic="true" isFinal="true" name="EMPIRICMULTIPLIER" type="int" />
+    <vm:field isProtected="true" isStatic="true" isFinal="true" name="MAXGRIDSIZE" type="int" />
+    <vm:field isProtected="true" isStatic="true" isFinal="true" name="MINSIZE" type="int" />
+    <vm:field isProtected="true" isStatic="true" isFinal="true" name="PREFERREDSIZE" type="int" />
+    <vm:field isProtected="true" name="comptable" type="java.util.Hashtable" />
+    <vm:field isProtected="true" name="defaultConstraints" type="java.awt.GridBagConstraints" />
+    <vm:field isProtected="true" name="layoutInfo" type="java.awt.GridBagLayoutInfo" />
+    <vm:field isPublic="true" name="columnWidths" type="int[]" />
+    <vm:field isPublic="true" name="rowHeights" type="int[]" />
+    <vm:field isPublic="true" name="columnWeights" type="double[]" />
+    <vm:field isPublic="true" name="rowWeights" type="double[]" />
+    <vm:field isPrivate="true" name="componentAdjusting" type="java.awt.Component" />
+    <vm:field isTransient="true" name="rightToLeft" type="boolean" />
+    <vm:field isStatic="true" isFinal="true" name="serialVersionUID" type="long" />
+    <vm:method name="&lt;init&gt;" isPublic="true" stack="3" locals="1">
+      <vm:signature>
+        <vm:return type="void" />
+      </vm:signature>
+      <vm:code language="javascript">
+        this.layout = new qx.ui.layout.Grid();
+        this.maxColWeight = new Array();
+        this.maxRowWeight = new Array();
+      </vm:code>
+    </vm:method>
+    <vm:method name="getQXLayoutManager" isPublic="true">
+      <vm:signature>
+        <vm:return type="qx.ui.layout.Grid" />
+      </vm:signature>
+      <vm:code language="javascript">
+        return this.layout;
+      </vm:code>
+    </vm:method>
+    <vm:method name="getQXLayoutProperties" isPublic="true">
+      <vm:signature>
+        <vm:return type="object" />
+        <vm:parameter type="java.awt.Component"/>
+        <vm:parameter type="java.lang.Object"/>
+      </vm:signature>
+      <vm:code language="javascript">
+        var component = __arg1.getQX();
+        var constraints = __arg2;
+        var qxConstraints = {};
+        var row = constraints.$gridy;
+        var col = constraints.$gridx;
+        var rowSpan = constraints.$gridheight;
+        var colSpan = constraints.$gridwidth;
+        qxConstraints.row = row;
+        qxConstraints.column = col;
+        qxConstraints.rowSpan = rowSpan;
+        qxConstraints.colSpan = colSpan;
+        var componentConstraints = {
+                       marginTop: constraints.$insets.$top,
+                       marginBottom: constraints.$insets.$bottom,
+                       marginLeft: constraints.$insets.$left,
+                       marginRight: constraints.$insets.$right};
+        if (constraints.$fill == 1) {
+          // BOTH
+          componentConstraints.allowGrowX = true;
+          componentConstraints.allowGrowY = true;
+        }
+        if (constraints.$fill == 2) {
+          // HORIZONTAL
+          componentConstraints.allowGrowX = true;
+        }
+        if (constraints.$fill == 3) {
+          // VERTICAL
+          componentConstraints.allowGrowY = true;
+        }
+        if (constraints.$anchor == 10) {
+          // CENTER
+          componentConstraints.alignX = 'center';
+          componentConstraints.alignY = 'middle';
+        }
+        else if (constraints.$anchor == 17) {
+          // WEST
+          componentConstraints.alignX = 'left';
+        }
+        else {
+          console.log("Unknown anchor: " + constraints.$anchor);
+        }
+        
+        var colWeight = (constraints.$weightx * 100) / colSpan;
+        for (var i = col; i &lt; col + colSpan; i++) {
+          if (this.maxColWeight[i] == undefined) {
+            this.maxColWeight[i] = colWeight;
+            this.layout.setColumnFlex(i, colWeight);
+          }
+          if (colSpan == 1 &amp;&amp; colWeight == 0.0) {
+            // TODO for cells with colSpan == 1 who have requested
+            // a weight of 0, we reset the weight to 0 despite
+            // possible greater weights of other cells.
+            this.maxColWeight[i] = 0.0;
+            this.layout.setColumnFlex(i, 0);
+            break;
+          }
+          if (this.maxColWeight[i] == 0.0 &amp;&amp; colSpan &gt; 1)
+            continue;
+          if (colWeight &gt; this.maxColWeight[i]) {
+            this.maxColWeight[i] = colWeight;
+            this.layout.setColumnFlex(i, colWeight);
+          }
+        }
+        
+        var rowWeight = (constraints.$weighty * 100) / rowSpan;
+        for (var i = row; i &lt; row + rowSpan; i++) {
+          if (this.maxRowWeight[i] == undefined) {
+            this.maxRowWeight[i] = rowWeight;
+            this.layout.setRowFlex(i, rowWeight);
+          }
+          if (rowSpan == 1 &amp;&amp; rowWeight == 0.0) {
+            // TODO for cells with rowSpan == 1 who have requested
+            // a weight of 0, we reset the weight to 0 despite
+            // possible greater weights of other cells.
+            this.maxRowWeight[i] = 0.0;
+            this.layout.setRowFlex(i, 0);
+            break;
+          }
+          if (this.maxRowWeight[i] == 0.0 &amp;&amp; rowSpan &gt; 1)
+            continue;
+          if (rowWeight &gt; this.maxRowWeight[i]) {
+            this.maxRowWeight[i] = rowWeight;
+            this.layout.setRowFlex(i, rowWeight);
+          }
+        }
+        
+        /*
+        if (constraints.$gridwidth &lt;= 1)
+        this.layout.setColumnFlex(qxConstraints.column, constraints.$weightx * 100);
+        if (constraints.$gridheight &lt;= 1)
+        this.layout.setRowFlex(qxConstraints.row, constraints.$weighty * 100);
+        */
+        component.set(componentConstraints);
+        return qxConstraints;
+      </vm:code>
+    </vm:method>
+    <vm:method name="setConstraints" isPublic="true" stack="3" locals="3">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="java.awt.Component" />
+        <vm:parameter type="java.awt.GridBagConstraints" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="getConstraints" isPublic="true" stack="3" locals="3">
+      <vm:signature>
+        <vm:return type="java.awt.GridBagConstraints" />
+        <vm:parameter type="java.awt.Component" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="lookupConstraints" isProtected="true" stack="3" locals="3">
+      <vm:signature>
+        <vm:return type="java.awt.GridBagConstraints" />
+        <vm:parameter type="java.awt.Component" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="removeConstraints" isPrivate="true" stack="2" locals="2">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="java.awt.Component" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="getLayoutOrigin" isPublic="true" stack="4" locals="2">
+      <vm:signature>
+        <vm:return type="java.awt.Point" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="getLayoutDimensions" isPublic="true" stack="5" locals="2">
+      <vm:signature>
+        <vm:return type="int[][]" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="getLayoutWeights" isPublic="true" stack="5" locals="2">
+      <vm:signature>
+        <vm:return type="double[][]" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="location" isPublic="true" stack="4" locals="6">
+      <vm:signature>
+        <vm:return type="java.awt.Point" />
+        <vm:parameter type="int" />
+        <vm:parameter type="int" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="addLayoutComponent" isPublic="true" stack="0" locals="3">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="java.lang.String" />
+        <vm:parameter type="java.awt.Component" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="addLayoutComponent" isPublic="true" stack="3" locals="3">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="java.awt.Component" />
+        <vm:parameter type="java.lang.Object" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="removeLayoutComponent" isPublic="true" stack="2" locals="2">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="java.awt.Component" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="preferredLayoutSize" isPublic="true" stack="3" locals="3">
+      <vm:signature>
+        <vm:return type="java.awt.Dimension" />
+        <vm:parameter type="java.awt.Container" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="minimumLayoutSize" isPublic="true" stack="3" locals="3">
+      <vm:signature>
+        <vm:return type="java.awt.Dimension" />
+        <vm:parameter type="java.awt.Container" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="maximumLayoutSize" isPublic="true" stack="4" locals="2">
+      <vm:signature>
+        <vm:return type="java.awt.Dimension" />
+        <vm:parameter type="java.awt.Container" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="getLayoutAlignmentX" isPublic="true" stack="1" locals="2">
+      <vm:signature>
+        <vm:return type="float" />
+        <vm:parameter type="java.awt.Container" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="getLayoutAlignmentY" isPublic="true" stack="1" locals="2">
+      <vm:signature>
+        <vm:return type="float" />
+        <vm:parameter type="java.awt.Container" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="invalidateLayout" isPublic="true" stack="0" locals="2">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="java.awt.Container" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="layoutContainer" isPublic="true" stack="2" locals="2">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="java.awt.Container" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="toString" isPublic="true" stack="1" locals="1">
+      <vm:signature>
+        <vm:return type="java.lang.String" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="getLayoutInfo" isProtected="true" stack="3" locals="3">
+      <vm:signature>
+        <vm:return type="java.awt.GridBagLayoutInfo" />
+        <vm:parameter type="java.awt.Container" />
+        <vm:parameter type="int" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="preInitMaximumArraySizes" isPrivate="true" stack="4" locals="13">
+      <vm:signature>
+        <vm:return type="long[]" />
+        <vm:parameter type="java.awt.Container" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="GetLayoutInfo" isProtected="true" stack="6" locals="43">
+      <vm:signature>
+        <vm:return type="java.awt.GridBagLayoutInfo" />
+        <vm:parameter type="java.awt.Container" />
+        <vm:parameter type="int" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="calculateBaseline" isPrivate="true" stack="4" locals="9">
+      <vm:signature>
+        <vm:return type="boolean" />
+        <vm:parameter type="java.awt.Component" />
+        <vm:parameter type="java.awt.GridBagConstraints" />
+        <vm:parameter type="java.awt.Dimension" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="adjustForGravity" isProtected="true" stack="3" locals="3">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="java.awt.GridBagConstraints" />
+        <vm:parameter type="java.awt.Rectangle" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="AdjustForGravity" isProtected="true" stack="5" locals="7">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="java.awt.GridBagConstraints" />
+        <vm:parameter type="java.awt.Rectangle" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="alignOnBaseline" isPrivate="true" stack="4" locals="10">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="java.awt.GridBagConstraints" />
+        <vm:parameter type="java.awt.Rectangle" />
+        <vm:parameter type="int" />
+        <vm:parameter type="int" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="alignAboveBaseline" isPrivate="true" stack="4" locals="6">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="java.awt.GridBagConstraints" />
+        <vm:parameter type="java.awt.Rectangle" />
+        <vm:parameter type="int" />
+        <vm:parameter type="int" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="alignBelowBaseline" isPrivate="true" stack="4" locals="5">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="java.awt.GridBagConstraints" />
+        <vm:parameter type="java.awt.Rectangle" />
+        <vm:parameter type="int" />
+        <vm:parameter type="int" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="centerVertically" isPrivate="true" stack="5" locals="4">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="java.awt.GridBagConstraints" />
+        <vm:parameter type="java.awt.Rectangle" />
+        <vm:parameter type="int" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="getMinSize" isProtected="true" stack="3" locals="3">
+      <vm:signature>
+        <vm:return type="java.awt.Dimension" />
+        <vm:parameter type="java.awt.Container" />
+        <vm:parameter type="java.awt.GridBagLayoutInfo" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="GetMinSize" isProtected="true" stack="3" locals="7">
+      <vm:signature>
+        <vm:return type="java.awt.Dimension" />
+        <vm:parameter type="java.awt.Container" />
+        <vm:parameter type="java.awt.GridBagLayoutInfo" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="arrangeGrid" isProtected="true" stack="2" locals="2">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="java.awt.Container" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="ArrangeGrid" isProtected="true" stack="5" locals="16">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="java.awt.Container" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+  </vm:class>
+</vm:xmlvm>
+

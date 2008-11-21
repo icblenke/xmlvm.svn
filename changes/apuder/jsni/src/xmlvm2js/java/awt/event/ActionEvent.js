@@ -4,12 +4,17 @@ qx.Class.define("java_awt_event_ActionEvent", {
 	{
 		qxEvent: 0,
 		actionCommand: 0,
+		source: 0,
 		setQxEvent: function(qxEvent) {
 			this.qxEvent = qxEvent;
 		},
 		$$init____java_lang_Object_int_java_lang_String: function(source, id, command) {
+			this.source = source;
 			//TODO:
 			console.log("TODO: ActionEvent.init(source,id,command)");
+		},
+		$getSource: function() {
+			return this.source;
 		},
 		$getActionCommand: function() {
 			return this.actionCommand;

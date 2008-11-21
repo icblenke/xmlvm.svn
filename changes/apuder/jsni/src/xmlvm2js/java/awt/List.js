@@ -6,12 +6,11 @@ qx.Class.define("java_awt_List", {
         	name : { width:"100%", height:0 }
       	};
 		this.listData = new Array();
-		this.qxListView = new qx.ui.listview.ListView(this.listData, column);
+		this.qxComponent = new qx.ui.form.List();
 		this.itemListeners = new Array();
 	},
 	members:
 	{
-		qxListView: 0,
 		listData: 0,
 		itemListeners: 0,
 		$$init_: function() {
@@ -21,9 +20,6 @@ qx.Class.define("java_awt_List", {
 		  // method like actionPerformedQx, create an appropriate ActionEvent Object and pass that.
 		  //this.qxButton.addEventListener("execute", listener._actionPerformed___java_awt_event_ActionEvent, listener);
 		},
-		getQx: function() {
-			return this.qxListView;
-		},
 		$setMultipleMode___boolean: function(mm) {
 			/*mm = (mm == 0)?false:true;
 			this.qxListView.getPane().getManager().setMultiSelection(mm);
@@ -31,17 +27,19 @@ qx.Class.define("java_awt_List", {
 			//TODO
 			console.log("TODO: List.setMultipleMode()");
 		},
+		/*
 		$setBounds___int_int_int_int : function(x, y, width, height) {
 			this.qxListView.setLocation(x, y);
 			this.qxListView.setDimension(width, height);
 		},
+		*/
 		$add___java_lang_String: function(str) {
 			this.listData.push({name : { text : str.$str }});
-			this.qxListView.updateContent();
-			this.qxListView.update();
+			this.qxComponent.add(new qx.ui.form.ListItem(str.$str));
+			//this.qxComponent.update();
 		},
 		$addItemListener___java_awt_event_ItemListener: function(listener) {
-			var pane = this.qxListView.getPane();
+			var pane = this.qxComponent.getPane();
 			var listData = this.listData;
 			pane.getManager().addEventListener("changeSelection", function(e) {
 				console.log("Change Selection");
@@ -70,7 +68,7 @@ qx.Class.define("java_awt_List", {
 			// If element is not yet added, we can't just set this
 			// TODO: Handle it the right way 
 			try{
-				this.qxListView.setVisibility(visible);
+				this.qxComponent.setVisibility(visible);
 			}catch(e){/*Ignore*/}
 		},
 		$removeAll: function() {
@@ -78,12 +76,12 @@ qx.Class.define("java_awt_List", {
 			for(i=0 ;i<l; ++i) {
 				this.listData.pop();
 			}
-			this.qxListView.updateContent();
-			this.qxListView.update();
+			this.qxComponent.updateContent();
+			this.qxComponent.update();
 		},
 		$getSelectedItems: function() {
 			var result = new Array();
-			var selectedItems = this.qxListView.getPane().getSelectedItems();
+			var selectedItems = this.qxComponent.getPane().getSelectedItems();
 			
 			for(i=0; i < selectedItems.length; ++i) {
 				result.push(new java_lang_String(selectedItems[i].name.text));
@@ -97,13 +95,13 @@ qx.Class.define("java_awt_List", {
 			return this.listData.length;
 		},
 		$deselect___int: function(index) {
-			this.qxListView.getPane().getManager().setItemSelected(this.listData[index], false);
+			this.qxComponent.getPane().getManager().setItemSelected(this.listData[index], false);
 		},
 		$select___int: function(index) {
-			this.qxListView.getPane().getManager().setItemSelected(this.listData[index], true);
+			this.qxComponent.getPane().getManager().setItemSelected(this.listData[index], true);
 		},
 		$getSelectedItem: function() {
-			var selectedItem = this.qxListView.getPane().getSelectedItem();
+			var selectedItem = this.qxComponent.getPane().getSelectedItem();
 			if(selectedItem == undefined)
 				return new java_lang_null();
 			var strValue = selectedItem.name.text;
@@ -113,7 +111,7 @@ qx.Class.define("java_awt_List", {
 		//obtain that data in a more complex way
 		$getSelectedIndexes: function() {
 			var result = new Array();
-			var selectedItems = this.qxListView.getPane().getSelectedItems();
+			var selectedItems = this.qxComponent.getPane().getSelectedItems();
 			for(i=0; i < this.listData.length; ++i) {
 				for(j=0; j < selectedItems.length; ++j) {
 					if(this.listData[i].name.text == selectedItems[j].name.text) {

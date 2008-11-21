@@ -14,7 +14,7 @@
     <vm:parameter type="java.lang.String"/>
   </vm:signature>
   <vm:code language="javascript">
-    this._str = __arg1.$str;
+    this.str = __arg1.$str;
   </vm:code>
 </vm:method>
 
@@ -27,7 +27,7 @@
   </vm:signature>
   <vm:code language="javascript">
     var s = new System_String();
-    s._str = __arg1._str + __arg2._str;
+    s.str = __arg1.str + __arg2.str;
     return s;
   </vm:code>
 </vm:method>
@@ -41,7 +41,7 @@
   </vm:signature>
   <vm:code language="javascript">
     var s = new System_String();
-    s._str = __arg1._str + __arg2._str + __arg3._str;
+    s.str = __arg1.str + __arg2.str + __arg3.str;
     return s;
   </vm:code>
 </vm:method>
@@ -53,7 +53,7 @@
     <vm:parameter type="System.String"/>
   </vm:signature>
   <vm:code language="javascript">
-    return __arg1._str == __arg2._str;
+    return __arg1.str == __arg2.str;
   </vm:code>
 </vm:method>
 
@@ -62,7 +62,7 @@
     <vm:return type="int"/>
   </vm:signature>
   <vm:code language="javascript">
-    return this._str.length;
+    return this.str.length;
   </vm:code>
 </vm:method>
 

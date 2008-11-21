@@ -17,7 +17,7 @@
     <vm:parameter type="System.String"/>
   </vm:signature>
   <vm:code language="javascript">
-	  alert(__arg1._str);
+	  alert(__arg1.str);
   </vm:code>
 </vm:method>
 

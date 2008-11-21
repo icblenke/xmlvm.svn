@@ -86,7 +86,8 @@ public class XmlvmBuilder {
    * The path to the XMLVM emulation library.
    */
   public static final String JS_EMULATION_LIB_PATH = "./src/xmlvm2js";
-  public static final String XMLVM_EMULATION_LIB_PATH = "./src/lib/fcl";
+  public static final String XMLVM_EMULATION_LIB_FCL_PATH = "./src/lib/fcl";
+  public static final String XMLVM_EMULATION_LIB_JAVA_PATH = "./src/lib/java";
   public static final String APPLICATION_JS_PATH = JS_EMULATION_LIB_PATH
       + "/Application.js.template";
 
@@ -198,7 +199,9 @@ public class XmlvmBuilder {
     // The path where qooxdoo expects all source to be in the temporary project.
     prepareJsEmulationLibrary(new File(JS_EMULATION_LIB_PATH), new File(
             tempQxSourcePath));
-    prepareXmlvmEmulationLibrary(new File(XMLVM_EMULATION_LIB_PATH), new File(
+    prepareXmlvmEmulationLibrary(new File(XMLVM_EMULATION_LIB_FCL_PATH), new File(
+            tempQxSourcePath));
+    prepareXmlvmEmulationLibrary(new File(XMLVM_EMULATION_LIB_JAVA_PATH), new File(
             tempQxSourcePath));
 
     // STEP 5: Replace generated Application.js with our own, which will execute
