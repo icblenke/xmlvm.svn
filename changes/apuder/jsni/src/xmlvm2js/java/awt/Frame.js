@@ -5,7 +5,7 @@ qx.Class.define("java_awt_Frame", {
 		if(this.anchor != undefined){
 			console.log("Embedding Window into XML11_ROOT");
 			this.xml11Embeded = true;
-			this.qxCanvas = new qx.ui.container.Composite(new qx.ui.layout.Basic());
+			this.qxComponent = new qx.ui.container.Composite(new qx.ui.layout.Basic());
 			this.anchor.id = "XML11_ROOT_OCCUPIED";
 		}else{
 			this.xml11Embeded = false;
@@ -22,7 +22,6 @@ qx.Class.define("java_awt_Frame", {
 	},
 	members:
 	{
-		qxWindow: 0,
 		xml11Embeded: 0,
 		xml11Anchor: 0,
 		width: 0,
@@ -34,8 +33,6 @@ qx.Class.define("java_awt_Frame", {
 		//down a little. In qooxdoo (0,0) is beneath this title bar. So we use
 		//a CanvasLayout to push AWT elements up a little again.
 		//TODO
-		qxCanvas: 0,
-		layoutManager: 0,
 		$$init_: function() {
 //			this.qxWindow.addEventListener("appear", function(e) {
 //				document.getElementsByTagName("body")[0].style.backgroundColor = "#FFFFFF";
