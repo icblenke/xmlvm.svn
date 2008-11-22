@@ -20,9 +20,6 @@ qx.Class.define("java_awt_Button", {
 			});
 			this.actionListeners.push(listener);
 		},
-		$setBounds___int_int_int_int : function(x, y, width, height) {
-			this.qxComponent.setUserBounds(x, y, width, height);
-		},
 		$setEnabled___boolean: function(enabled) {
 			enabled = (enabled == 0 ? false : true);
 			this.qxComponent.setEnabled(enabled);

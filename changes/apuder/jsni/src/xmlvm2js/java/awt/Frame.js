@@ -9,15 +9,24 @@ qx.Class.define("java_awt_Frame", {
 			this.anchor.id = "XML11_ROOT_OCCUPIED";
 		}else{
 			this.xml11Embeded = false;
-			this.qxComponent = new qx.ui.window.Window("...");
-			this.qxComponent.setContentPadding(0);
-			this.qxComponent.setLayout(new qx.ui.layout.Basic());
+			this.qxWindow = new qx.ui.window.Window("...");
+			this.qxWindow.setContentPadding(0);
+			this.qxWindowLayout = new qx.ui.layout.Grow();
+			this.qxWindow.setLayout(this.qxWindowLayout);
+			this.qxWindow.set({allowGrowX: true, allowGrowY: true,
+                               allowShrinkX: true, allowShrinkY: true,
+                               margin: 0});
 			//this.qxCanvas = new qx.ui.container.Composite(new qx.ui.layout.Basic());
 			//this.qxWindow.add(this.qxCanvas);
 			//this.qxCanvas.setLocation(0,-10);
 			//Right now we don't support minimizing, as windows would
 			//go to nowhere
-			this.qxComponent.setAllowMinimize(false);
+			this.qxWindow.setAllowMinimize(false);
+			this.qxComponent = new qx.ui.container.Composite(new qx.ui.layout.Basic());
+			this.qxComponent.set({allowGrowX: true, allowGrowY: true,
+				                  allowShrinkX: true, allowShrinkY: true,
+				                  margin: 0});
+			this.qxWindow.add(this.qxComponent);
 		}
 	},
 	members:
@@ -41,7 +50,7 @@ qx.Class.define("java_awt_Frame", {
 		$$init____java_lang_String: function(title) {
 			this.$$init_();
 			if(!this.xml11Embeded)
-				this.qxComponent.setCaption(title.$str);
+				this.qxWindow.setCaption(title.$str);
 		},
 		$pack: function() {
 		},
@@ -53,10 +62,10 @@ qx.Class.define("java_awt_Frame", {
 					//this.qxWindow.addToDocument();
 				}else {
 					//this.qxWindow.addToDocument();
-					this.qxComponent.open();
+					this.qxWindow.open();
 				}
 			}else{
-				this.qxComponent.close();
+				this.qxWindow.close();
 			}
 		},
 		$setResizable___boolean: function(resizable) {
@@ -64,7 +73,7 @@ qx.Class.define("java_awt_Frame", {
 				return;
 			if(resizable == 0) resizable = false;
 			else resizable = true;
-			this.qxComponent.setResizable(resizable, resizable, resizable, resizable);
+			this.qxWindow.setResizable(resizable, resizable, resizable, resizable);
 		},
 		$setSize___java_awt_Dimension: function(size) {
 			this.$setSize___int_int(size.$getWidth(), size.$getHeight());
@@ -73,7 +82,7 @@ qx.Class.define("java_awt_Frame", {
 			// Compensates the native title bar of the window.
 			//this.qxCanvas.setUserBounds(-10, -30, width + 10, height + 30);
 			this.qxComponent.setWidth(width);
-			this.qxComponent.setHeight(height + 30);
+			this.qxComponent.setHeight(height);
 			this.width = width;
 			this.height = height;
 		},
@@ -93,7 +102,7 @@ qx.Class.define("java_awt_Frame", {
 			if(this.xml11Embeded) {
 				return;
 			}
-			this.qxComponent.setCaption(title.$str);
+			this.qxWindow.setCaption(title.$str);
 		},
 		$setBackground___java_awt_Color: function(color) {
 			if(color == undefined){
