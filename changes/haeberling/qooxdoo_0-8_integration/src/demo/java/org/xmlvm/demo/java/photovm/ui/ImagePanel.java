@@ -19,7 +19,7 @@
  * For more information, visit the XML11 Home Page at http://www.xml11.org/
  */
 
-package org.xmlvm.demo;
+package org.xmlvm.demo.java.photovm.ui;
 
 import java.awt.Component;
 import java.awt.Panel;
@@ -31,13 +31,15 @@ import javax.swing.JLabel;
 
 public class ImagePanel extends Panel {
   private JLabel backgroundLabel;
+
   public ImagePanel(URL url) {
     init(new ImageIcon(url));
   }
+
   public ImagePanel(String fileName) {
     init(new ImageIcon(fileName));
   }
-  
+
   private void init(ImageIcon backgroundIcon) {
     backgroundLabel = new JLabel(backgroundIcon);
     backgroundLabel.setBounds(0, 0, backgroundIcon.getIconWidth(),
