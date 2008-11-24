@@ -389,12 +389,9 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:text>
             __op2 = __stack[--__sp];
             __op1 = __stack[--__sp];
-            if((__op1.$str != undefined) &amp;&amp; (__op2.$str != undefined))
-            {
-	            if (__op1.$str == __op2.$str) { __next_label = </xsl:text>
-            
+            if (__op1 === __op2) { __next_label = </xsl:text>
   <xsl:value-of select="@label"/>
-  <xsl:text>; break }}else ERROR("No support of object == object comparison yet");</xsl:text>
+  <xsl:text>; break }</xsl:text>
 </xsl:template>
 
 
@@ -473,12 +470,9 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:text>
             __op2 = __stack[--__sp];
             __op1 = __stack[--__sp];
-            if((__op2.$str != undefined) &amp;&amp; (__op2.$str != undefined))
-            {
-	            if (__op1.$str != __op2.$str) { __next_label = </xsl:text>
-            
+            if (__op1 !== __op2) { __next_label = </xsl:text>
   <xsl:value-of select="@label"/>
-  <xsl:text>; break }}else ERROR("No support of object != object comparison yet");</xsl:text>
+  <xsl:text>; break }</xsl:text>
 </xsl:template>
 
 

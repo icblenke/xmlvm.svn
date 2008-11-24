@@ -16,6 +16,7 @@ qx.Class.define("java_awt_Button", {
 				var actionEvent = new java_awt_event_ActionEvent();
 		  		actionEvent.setQxEvent(e);
 		  		actionEvent.$setActionCommand(new java_lang_String(this_.qxComponent.getLabel()));
+		  		actionEvent.$setSource(this_);
 		  		listener.$actionPerformed___java_awt_event_ActionEvent(actionEvent);
 			});
 			this.actionListeners.push(listener);
