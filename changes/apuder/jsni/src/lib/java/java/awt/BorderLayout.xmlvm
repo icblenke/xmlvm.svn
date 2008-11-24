@@ -82,13 +82,17 @@ throw "NOT IMPLEMENTED";
       </vm:signature>
       <vm:code language="javascript">
         var loc = __arg2.$str;
+        __arg1.getQX().set({allowGrowX: true, allowGrowY: true});
         if (loc == "Center") {
-          __arg1.getQX().set({allowGrowX: true, allowGrowY: true});
           return {row: 1, column: 1};
         }
         else if (loc == "South") {
           __arg1.getQX().set({allowGrowX: true, allowGrowY: true});
           return {row: 2, column: 0, colSpan: 3};
+        }
+        else if (loc == "North") {
+          __arg1.getQX().set({allowGrowX: true, allowGrowY: true});
+          return {row: 0, column: 0, colSpan: 3};
         }
         else {
           console.log("BorderLayout: unknown location '" + loc + "'");
