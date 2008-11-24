@@ -23,7 +23,10 @@
         <vm:parameter type="int" />
       </vm:signature>
       <vm:code language="javascript">
-throw "NOT IMPLEMENTED";
+   		this.layout = new qx.ui.layout.Grid();
+   		this.$componentCount = 0;
+   		this.$rows = __arg1;
+   		this.$cols = __arg2;
       </vm:code>
     </vm:method>
     <vm:method name="&lt;init&gt;" isPublic="true" stack="3" locals="5">
