@@ -14,6 +14,8 @@
       <vm:code language="javascript">
    		this.layout = new qx.ui.layout.Grid();
    		this.$componentCount = 0;
+   		this.$rows = 1;
+   		this.$cols = 0;
       </vm:code>
     </vm:method>
     <vm:method name="&lt;init&gt;" isPublic="true" stack="5" locals="3">
@@ -56,8 +58,16 @@ throw "NOT IMPLEMENTED";
         <vm:parameter type="java.lang.Object"/>
       </vm:signature>
       <vm:code language="javascript">
-        var currentRow = this.$componentCount % this.$rows;
-        var currentCol = this.$componentCount / this.$rows;
+        var currentRow = 0;
+        var currentCol = 0;
+        if (this.$rows == 0) {
+        	currentRow = this.$componentCount / this.$cols;
+        	currentCol = this.$componentCount % this.$cols;
+        }
+        else {
+        	currentRow = this.$componentCount % this.$rows;
+        	currentCol = this.$componentCount / this.$rows;
+        }
         this.$componentCount++;
         var constraints = __arg2;
         if (constraints instanceof java_lang_null) {
