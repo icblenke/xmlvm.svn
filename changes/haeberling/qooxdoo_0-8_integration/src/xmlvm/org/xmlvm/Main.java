@@ -62,12 +62,19 @@ public class Main {
   private String class_name;
   private boolean _isXMLVM = false;
 
+  public Main() {
+      jvm_class = null;
+      cil_class = null;
+      class_name = null;
+      setSaxonEngine();
+    }
+
   public Main(JavaClass clazz) {
-    jvm_class = clazz;
-    cil_class = null;
-    class_name = null;
-    setSaxonEngine();
-  }
+      jvm_class = clazz;
+      cil_class = null;
+      class_name = null;
+      setSaxonEngine();
+    }
 
   public Main(File inputFile) {
     jvm_class = null;

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vm:xmlvm xmlns:vm="http://xmlvm.org" xmlns:jvm="http://xmlvm.org/jvm">
+  <vm:class name="BorderLayout" package="java.awt" isPublic="true" isSynchronized="true" extends="java.lang.Object" interfaces="java.awt.LayoutManager2,java.io.Serializable">
+    <vm:field name="hgap" type="int" />
+    <vm:field name="vgap" type="int" />
+    <vm:field name="north" type="java.awt.Component" />
+    <vm:field name="west" type="java.awt.Component" />
+    <vm:field name="east" type="java.awt.Component" />
+    <vm:field name="south" type="java.awt.Component" />
+    <vm:field name="center" type="java.awt.Component" />
+    <vm:field name="firstLine" type="java.awt.Component" />
+    <vm:field name="lastLine" type="java.awt.Component" />
+    <vm:field name="firstItem" type="java.awt.Component" />
+    <vm:field name="lastItem" type="java.awt.Component" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="NORTH" type="java.lang.String" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="SOUTH" type="java.lang.String" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="EAST" type="java.lang.String" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="WEST" type="java.lang.String" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="CENTER" type="java.lang.String" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="BEFORE_FIRST_LINE" type="java.lang.String" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="AFTER_LAST_LINE" type="java.lang.String" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="BEFORE_LINE_BEGINS" type="java.lang.String" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="AFTER_LINE_ENDS" type="java.lang.String" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="PAGE_START" type="java.lang.String" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="PAGE_END" type="java.lang.String" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="LINE_START" type="java.lang.String" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="LINE_END" type="java.lang.String" />
+    <vm:method name="&lt;clinit&gt;" isPublic="true">
+      <vm:signature>
+        <vm:return type="void" />
+      </vm:signature>
+      <vm:code language="javascript">
+      // TODO String constants are not all upper case!
+      	java_awt_BorderLayout.$NORTH = "NORTH";
+      	java_awt_BorderLayout.$SOUTH = "SOUTH";
+      	java_awt_BorderLayout.$EAST = "EAST";
+      	java_awt_BorderLayout.$WEST = "WEST";
+      	java_awt_BorderLayout.$CENTER = "CENTER";
+      	java_awt_BorderLayout.$BEFORE_FIRST_LINE = "BEFORE_FIRST_LINE";
+      	java_awt_BorderLayout.$AFTER_LAST_LINE = "AFTER_LAST_LINE";
+      	java_awt_BorderLayout.$BEFORE_LINE_BEGINS = "BEFORE_LINE_BEGINS";
+      	java_awt_BorderLayout.$AFTER_LINE_ENDS = "AFTER_LINE_ENDS";
+      	java_awt_BorderLayout.$PAGE_START = "PAGE_START";
+      	java_awt_BorderLayout.$PAGE_END = "PAGE_END";
+      	java_awt_BorderLayout.$LINE_START = "LINE_START";
+      	java_awt_BorderLayout.$LINE_END = "LINE_END";
+      </vm:code>
+    </vm:method>
+    <vm:method name="&lt;init&gt;" isPublic="true">
+      <vm:signature>
+        <vm:return type="void" />
+      </vm:signature>
+      <vm:code language="javascript">
+		this.layout = new qx.ui.layout.Grid();
+		this.layout.setColumnFlex(1, 1);
+		this.layout.setRowFlex(1, 1);
+      </vm:code>
+    </vm:method>
+    <vm:method name="&lt;init&gt;" isPublic="true" stack="2" locals="3">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="int" />
+        <vm:parameter type="int" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="getQXLayoutManager" isPublic="true">
+      <vm:signature>
+        <vm:return type="qx.ui.layout.Grid" />
+      </vm:signature>
+      <vm:code language="javascript">
+        return this.layout;
+      </vm:code>
+    </vm:method>
+    <vm:method name="getQXLayoutProperties" isPublic="true">
+      <vm:signature>
+        <vm:return type="object" />
+        <vm:parameter type="java.awt.Component"/>
+        <vm:parameter type="java.lang.Object"/>
+      </vm:signature>
+      <vm:code language="javascript">
+        var loc = __arg2.$str;
+        __arg1.getQX().set({allowGrowX: true, allowGrowY: true});
+        if (loc == "Center") {
+          return {row: 1, column: 1};
+        }
+        else if (loc == "South") {
+          __arg1.getQX().set({allowGrowX: true, allowGrowY: true});
+          return {row: 2, column: 0, colSpan: 3};
+        }
+        else if (loc == "North") {
+          __arg1.getQX().set({allowGrowX: true, allowGrowY: true});
+          return {row: 0, column: 0, colSpan: 3};
+        }
+        else {
+          console.log("BorderLayout: unknown location '" + loc + "'");
+          return {};
+        }
+      </vm:code>
+    </vm:method>
+    <vm:method name="getHgap" isPublic="true" stack="1" locals="1">
+      <vm:signature>
+        <vm:return type="int" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="setHgap" isPublic="true" stack="2" locals="2">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="int" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="getVgap" isPublic="true" stack="1" locals="1">
+      <vm:signature>
+        <vm:return type="int" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="setVgap" isPublic="true" stack="2" locals="2">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="int" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="addLayoutComponent" isPublic="true" stack="3" locals="5">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="java.awt.Component" />
+        <vm:parameter type="java.lang.Object" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="addLayoutComponent" isPublic="true" stack="4" locals="5">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="java.lang.String" />
+        <vm:parameter type="java.awt.Component" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="removeLayoutComponent" isPublic="true" stack="2" locals="4">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="java.awt.Component" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="getLayoutComponent" isPublic="true" stack="4" locals="2">
+      <vm:signature>
+        <vm:return type="java.awt.Component" />
+        <vm:parameter type="java.lang.Object" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="getLayoutComponent" isPublic="true" stack="4" locals="5">
+      <vm:signature>
+        <vm:return type="java.awt.Component" />
+        <vm:parameter type="java.awt.Container" />
+        <vm:parameter type="java.lang.Object" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="getConstraints" isPublic="true" stack="2" locals="2">
+      <vm:signature>
+        <vm:return type="java.lang.Object" />
+        <vm:parameter type="java.awt.Component" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="minimumLayoutSize" isPublic="true" stack="4" locals="8">
+      <vm:signature>
+        <vm:return type="java.awt.Dimension" />
+        <vm:parameter type="java.awt.Container" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="preferredLayoutSize" isPublic="true" stack="4" locals="8">
+      <vm:signature>
+        <vm:return type="java.awt.Dimension" />
+        <vm:parameter type="java.awt.Container" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="maximumLayoutSize" isPublic="true" stack="4" locals="2">
+      <vm:signature>
+        <vm:return type="java.awt.Dimension" />
+        <vm:parameter type="java.awt.Container" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="getLayoutAlignmentX" isPublic="true" stack="1" locals="2">
+      <vm:signature>
+        <vm:return type="float" />
+        <vm:parameter type="java.awt.Container" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="getLayoutAlignmentY" isPublic="true" stack="1" locals="2">
+      <vm:signature>
+        <vm:return type="float" />
+        <vm:parameter type="java.awt.Container" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="invalidateLayout" isPublic="true" stack="0" locals="2">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="java.awt.Container" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="layoutContainer" isPublic="true" stack="6" locals="12">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="java.awt.Container" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="getChild" isPrivate="true" stack="2" locals="4">
+      <vm:signature>
+        <vm:return type="java.awt.Component" />
+        <vm:parameter type="java.lang.String" />
+        <vm:parameter type="boolean" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="toString" isPublic="true" stack="2" locals="1">
+      <vm:signature>
+        <vm:return type="java.lang.String" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+  </vm:class>
+</vm:xmlvm>
+

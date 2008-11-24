@@ -1,12 +1,11 @@
 qx.Class.define("java_awt_TextField", {
 	extend: java_awt_Component,
 	construct: function() {
-		this.qxTextField = new qx.ui.form.TextField();
+		this.qxComponent = new qx.ui.form.TextField();
 		this.actionListeners = new Array();
 	},
 	members:
 	{
-		qxTextField: 0,
 		actionListeners: 0,
 		$$init____int: function(columns){
 			//this.$columns = columns;
@@ -15,16 +14,10 @@ qx.Class.define("java_awt_TextField", {
 			this.$setText___java_lang_String(text);
 		},
 		$getText: function() {
-			return new java_lang_String(this.qxTextField.getComputedValue());
-		},
-		getQx: function() {
-			return this.qxTextField;
-		},
-		$setBounds___int_int_int_int : function(x, y, width, height) {
-			this.qxTextField.setUserBounds(x, y, width, height);
+			return new java_lang_String(this.qxComponent.getComputedValue());
 		},
 		$addActionListener___java_awt_event_ActionListener : function(listener) {
-			this.qxTextField.addListener("keyUp", function(e) {
+			this.qxComponent.addListener("keyUp", function(e) {
 				if(e.getKeyCode() == 13) { //ENTER KEY
 					var actionEvent = new java_awt_event_ActionEvent();
 			  		actionEvent.setQxEvent(e);
@@ -41,7 +34,7 @@ qx.Class.define("java_awt_TextField", {
 			this.actionListeners.push(listener);
 		},
 		$setText___java_lang_String: function(text) {
-			this.qxTextField.setValue(text.$str);
+			this.qxComponent.setValue(text.$str);
 		},
 		$setEditable___boolean: function(editable) {
 			if(editable == 0)
@@ -49,7 +42,7 @@ qx.Class.define("java_awt_TextField", {
 			else
 				editable = true;
 
-			this.qxTextField.setReadOnly(!editable);
+			this.qxComponent.setReadOnly(!editable);
 		}
 	}
 });

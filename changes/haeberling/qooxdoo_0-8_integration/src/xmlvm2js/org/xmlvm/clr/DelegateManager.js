@@ -3,7 +3,7 @@ qx.Class.define("org_xmlvm_clr_DelegateManager", {
   statics:
   {
       signatures: new Array(),
-  	 _registerFunctionPtr___java_lang_String_java_lang_String_java_lang_String:
+  	 $registerFunctionPtr___java_lang_String_java_lang_String_java_lang_String:
   	     function(classType, method, signature)
   	 {
   	    var idx = this.signatures.length;

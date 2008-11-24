@@ -3,26 +3,22 @@ qx.Class.define("java_awt_TextArea", {
 	construct: function() {
 		//var date = new Date();
 		//this._ID = date.getTime() + "$" + date.getMilliseconds();
-		this.qxTextArea = new qx.ui.form.TextArea();
+		this.qxComponent = new qx.ui.form.TextArea();
 	},
 	members:
 	{
-		qxTextArea: 0,
+		$$init____int_int: function(rows, cols) {
+			//TODO: How can we support the other parameters?
+		},
 		$$init____java_lang_String_int_int_int: function(text, rows, cols, scrollbars) {
-			this.qxTextArea.setValue(text.$str);
+			this.qxComponent.setValue(text.$str);
 			//TODO: How can we support the other parameters?
 		},
 		$$init____java_lang_String: function(text) {
-			this.qxTextArea.setValue(text.$str);
+			this.qxComponent.setValue(text.$str);
 		},
 		$getText: function() {
-			return new java_lang_String(this.qxTextArea.getComputedValue());
-		},
-		getQx: function() {
-			return this.qxTextArea;
-		},
-		$setBounds___int_int_int_int : function(x, y, width, height) {
-			this.qxTextArea.setUserBounds(x, y, width, height);
+			return new java_lang_String(this.qxComponent.getComputedValue());
 		},
 		$setEditable___boolean: function(editable) {
 			if(editable == 0)
@@ -30,10 +26,14 @@ qx.Class.define("java_awt_TextArea", {
 			else
 				editable = true;
 
-			this.qxTextArea.setReadOnly(!editable);
+			this.qxComponent.setReadOnly(!editable);
+		},
+		$setFocusable___boolean: function(focusable)
+		{
+			// TODO
 		},
 		$setText___java_lang_String: function(text) {
-			this.qxTextArea.setValue(text.$str);
+			this.qxComponent.setValue(text.$str);
 		},
 		$setCaretPosition___int: function(index) {
 			//TODO

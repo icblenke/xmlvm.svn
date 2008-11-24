@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vm:xmlvm xmlns:vm="http://xmlvm.org" xmlns:jvm="http://xmlvm.org/jvm">
+  <vm:class name="GridBagConstraints" package="java.awt" isPublic="true" isSynchronized="true" extends="java.lang.Object" interfaces="java.lang.Cloneable,java.io.Serializable">
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="RELATIVE" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="REMAINDER" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="NONE" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="BOTH" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="HORIZONTAL" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="VERTICAL" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="CENTER" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="NORTH" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="NORTHEAST" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="EAST" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="SOUTHEAST" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="SOUTH" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="SOUTHWEST" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="WEST" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="NORTHWEST" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="PAGE_START" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="PAGE_END" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="LINE_START" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="LINE_END" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="FIRST_LINE_START" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="FIRST_LINE_END" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="LAST_LINE_START" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="LAST_LINE_END" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="BASELINE" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="BASELINE_LEADING" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="BASELINE_TRAILING" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="ABOVE_BASELINE" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="ABOVE_BASELINE_LEADING" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="ABOVE_BASELINE_TRAILING" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="BELOW_BASELINE" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="BELOW_BASELINE_LEADING" type="int" />
+    <vm:field isPublic="true" isStatic="true" isFinal="true" name="BELOW_BASELINE_TRAILING" type="int" />
+    <vm:field isPublic="true" name="gridx" type="int" />
+    <vm:field isPublic="true" name="gridy" type="int" />
+    <vm:field isPublic="true" name="gridwidth" type="int" />
+    <vm:field isPublic="true" name="gridheight" type="int" />
+    <vm:field isPublic="true" name="weightx" type="double" />
+    <vm:field isPublic="true" name="weighty" type="double" />
+    <vm:field isPublic="true" name="anchor" type="int" />
+    <vm:field isPublic="true" name="fill" type="int" />
+    <vm:field isPublic="true" name="insets" type="java.awt.Insets" />
+    <vm:field isPublic="true" name="ipadx" type="int" />
+    <vm:field isPublic="true" name="ipady" type="int" />
+    <vm:field name="tempX" type="int" />
+    <vm:field name="tempY" type="int" />
+    <vm:field name="tempWidth" type="int" />
+    <vm:field name="tempHeight" type="int" />
+    <vm:field name="minWidth" type="int" />
+    <vm:field name="minHeight" type="int" />
+    <vm:field isTransient="true" name="ascent" type="int" />
+    <vm:field isTransient="true" name="descent" type="int" />
+    <vm:field isTransient="true" name="baselineResizeBehavior" type="java.awt.Component$BaselineResizeBehavior" />
+    <vm:field isTransient="true" name="centerPadding" type="int" />
+    <vm:field isTransient="true" name="centerOffset" type="int" />
+    <vm:field isPrivate="true" isStatic="true" isFinal="true" name="serialVersionUID" type="long" />
+    <vm:method name="&lt;init&gt;" isPublic="true" stack="7" locals="1">
+      <vm:signature>
+        <vm:return type="void" />
+      </vm:signature>
+      <vm:code language="javascript">
+        this.$gridheight = 1;
+        this.$gridwidth = 1;
+      </vm:code>
+    </vm:method>
+    <vm:method name="&lt;init&gt;" isPublic="true" stack="3" locals="14">
+      <vm:signature>
+        <vm:return type="void" />
+        <vm:parameter type="int" />
+        <vm:parameter type="int" />
+        <vm:parameter type="int" />
+        <vm:parameter type="int" />
+        <vm:parameter type="double" />
+        <vm:parameter type="double" />
+        <vm:parameter type="int" />
+        <vm:parameter type="int" />
+        <vm:parameter type="java.awt.Insets" />
+        <vm:parameter type="int" />
+        <vm:parameter type="int" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="clone" isPublic="true" stack="2" locals="2">
+      <vm:signature>
+        <vm:return type="java.lang.Object" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+    <vm:method name="isVerticallyResizable" stack="2" locals="1">
+      <vm:signature>
+        <vm:return type="boolean" />
+      </vm:signature>
+      <vm:code language="javascript">
+throw "NOT IMPLEMENTED";
+      </vm:code>
+    </vm:method>
+  </vm:class>
+</vm:xmlvm>
+

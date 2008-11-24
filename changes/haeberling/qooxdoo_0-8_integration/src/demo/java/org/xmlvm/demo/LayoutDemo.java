@@ -327,7 +327,7 @@ public class LayoutDemo implements ActionListener {
 
   private ImagePanel getPnlImage() {
     if (_pnlImage == null) {
-      _pnlImage = new ImagePanel("doc/xml11_tiny.jpg");
+      _pnlImage = new ImagePanel("doc/xml11_tiny.png");
     }
 
     return _pnlImage;
