@@ -35,7 +35,7 @@ qx.Class.define("java_awt_List", {
 		*/
 		$add___java_lang_String: function(str) {
 			this.listData.push({name : { text : str.$str }});
-			this.qxComponent.add(new qx.ui.form.ListItem(str.$str));
+			this.qxComponent.add(new qx.ui.form.ListItem(str.$str, null, str.$str));
 			//this.qxComponent.update();
 		},
 		$addItemListener___java_awt_event_ItemListener: function(listener) {
@@ -73,7 +73,7 @@ qx.Class.define("java_awt_List", {
 		},
 		$removeAll: function() {
 			var l = this.listData.length;
-			for(i=0 ;i<l; ++i) {
+			for( vari=0 ;i<l; ++i) {
 				this.listData.pop();
 			}
 			this.qxComponent.updateContent();
@@ -81,10 +81,10 @@ qx.Class.define("java_awt_List", {
 		},
 		$getSelectedItems: function() {
 			var result = new Array();
-			var selectedItems = this.qxComponent.getPane().getSelectedItems();
+			var selectedItems = this.qxComponent.getSelection();
 			
-			for(i=0; i < selectedItems.length; ++i) {
-				result.push(new java_lang_String(selectedItems[i].name.text));
+			for(var i=0; i < selectedItems.length; ++i) {
+				result.push(new java_lang_String(selectedItems[i].getValue()));
 			}
 			return result;
 		},
@@ -101,10 +101,10 @@ qx.Class.define("java_awt_List", {
 			this.qxComponent.getPane().getManager().setItemSelected(this.listData[index], true);
 		},
 		$getSelectedItem: function() {
-			var selectedItem = this.qxComponent.getPane().getSelectedItem();
+			var selectedItem = this.qxComponent.getSelectedItem();
 			if(selectedItem == undefined)
 				return new java_lang_null();
-			var strValue = selectedItem.name.text;
+			var strValue = selectedItem.getValue();
 			return new java_lang_String(strValue);
 		},
 		//There is no such method in the qooxdoo API, so we have to

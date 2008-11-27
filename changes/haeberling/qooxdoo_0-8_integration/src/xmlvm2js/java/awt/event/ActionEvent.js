@@ -13,6 +13,9 @@ qx.Class.define("java_awt_event_ActionEvent", {
 			//TODO:
 			console.log("TODO: ActionEvent.init(source,id,command)");
 		},
+		$setSource: function(source) {
+			this.source = source;
+		},
 		$getSource: function() {
 			return this.source;
 		},

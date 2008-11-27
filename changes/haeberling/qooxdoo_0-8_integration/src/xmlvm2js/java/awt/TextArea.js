@@ -18,7 +18,7 @@ qx.Class.define("java_awt_TextArea", {
 			this.qxComponent.setValue(text.$str);
 		},
 		$getText: function() {
-			return new java_lang_String(this.qxComponent.getComputedValue());
+			return new java_lang_String(this.qxComponent.getValue());
 		},
 		$setEditable___boolean: function(editable) {
 			if(editable == 0)
@@ -34,6 +34,9 @@ qx.Class.define("java_awt_TextArea", {
 		},
 		$setText___java_lang_String: function(text) {
 			this.qxComponent.setValue(text.$str);
+		},
+		$append___java_lang_String: function(text) {
+			this.qxComponent.setValue(this.qxComponent.getValue() + text.$str);
 		},
 		$setCaretPosition___int: function(index) {
 			//TODO

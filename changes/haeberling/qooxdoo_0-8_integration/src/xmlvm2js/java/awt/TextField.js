@@ -14,7 +14,7 @@ qx.Class.define("java_awt_TextField", {
 			this.$setText___java_lang_String(text);
 		},
 		$getText: function() {
-			return new java_lang_String(this.qxComponent.getComputedValue());
+			return new java_lang_String(this.qxComponent.getValue());
 		},
 		$addActionListener___java_awt_event_ActionListener : function(listener) {
 			this.qxComponent.addListener("keyUp", function(e) {
