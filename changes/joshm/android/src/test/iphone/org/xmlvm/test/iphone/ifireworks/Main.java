@@ -17,10 +17,10 @@ public class Main
     public void applicationDidFinishLaunching(NSNotification aNotification)
     {
 
-        UIHardware._setStatusBarHeight(0.0f);
+        UIScreen._setStatusBarHeight(0.0f);
         this.setStatusBarModeAndDuration(2, 0);
 
-        CGRect rect = UIHardware.fullScreenApplicationContentRect();
+        CGRect rect = UIScreen.fullScreenApplicationContentRect();
         window = new UIWindow(rect);
 
         rect.origin.x = rect.origin.y = 0.0f;

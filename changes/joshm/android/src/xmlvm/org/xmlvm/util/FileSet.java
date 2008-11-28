@@ -22,7 +22,7 @@ public class FileSet
 
     public FileSet(String filePattern)
     {
-        File f = new File(filePattern);
+    	File f = new File(filePattern);
         File path = f.getParentFile() == null ? new File(".") : f
                 .getParentFile();
         paths.push(path);

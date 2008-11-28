@@ -18,7 +18,7 @@ public class Android
 
     public void applicationDidFinishLaunching(NSNotification aNotification)
     {
-        CGRect rect = UIHardware.fullScreenApplicationContentRect();
+        CGRect rect = UIScreen.fullScreenApplicationContentRect();
 
         /* Initialize the main window */
         window = new UIWindow(rect);

@@ -2,6 +2,8 @@
 package org.xmlvm.test.iphone;
 
 import org.xmlvm.iphone.*;
+import org.xmlvm.test.iphone.ifireworks.Bomb;
+import org.xmlvm.test.iphone.ifireworks.Const;
 
 
 
@@ -11,7 +13,7 @@ public class HelloWorld
 
     public void applicationDidFinishLaunching(NSNotification aNotification)
     {
-        CGRect rect = UIHardware.fullScreenApplicationContentRect();
+        CGRect rect = UIScreen.fullScreenApplicationContentRect();
 
         /* Initialize the main window */
         UIWindow window = new UIWindow(rect);
@@ -29,6 +31,8 @@ public class HelloWorld
         _title.setText("Hello World!");
         _title.setCentersHorizontally(true);
         mainView.addSubview(_title);
+        
+  
     }
 
 
@@ -42,3 +46,5 @@ public class HelloWorld
     }
 
 }
+
+

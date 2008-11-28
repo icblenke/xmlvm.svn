@@ -42,7 +42,11 @@ import org.jdom.transform.JDOMSource;
 import org.xmlvm.dep.Import;
 import org.xmlvm.dep.Recursion;
 import org.xmlvm.util.FileSet;
+
+import com.sun.xml.internal.stream.buffer.stax.StreamWriterBufferCreator;
+
 import java.io.ByteArrayOutputStream;
+import java.io.Console;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -50,8 +54,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintStream;
+
+import javax.print.DocFlavor.STRING;
+import javax.xml.stream.events.Attribute;
 import javax.xml.transform.TransformerException;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.List;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
@@ -245,24 +257,66 @@ public class Main
             // The filename will be the name of the first class
             Namespace nsXMLVM = Namespace
                     .getNamespace("vm", "http://xmlvm.org");
+            String namespaceName = doc.getRootElement().getChild("class", nsXMLVM).getAttributeValue("package");
+            String inheritsFrom = doc.getRootElement().getChild("class", nsXMLVM).getAttributeValue("extends").replace('.', '_');
             String className = doc.getRootElement().getChild("class", nsXMLVM)
-                    .getAttributeValue("name");
+                    .getAttributeValue("name").replace('$', '_');
             if (headerFileName == null)
-                headerFileName = className + ".h";
-            String final_path = path + File.separatorChar + className;
+                headerFileName = (namespaceName + "." + className).replace('.', '_') + ".h";
+            String final_path = path + File.separatorChar + (namespaceName + "." + className).replace('.', '_');
             OutputStream header;
             header = option_console ? System.out
                     : new FileOutputStream(final_path + ".h");
+            
+            PrintStream p = new PrintStream(header); 
+           
+            
+            
+            p.println("#import \"xmlvm.h\"");
+            for(String i: getTypesForHeader(doc))
+            {
+            	if(i.equals(inheritsFrom))
+            	{
+            	p.println("#import \"" + i + ".h\"");
+            	}
+            	
+            } 
+            
+            
+            p.println();
+            p.println("// For circular include:");
+            p.println();
+            for(String i: getTypesForHeader(doc))
+            {
+            	p.println("@class " +  i + ";");
+            	
+            }
+            p.flush();
             System.out.println("Creating Objective-C header: " + final_path
                     + ".h");
             InputStream xslt = this.getClass().getResourceAsStream(
                     "/xmlvm2objc.xsl");
+           
+            
+            
             runXSLT(xslt, doc, header, new String[][] { {"pass", "emitHeader"},
                 {"header", headerFileName}});
             if (!option_console)
                 header.close();
             OutputStream impl = option_console ? System.out
                     : new FileOutputStream(final_path + ".m");
+            
+            p = new PrintStream(impl); 
+            for(String i: getTypesForHeader(doc))
+            {
+            	if(!i.equals(inheritsFrom))
+            	{
+            	p.println("#import \"" + i + ".h\"");
+            	}
+            	
+            } 
+            
+            
             System.out.println("Creating Objective-C implementation: "
                     + final_path + ".m");
             xslt = this.getClass().getResourceAsStream("/xmlvm2objc.xsl");
@@ -282,6 +336,57 @@ public class Main
             e.printStackTrace();
         }
     }
+
+
+
+	private List<String> getTypesForHeader(Document doc) {
+		HashSet<String> seen = new HashSet<String>(); 
+		
+		Iterator i = doc.getDescendants();
+		while(i.hasNext())
+		{
+			Object cur = i.next();
+			if(cur instanceof Element)
+			{
+				org.jdom.Attribute a = ((Element)cur).getAttribute("type");
+				
+				if(a != null)
+				{
+					seen.add(a.getValue());
+				}
+				
+				a = ((Element)cur).getAttribute("extends");
+				if(a != null)
+				{
+					seen.add(a.getValue());
+				}
+				a = ((Element)cur).getAttribute("class-type");
+				if(a != null)
+				{
+					seen.add(a.getValue());
+				}
+				
+			}
+			else
+			{
+			System.out.println(cur);
+			}
+		}
+		HashSet<String> bad = new HashSet<String>();
+		for(String t: new String[]{"float","double","int","void","boolean","short","byte","float","long"})
+		{
+		bad.add(t);
+		}
+		List<String> toRet = new ArrayList<String>();
+		for(String t: seen)
+		{
+			if(!bad.contains(t) && t.indexOf("[]") == -1)
+			{
+				toRet.add(t.replace('.','_').replace('$', '_'));
+			}
+		}
+		return toRet;
+	}
 
 
 
@@ -780,7 +885,18 @@ public class Main
         	{
         	System.out.println("Opt class : " + args.option_class());
         	}
-        for (File f : new FileSet(args.option_class())) {
+        
+        Iterable<File> fs = new FileSet(args.option_class());
+        
+        if(args.option_class().indexOf('$') != -1)
+        { 
+        	//File set doesn't deal with $
+        	List<File> tmp = new ArrayList<File>();
+        	tmp.add(new File(args.option_class()));
+        	fs = tmp;
+        }
+        
+        for (File f :fs ) {
             System.out.println("Processing: " + f);
 
             Main main = new Main(f);
