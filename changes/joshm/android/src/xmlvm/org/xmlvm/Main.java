@@ -43,10 +43,9 @@ import org.xmlvm.dep.Import;
 import org.xmlvm.dep.Recursion;
 import org.xmlvm.util.FileSet;
 
-import com.sun.xml.internal.stream.buffer.stax.StreamWriterBufferCreator;
 
 import java.io.ByteArrayOutputStream;
-import java.io.Console;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -56,13 +55,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
-import javax.print.DocFlavor.STRING;
-import javax.xml.stream.events.Attribute;
+
 import javax.xml.transform.TransformerException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import javax.xml.transform.Result;
@@ -71,8 +68,6 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-import edu.arizona.cs.mbel.mbel.ClassParser;
-import edu.arizona.cs.mbel.mbel.Module;
 
 
 
