@@ -150,7 +150,7 @@
   </target>
 
   <target name ="objc-compat-jar" depends ="build-objccompat">
-    <jar destfile="${xmlvm.libjars}\objc-compat.jar">     
+    <jar destfile="${xmlvm.libjars}/objc-compat.jar">     
       <fileset dir="${xmlvm.objccompat}"/>
     </jar>
   </target>
@@ -167,7 +167,7 @@
   </target>
 
   <target name ="android-compatlib-jar" depends ="android-compatlib">
-    <jar destfile="${xmlvm.libjars}\android-compat.jar">
+    <jar destfile="${xmlvm.libjars}/android-compat.jar">
       <fileset dir="${xmlvm.androidcompat}"/>
     </jar>
   </target>
@@ -178,7 +178,7 @@
            destdir="${xmlvm.androidcompat}"
            debug="${debug}">
       <classpath>
-        <pathelement location="${xmlvm.libjars}\objc-compat.jar"/>
+        <pathelement location="${xmlvm.libjars}/objc-compat.jar"/>
       </classpath>
       <include name="**/*.java" />
     </javac>
@@ -200,105 +200,105 @@
   </target>
 
   <target name = "ihelloworld-jar" depends ="build-ihelloworld">
-    <copy todir="${xmlvm.demo}\ihelloworld\">
-      <fileset dir="var\iphone" >
+    <copy todir="${xmlvm.demo}/ihelloworld/">
+      <fileset dir="var/iphone" >
         <include name = "*.png/" />
       </fileset>
     </copy>
-    <jar destfile="${xmlvm.demo}\ihelloworld\ihelloworld.jar">
+    <jar destfile="${xmlvm.demo}/ihelloworld/ihelloworld.jar">
       <manifest>
         <!-- Who is building this jar? -->
         <attribute name="Built-By" value="${user.name}"/>
         <!-- Information about the program itself -->
         <attribute name="Implementation-Vendor" value="xmlvm.org"/>
         <attribute name="Main-Class" value="org.xmlvm.test.iphone.ihelloworld.HelloWorld"/>
-        <attribute name="Class-Path" value="..\..\lib\objc-compat.jar" />
+        <attribute name="Class-Path" value="../../lib/objc-compat.jar" />
       </manifest>
       <fileset dir="${xmlvm.ihelloworld}"/>
     </jar>
   </target>
 
   <target name = "cc-androidcompatlib" depends ="android-compatlib-jar">
-    <mkdir dir="${xmlvm.demo}\android-compat"/>
+    <mkdir dir="${xmlvm.demo}/android-compat"/>
     <apply executable ="java" dir="${xmlvm.dist}" relative="false">
       <arg value ="-jar"/>
       <arg value ="xmlvm.jar"/>
-      <arg value ="--out=..\${xmlvm.demo}\android-compat" />
+      <arg value ="--out=../${xmlvm.demo}/android-compat" />
       <arg value ="--objc" />
       <srcfile/>
       <fileset dir="${xmlvm.androidcompat}"/>
     </apply>
 
-    <copy todir="${xmlvm.demo}\ifireworks\objc">
-      <fileset dir="var\iphone" >
+    <copy todir="${xmlvm.demo}/ifireworks/objc">
+      <fileset dir="var/iphone" >
         <include name = "star*.png/" />
       </fileset>
     </copy>
 
-    <mkdir dir="${xmlvm.demo}\ifireworks\objc\compat-lib"/>
-    <copy todir="${xmlvm.demo}\ifireworks\objc\compat-lib">
+    <mkdir dir="${xmlvm.demo}/ifireworks/objc/compat-lib"/>
+    <copy todir="${xmlvm.demo}/ifireworks/objc/compat-lib">
       <fileset dir="${xmlvm.resource}/xmlvm2objc/compat-lib" />
     </copy>
 
   </target>
   
   <target name = "cc-ifireworks" depends ="xmlvmjar">
-    <mkdir dir="${xmlvm.demo}\ifireworks\objc"/>
+    <mkdir dir="${xmlvm.demo}/ifireworks/objc"/>
     <apply executable ="java" dir="${xmlvm.dist}" relative="false">
       <arg value ="-jar"/>
       <arg value ="xmlvm.jar"/>
-      <arg value ="--out=..\${xmlvm.demo}\ifireworks\objc" />
+      <arg value ="--out=../${xmlvm.demo}/ifireworks/objc" />
       <arg value ="--objc" />
       <srcfile/>
       <fileset dir="${xmlvm.ifireworks}"/>
     </apply>
     
-    <copy todir="${xmlvm.demo}\ifireworks\objc">
-      <fileset dir="var\iphone" >
+    <copy todir="${xmlvm.demo}/ifireworks/objc">
+      <fileset dir="var/iphone" >
         <include name = "star*.png/" />
       </fileset>
     </copy>
 
-    <mkdir dir="${xmlvm.demo}\ifireworks\objc\compat-lib"/>
-    <copy todir="${xmlvm.demo}\ifireworks\objc\compat-lib">
+    <mkdir dir="${xmlvm.demo}/ifireworks/objc/compat-lib"/>
+    <copy todir="${xmlvm.demo}/ifireworks/objc/compat-lib">
       <fileset dir="${xmlvm.resource}/xmlvm2objc/compat-lib" />
     </copy>
     
   </target>
 
   <target name = "cc-ihelloworld" depends ="xmlvmjar">
-    <mkdir dir="${xmlvm.demo}\ihelloworld\objc"/>
+    <mkdir dir="${xmlvm.demo}/ihelloworld/objc"/>
     <apply executable ="java" dir="${xmlvm.dist}" relative="false">
       <arg value ="-jar"/>
       <arg value ="xmlvm.jar"/>
-      <arg value ="--out=..\${xmlvm.demo}\ihelloworld\objc" />
+      <arg value ="--out=../${xmlvm.demo}/ihelloworld/objc" />
       <arg value ="--objc" />
       <srcfile/>
       <fileset dir="${xmlvm.ifireworks}"/>
     </apply>
 
 
-    <mkdir dir="${xmlvm.demo}\ihelloworld\objc\compat-lib"/>
-    <copy todir="${xmlvm.demo}\ihelloworld\objc\compat-lib">
+    <mkdir dir="${xmlvm.demo}/ihelloworld/objc/compat-lib"/>
+    <copy todir="${xmlvm.demo}/ihelloworld/objc/compat-lib">
       <fileset dir="${xmlvm.resource}/xmlvm2objc/compat-lib" />
     </copy>
   </target>
   
   <target name = "ifireworks-jar" depends ="build-ifireworks">
-    <mkdir dir="${xmlvm.demo}\ifireworks\"/>
-    <copy todir="${xmlvm.demo}\ifireworks\">
-      <fileset dir="var\iphone" >
+    <mkdir dir="${xmlvm.demo}/ifireworks/"/>
+    <copy todir="${xmlvm.demo}/ifireworks/">
+      <fileset dir="var/iphone" >
         <include name = "*.png/" />
       </fileset>
     </copy>
-    <jar destfile="${xmlvm.demo}\ifireworks\ifireworks.jar">
+    <jar destfile="${xmlvm.demo}/ifireworks/ifireworks.jar">
       <manifest>
         <!-- Who is building this jar? -->
         <attribute name="Built-By" value="${user.name}"/>
         <!-- Information about the program itself -->
         <attribute name="Implementation-Vendor" value="xmlvm.org"/>
         <attribute name="Main-Class" value="org.xmlvm.test.iphone.ifireworks.Main"/>
-        <attribute name="Class-Path" value="..\..\lib\objc-compat.jar" />
+        <attribute name="Class-Path" value="../../lib/objc-compat.jar" />
       </manifest>
       <fileset dir="${xmlvm.ifireworks}"/>
     </jar>
@@ -311,35 +311,35 @@
            destdir="${xmlvm.ihelloworld}"
            debug="${debug}">
       <classpath>
-        <pathelement location="${xmlvm.libjars}\objc-compat.jar"/>
+        <pathelement location="${xmlvm.libjars}/objc-compat.jar"/>
       </classpath>
       <include name="**/*.java" />
     </javac>
   </target>
 
   <target name = "cc-sim-androidfw" depends ="sim-androidfw">
-    <mkdir dir="${xmlvm.demo}\androidfireworks\objc"/>
+    <mkdir dir="${xmlvm.demo}/androidfireworks/objc"/>
     <apply executable ="java" dir="${xmlvm.dist}" relative="false">
       <arg value ="-jar"/>
       <arg value ="xmlvm.jar"/>
-      <arg value ="--out=..\${xmlvm.demo}\androidfireworks\objc" />
+      <arg value ="--out=../${xmlvm.demo}/androidfireworks/objc" />
       <arg value ="--objc" />
       <srcfile/>
       <fileset dir="${xmlvm.afireworks}"/>
     </apply>
 
-    <mkdir dir="${xmlvm.demo}\androidfireworks\objc\compat-lib"/>
-    <copy todir="${xmlvm.demo}\androidfireworks\objc\compat-lib">
+    <mkdir dir="${xmlvm.demo}/androidfireworks/objc/compat-lib"/>
+    <copy todir="${xmlvm.demo}/androidfireworks/objc/compat-lib">
       <fileset dir="${xmlvm.resource}/xmlvm2objc/compat-lib" />
     </copy>
 
-    <mkdir dir="${xmlvm.demo}\androidfireworks\objc\android-compat-lib"/>
-    <copy todir="${xmlvm.demo}\androidfireworks\objc\android-compat-lib">
+    <mkdir dir="${xmlvm.demo}/androidfireworks/objc/android-compat-lib"/>
+    <copy todir="${xmlvm.demo}/androidfireworks/objc/android-compat-lib">
       <fileset dir="${xmlvm.demo}/android-compat" />
     </copy>
 
-    <copy todir="${xmlvm.demo}\androidfireworks\objc">
-      <fileset dir="var\iphone" >
+    <copy todir="${xmlvm.demo}/androidfireworks/objc">
+      <fileset dir="var/iphone" >
         <include name = "star*.png/" />
       </fileset>
     </copy>
@@ -347,20 +347,20 @@
   </target>
     
   <target name="sim-androidfw-jar" depends="sim-androidfw">
-    <mkdir dir="${xmlvm.demo}\androidfireworks\"/>
-    <copy todir="${xmlvm.demo}\androidfireworks\">
-      <fileset dir="var\iphone" >
+    <mkdir dir="${xmlvm.demo}/androidfireworks/"/>
+    <copy todir="${xmlvm.demo}/androidfireworks/">
+      <fileset dir="var/iphone" >
         <include name = "*.png/" />
       </fileset>
     </copy>
-    <jar destfile="${xmlvm.demo}\androidfireworks\androidfireworks.jar">
+    <jar destfile="${xmlvm.demo}/androidfireworks/androidfireworks.jar">
       <manifest>
         <!-- Who is building this jar? -->
         <attribute name="Built-By" value="${user.name}"/>
         <!-- Information about the program itself -->
         <attribute name="Implementation-Vendor" value="xmlvm.org"/>
         <attribute name="Main-Class" value="edu.sfsu.AndroidFireworks.AndroidFireworks"/>
-        <attribute name="Class-Path" value="..\..\lib\objc-compat.jar ..\..\lib\android-compat.jar" />
+        <attribute name="Class-Path" value="../../lib/objc-compat.jar ../../lib/android-compat.jar" />
       </manifest>
       <fileset dir="${xmlvm.afireworks}"/>
     </jar>
@@ -372,8 +372,8 @@
            destdir="${xmlvm.afireworks}"
            debug="${debug}">
       <classpath>
-        <pathelement location="${xmlvm.libjars}\objc-compat.jar"/>
-        <pathelement location="${xmlvm.libjars}\android-compat.jar"/>
+        <pathelement location="${xmlvm.libjars}/objc-compat.jar"/>
+        <pathelement location="${xmlvm.libjars}/android-compat.jar"/>
       </classpath>
       <include name="**/*.java" />
     </javac>
@@ -387,7 +387,7 @@
            destdir="${xmlvm.ifireworks}"
            debug="${debug}">
       <classpath>
-        <pathelement location="${xmlvm.libjars}\objc-compat.jar"/>
+        <pathelement location="${xmlvm.libjars}/objc-compat.jar"/>
       </classpath>
       <include name="**/*.java" />
     </javac>
@@ -399,9 +399,9 @@
       <arg value="/out:${tmp.dir}/EventBinaries.exe"/>
       <arg value="/warn:0"/>
       <arg value="/nologo"/>
-      <arg value="src\clr2jvm\compat-lib\c_sharp\eventHandler\DummyMain.cs"/>
-      <arg value="src\clr2jvm\compat-lib\c_sharp\eventHandler\EventArgs.cs"/>
-      <arg value="src\clr2jvm\compat-lib\c_sharp\eventHandler\EventHandler.cs"/>
+      <arg value="src/clr2jvm/compat-lib/c_sharp/eventHandler/DummyMain.cs"/>
+      <arg value="src/clr2jvm/compat-lib/c_sharp/eventHandler/EventArgs.cs"/>
+      <arg value="src/clr2jvm/compat-lib/c_sharp/eventHandler/EventHandler.cs"/>
     </exec>
     <echo message="Cross compiling event handler for compat lib"/>
     <java classname="org.xmlvm.Main">
