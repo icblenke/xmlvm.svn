@@ -26,12 +26,7 @@
     [self setStatusBarMode: mode duration: duration];
 }
 
-- (void) acceleratedInX:(float)xAxis Y:(float)yAxis Z:(float)zAxis
-{
-    [self accelerated___float_float_float :xAxis:yAxis:zAxis];
-}
-
-- (void) accelerated___float_float_float :(float)x :(float)y :(float)z
+- (void) OnAccelerate___float_float_float :(float)x :(float)y :(float)z
 {
     // Nothing to do. Will be overloaded in derived class.
 }
