@@ -1,9 +1,6 @@
 package edu.sfsu.AndroidFireworks;
 
 
-import org.xmlvm.iphone.CGRect;
-import org.xmlvm.iphone.UIImage;
-import org.xmlvm.iphone.UIImageView;
 
 import android.app.Activity;
 import android.app.ActivityImpl;
@@ -15,10 +12,26 @@ import android.widget.ImageView;
 public class AndroidFireworks extends Activity implements Runnable {
 	
 	
+	public static ActivityImpl __xmlvm_iphone_entrypoint(ActivityImpl me)
+	{
+		// Iphone entry point. 
+    	AndroidFireworks fw = new AndroidFireworks();
+    	ActivityImpl.rootApp = me;
+    	me.parent = fw;
+		fw.myIphoneWrapper = me;
+		return me;
+	}
+	
 	public static void main(String [] args)
 	{
-	ActivityImpl.main(args, new AndroidFireworks());
+		// simulator entry point
+		Activity toRun = new AndroidFireworks();
+		// launch point for java land
+		ActivityImpl implementaton = new ActivityImpl(toRun);
+		toRun.myIphoneWrapper = implementaton;
+		implementaton.applicationDidFinishLaunching(null);
 	}
+	
 	
 	
     /** Called when the activity is first created. */

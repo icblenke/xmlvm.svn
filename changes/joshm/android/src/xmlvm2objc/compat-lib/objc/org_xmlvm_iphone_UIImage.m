@@ -7,7 +7,7 @@
 
 + (org_xmlvm_iphone_UIImage*) imageAtPath___java_lang_String :(NSString*)n1
 {
-	org_xmlvm_iphone_UIImage *toRet = [UIImage imageNamed:@"star1.png"];
+	org_xmlvm_iphone_UIImage *toRet = [UIImage imageNamed:@n1];
 	return toRet;
 }
 

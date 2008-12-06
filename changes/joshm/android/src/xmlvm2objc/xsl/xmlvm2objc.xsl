@@ -36,12 +36,20 @@
 </xsl:text>
       <xsl:call-template name="emitImplementation"/>
       
-
+	  <xsl:choose>
+	  <xsl:when test="vm:class/@extends = 'android.app.Activity'">
+        <xsl:call-template name="emitMainMethodForAndroid2Iphone"/>
+      </xsl:when>
+      
+      
+      <xsl:otherwise>
       
       <xsl:if test="vm:class/vm:method/@name = 'main'">
         <xsl:call-template name="emitMainMethod"/>
       </xsl:if>
+      </xsl:otherwise>
       
+      </xsl:choose>
       
     </xsl:otherwise>
   </xsl:choose>
@@ -50,15 +58,48 @@
 
 
 <xsl:template name="emitIphoneEntryPoint">
+  <xsl:text>  
+ 
+// First callback from iphone os hits here, we setup framework and build
+// classes.
+- (void) init 
+{
+	extern void iphone_entry(android_app_ActivityImpl *a);
+	[super init];
+	iphone_entry(self);  
+}
+ 
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template name="emitMainMethodForAndroid2Iphone">
   <xsl:text>
   
-  // This method is the entry point for the converted app -- start debugging here
-  // You will see a call to this, followed by a call to app finished launching...
-  - (void) init 
-  {
-  [super init];
-  [self __xmlvm_iphone_entrypoint___android_app_ActivityImpl: self];
+void iphone_entry(android_app_ActivityImpl *a)
+{
+	[</xsl:text>
+    <xsl:variable name="cl" as="node()" select="vm:class/vm:method[@name = 'main']/.."/>
+    <xsl:value-of select="vm:fixname($cl/@package)"/>
+    <xsl:text>_</xsl:text>
+    <xsl:value-of select="$cl/@name"/>
+    <xsl:text> __xmlvm_iphone_entrypoint___android_app_ActivityImpl: a];
+}
+
+  
+int main(int argc, char* argv[])
+{
+  	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    UIApplicationMain(
+     argc, 
+     argv,
+     @"android_app_ActivityImpl",
+     @"android_app_ActivityImpl");
+	[pool release];
+	return 0;					 
   }
+  
+  
   
 </xsl:text>
 </xsl:template>
@@ -66,6 +107,7 @@
 <xsl:template name="emitMainMethod">
   <xsl:text>
   
+      
   int main(int argc, char* argv[])
 {
   	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -89,6 +131,8 @@
 	return 0;						 
   
   }
+  
+  
   
 </xsl:text>
 </xsl:template>
@@ -160,11 +204,6 @@
   <xsl:text>;
 </xsl:text>
     </xsl:for-each>
-    
-          <xsl:if test="vm:method/@name = '__xmlvm_iphone_entrypoint'">
-         <xsl:text>- (void) init;
-         </xsl:text>
-      </xsl:if>
       
     <xsl:text>
 @end
@@ -257,9 +296,10 @@
     
     
       
-      <xsl:if test="vm:method/@name = '__xmlvm_iphone_entrypoint'">
+      <xsl:if test="@name = 'ActivityImpl'">
         <xsl:call-template name="emitIphoneEntryPoint"/>
       </xsl:if>
+      
       
     <xsl:text>
 @end
@@ -880,6 +920,16 @@ _sp--;
   <xsl:text>    _op2.i = _stack[--_sp].i;
     _op1.i = _stack[--_sp].i;
     if (_op1.i &lt; _op2.i) goto label</xsl:text>
+  <xsl:value-of select="@label"/>
+  <xsl:text>;
+</xsl:text>
+</xsl:template>
+
+
+<xsl:template match="jvm:if_icmpge">
+  <xsl:text>    _op2.i = _stack[--_sp].i;
+    _op1.i = _stack[--_sp].i;
+    if (_op1.i >= _op2.i) goto label</xsl:text>
   <xsl:value-of select="@label"/>
   <xsl:text>;
 </xsl:text>

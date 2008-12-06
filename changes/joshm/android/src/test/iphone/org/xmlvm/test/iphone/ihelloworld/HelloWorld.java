@@ -1,9 +1,7 @@
 
-package org.xmlvm.test.iphone;
+package org.xmlvm.test.iphone.ihelloworld;
 
 import org.xmlvm.iphone.*;
-import org.xmlvm.test.iphone.ifireworks.Bomb;
-import org.xmlvm.test.iphone.ifireworks.Const;
 
 
 

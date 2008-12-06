@@ -24,6 +24,7 @@ public class ImageView extends View {
 		AbsoluteLayout.LayoutParams a = (AbsoluteLayout.LayoutParams)l;
 		int width = a.width;
 		int height = a.height;
+		
 		if(width == LayoutParams.WRAP_CONTENT)
 		{
 		width = 15;
@@ -33,10 +34,10 @@ public class ImageView extends View {
 		height = 15;
 		}
 		
-		//this.myImage.setNeedsUpdate();
+		
 		myImage.SetBounds(new CGRect(a.x,a.y,width,height));
 		myImage.setFrame(new CGRect(a.x,a.y,width,height));
-		//this.myImage.setNeedsUpdate();
+		
 	}
 	public ImageView(Context c)
 	{	

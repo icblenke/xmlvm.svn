@@ -56,12 +56,16 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 
+import javax.naming.spi.DirectoryManager;
 import javax.xml.transform.TransformerException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
@@ -229,8 +233,7 @@ public class Main
                 System.exit(-1);
             }
         }
-        InputStream xslt = this.getClass().getResourceAsStream("/xmlvm2js.xsl");
-        runXSLT(xslt, jvmDoc, out);
+        runXSLT("xmlvm2js.xsl", jvmDoc, out);
 
     }
 
@@ -238,9 +241,7 @@ public class Main
 
     public void genCPP(Document doc, OutputStream out)
     {
-        InputStream xslt = this.getClass()
-                .getResourceAsStream("/xmlvm2cpp.xsl");
-        runXSLT(xslt, doc, out, null);
+        runXSLT("xmlvm2cpp.xsl", doc, out, null);
     }
 
 
@@ -287,14 +288,11 @@ public class Main
             	
             }
             p.flush();
-            System.out.println("Creating Objective-C header: " + final_path
-                    + ".h");
-            InputStream xslt = this.getClass().getResourceAsStream(
-                    "/xmlvm2objc.xsl");
-           
+       
+            System.out.println("Create: " + new File(final_path + ".h").getName());
             
             
-            runXSLT(xslt, doc, header, new String[][] { {"pass", "emitHeader"},
+            runXSLT("xmlvm2objc.xsl", doc, header, new String[][] { {"pass", "emitHeader"},
                 {"header", headerFileName}});
             if (!option_console)
                 header.close();
@@ -312,12 +310,10 @@ public class Main
             } 
             
             
-            System.out.println("Creating Objective-C implementation: "
-                    + final_path + ".m");
-            xslt = this.getClass().getResourceAsStream("/xmlvm2objc.xsl");
-            if (headerFileName == null)
-                headerFileName = className + ".h";
-            runXSLT(xslt, doc, impl, new String[][] {
+            System.out.println("Create: " + new File(final_path + ".m").getName());
+            
+           
+            runXSLT("xmlvm2objc.xsl", doc, impl, new String[][] {
                 {"pass", "emitImplementation"}, {"header", headerFileName}});
             if (!option_console)
                 impl.close();
@@ -387,17 +383,15 @@ public class Main
 
     public void genObjC(Document doc, OutputStream out)
     {
-        InputStream xslt = this.getClass().getResourceAsStream(
-                "/xmlvm2objc.xsl");
-        runXSLT(xslt, doc, out);
+ 
+        runXSLT("xmlvm2objc.xsl", doc, out);
     }
 
 
 
     public void genPython(Document doc, OutputStream out)
     {
-        InputStream xslt = this.getClass().getResourceAsStream("/xmlvm2py.xsl");
-        runXSLT(xslt, doc, out, null);
+        runXSLT("xmlvm2py.xsl", doc, out, null);
     }
 
 
@@ -545,16 +539,14 @@ public class Main
         	// the avm2jvm xslt documents.  Adjust build.xml so that 
         	// only avm2jvm is used (not clr2jvm)
         	// Then the resourceName should always be "/avm2jvm.xsl"
-            String resourceName = "/clr2jvm.xsl";
+            String resourceName = "clr2jvm.xsl";
         	
         	if (_isXMLVM) 
         	{
-        		resourceName = "/avm2jvm.xsl";
+        		resourceName = "avm2jvm.xsl";
         	}
 
-            InputStream xsltJVM = this.getClass().getResourceAsStream(
-                    resourceName);
-            jvmDoc = runXSLT(xsltJVM, dfaDoc);
+            jvmDoc = runXSLT(resourceName, dfaDoc);
         }
         catch (Exception ex) {
             System.err.println(ex);
@@ -581,11 +573,8 @@ public class Main
         Document clrAPIDoc = null;
         
         try {
-            InputStream xslt = this.getClass().getResourceAsStream(
-                    "/jvm2clr.xsl");
-            clrDoc = runXSLT(xslt, doc);
-            xslt = this.getClass().getResourceAsStream("/clr-api.xsl");
-            clrAPIDoc = runXSLT(xslt, clrDoc);
+            clrDoc = runXSLT("jvm2clr.xsl", doc);
+            clrAPIDoc = runXSLT("clr-api.xsl", clrDoc);
         }
         catch (Exception ex) {
             System.err.println(ex);
@@ -623,16 +612,14 @@ public class Main
         	// only avm2jvm is used (not clr2jvm)
         	// Then the resourceName should always be "/api.xsl"
             // The file in src/avm2jvm/api4avm.xsl should be renamed to api.xsl
-            String resourceName = "/api.xsl";
+            String resourceName = "api.xsl";
         	
         	if (_isXMLVM) 
         	{
-        		resourceName = "/api4avm.xsl";
+        		resourceName = "api4avm.xsl";
         	}
             
-            InputStream xsltJVM = this.getClass().getResourceAsStream(
-                    resourceName);
-            apiDoc = runXSLT(xsltJVM, jvmDoc);
+            apiDoc = runXSLT(resourceName, jvmDoc);
         }
         catch (Exception ex) {
             System.err.println(ex);
@@ -691,14 +678,52 @@ public class Main
 
 
 
-    private void runXSLT(InputStream xsltFile, Document doc, OutputStream out)
+    private void runXSLT(String xsltFileName, Document doc, OutputStream out)
     {
-	runXSLT(xsltFile,doc,out,null);
+    	
+	runXSLT(xsltFileName,doc,out,null);
     }
     
-    private void runXSLT(InputStream xsltFile, Document doc, OutputStream out,
+    
+    private void runXSLT(String xsltFileName, Document doc, OutputStream out,
             String[][] xsltParams)
     {
+    	InputStream xsltFile = null;
+    	
+    	Queue<File> toProcess = new LinkedList<File>();
+    	toProcess.add(new File("resource"));
+    	
+    	while(!toProcess.isEmpty())
+    	{
+    		File cur = toProcess.remove();
+    		
+    		if(cur.isDirectory())
+    		{
+    			for(File i:cur.listFiles())
+    			{
+    			toProcess.add(i);
+    			}
+    		}
+    		else
+    		{
+    			if(cur.getName().equals(xsltFileName))
+    			{
+    				try {
+    					xsltFile = new FileInputStream(cur);
+    				} catch (FileNotFoundException e) {
+    					
+    					throw new RuntimeException(e); // java == stupid
+    				}
+        			break;
+    			}
+    		}
+    	}
+    
+        if(xsltFile == null)
+        {
+        	System.out.println("Error could not find: " + xsltFileName);
+        	return;
+        }
         try {
             OutputStream xmlvm_out = new ByteArrayOutputStream();
             XMLOutputter outputter = new XMLOutputter();
@@ -736,8 +761,10 @@ public class Main
      *        A document representing an xml file to be transformed
      * @return The resulting transformed document.
      */
-    private Document runXSLT(InputStream xsltFile, Document doc)
+    private Document runXSLT(String xsltFileName, Document doc)
     {
+        InputStream xsltFile = this.getClass().getResourceAsStream(xsltFileName);
+        
         Document returnDoc = null;
 
         try {
@@ -892,7 +919,7 @@ public class Main
         }
         
         for (File f :fs ) {
-            System.out.println("Processing: " + f);
+            System.out.println("Processing: " + f.getName());
 
             Main main = new Main(f);
             
