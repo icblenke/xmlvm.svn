@@ -15,8 +15,11 @@
      
 <li> <a href="../iphone/demo">iPhone Simulator</a>: a Java-only version of the
      Cocoa library can be run as a Java applet.
-     
+	
+<li> <a href="../android">Android to iPhone</a>: an demo showing how to cross compile a
+Java Android application into an objective C iPhone application.
 </ul>
+
 
 <?php
   include("../footer.html");
