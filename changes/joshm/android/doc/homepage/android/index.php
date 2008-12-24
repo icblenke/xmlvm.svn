@@ -1,8 +1,14 @@
 <?php
-  include("../header.html");
-  include("../content_top.html") ;
+	include("../header.html");
 ?>
+<?php
+	include("../nav.html");
+?>	
 
+<tr>
+  <td id="main_content_td">
+    <div id="main_content">
+	
 <h1>How do you run an Android application on the iPhone?</h1>
 	<h2>We started with an Android application...</h2>
 	<table>
