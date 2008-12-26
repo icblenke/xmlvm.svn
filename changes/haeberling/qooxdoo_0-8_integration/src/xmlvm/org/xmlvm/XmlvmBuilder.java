@@ -86,8 +86,6 @@ public class XmlvmBuilder {
    * The path to the XMLVM emulation library.
    */
   public static final String JS_EMULATION_LIB_PATH = "./src/xmlvm2js";
-  public static final String XMLVM_EMULATION_LIB_FCL_PATH = "./src/lib/fcl";
-  public static final String XMLVM_EMULATION_LIB_JAVA_PATH = "./src/lib/java";
   public static final String APPLICATION_JS_PATH = JS_EMULATION_LIB_PATH
       + "/Application.js.template";
 
@@ -199,10 +197,6 @@ public class XmlvmBuilder {
     // The path where qooxdoo expects all source to be in the temporary project.
     prepareJsEmulationLibrary(new File(JS_EMULATION_LIB_PATH), new File(
             tempQxSourcePath));
-    prepareXmlvmEmulationLibrary(new File(XMLVM_EMULATION_LIB_FCL_PATH), new File(
-            tempQxSourcePath));
-    prepareXmlvmEmulationLibrary(new File(XMLVM_EMULATION_LIB_JAVA_PATH), new File(
-            tempQxSourcePath));
 
     // STEP 5: Replace generated Application.js with our own, which will execute
     // the main method to start the application.
@@ -279,102 +273,6 @@ public class XmlvmBuilder {
       throw new XmlvmBuilderException("Error while executing python.", e);
     } catch (InterruptedException e) {
       throw new XmlvmBuilderException("Error while executing python.", e);
-    }
-  }
-
-  /**
-   * Takes the emulation library and puts it into the destination so it is ready
-   * to be used by qooxdoo's build system.
-   */
-  private void prepareXmlvmEmulationLibrary(File basePath, File destination)
-      throws XmlvmBuilderException {
-    // Check, whether the destination directory actually exists.
-    if (!destination.isDirectory()) {
-      throw new XmlvmBuilderException("Destination directory does not exist: "
-          + destination.getAbsolutePath());
-    }
-    // Recursively rename and copy all JS files.
-    renameAndCopyXmlvmFiles(basePath, basePath, destination);
-  }
-
-  /**
-   * Recursively go through all sub-directories and look for XMLVM files. When
-   * found, run the xmlvm2js stylesheet and save it in a file to match to internal
-   * class-name (required by qooxdoo) into destination directory.
-   * 
-   * @param absoluteBasePath
-   *          The root of the emulation library.
-   * @param basePath
-   *          The path where to search for XMLVM files.
-   * @param destination
-   *          The path where the generated JS files should be copied to.
-   */
-  private void renameAndCopyXmlvmFiles(File absoluteBasePath, File basePath,
-      File destination) throws XmlvmBuilderException {
-    // Accepts files
-    FileFilter xmlvmFileFilter = new FileFilter() {
-      public boolean accept(File pathname) {
-        return !pathname.isDirectory()
-            && pathname.getName().toLowerCase().endsWith(".xmlvm");
-      }
-    };
-    // Accepts directories
-    FileFilter directoryFilter = new FileFilter() {
-      public boolean accept(File pathname) {
-        return pathname.isDirectory();
-      }
-    };
-    // Go through all files in this directory ...
-    for (File entry : basePath.listFiles(xmlvmFileFilter)) {
-      renameAndCopyXmlvmFile(absoluteBasePath, entry, destination);
-    }
-    // ... then recursively go through subdirectories.
-    for (File entry : basePath.listFiles(directoryFilter)) {
-      renameAndCopyXmlvmFiles(absoluteBasePath, entry, destination);
-    }
-  }
-
-  /**
-   * Transforms a single XMLVM file by applying the xmlvm2js stylesheet. The
-   * generated JS file will integrate the pathname from a given root path,
-   * so the file name matches the class name within the file.
-   * 
-   * @param absoluteBasePath
-   * @param xmlvmFile
-   * @param destination
-   * @throws XmlvmBuilderException
-   */
-  private void renameAndCopyXmlvmFile(File absoluteBasePath, File xmlvmFile,
-      File destination) throws XmlvmBuilderException {
-    // +1 to remove trailing slash.
-    String cutPath = xmlvmFile.getAbsolutePath().substring(
-        (int) absoluteBasePath.getAbsolutePath().length() + 1);
-    String outputFileName = cutPath.replace(File.separatorChar, '_');
-    // Replace ".xmlvm" with ".js"
-    outputFileName = outputFileName.substring(0, outputFileName.length() - ".xmlvm".length()) + ".js";
-    //TODO The following should be wrapped in a class as part of the toolchain
-    SAXBuilder builder = new SAXBuilder();
-    Document doc = null;
-    try {
-      FileInputStream in = new FileInputStream(xmlvmFile);
-      doc = builder.build(in);
-    } catch (Exception ex) {
-        throw new XmlvmBuilderException("Could not parse '" + xmlvmFile.getName() + "'", ex);
-    }
-    Main main = new Main();
-    File outputFile = new File(destination.getAbsolutePath() + File.separator
-          + outputFileName);
-    FileOutputStream out;
-    try {
-        out = new FileOutputStream(outputFile);
-        main.genJS(doc, out);
-        out.close();
-    }
-    catch (FileNotFoundException e) {
-      throw new XmlvmBuilderException("Could not generate JS", e);
-    }
-    catch (IOException e) {
-      throw new XmlvmBuilderException("Could not generate JS", e);
     }
   }
 
