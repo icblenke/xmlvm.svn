@@ -26,6 +26,7 @@ public class XmlvmArguments {
   private boolean option_cpp = false;
   private boolean option_objc = false;
   private String option_objc_header = null;
+  private String option_iphone_app = null;
   private boolean option_python = false;
   private boolean option_dfa = false;
   private boolean option_jvm = false;
@@ -85,6 +86,11 @@ public class XmlvmArguments {
         }
         if (arg.startsWith("--objc-header=")) {
             option_objc_header = arg.substring(14);
+            continue;
+        }
+        if (arg.startsWith("--iphone-app=")) {
+        	option_objc = true;
+            option_iphone_app = arg.substring(13);
             continue;
         }
         if (arg.equals("--python")) {
@@ -167,6 +173,10 @@ public class XmlvmArguments {
 
   public String option_objc_header() {
     return option_objc_header;
+  }
+
+  public String option_iphone_app() {
+	return option_iphone_app;
   }
 
   public boolean option_python() {

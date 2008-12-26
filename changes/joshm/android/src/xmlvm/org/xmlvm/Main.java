@@ -43,22 +43,31 @@ import org.xmlvm.dep.Import;
 import org.xmlvm.dep.Recursion;
 import org.xmlvm.util.FileSet;
 
+import com.crazilec.util.UtilCopy;
+
 
 import java.io.ByteArrayOutputStream;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.io.Reader;
+import java.io.Writer;
 
 
 import javax.naming.spi.DirectoryManager;
 import javax.xml.transform.TransformerException;
 import java.io.StringReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -690,6 +699,7 @@ public class Main
     {
     	InputStream xsltFile = null;
     	
+    	/*
     	Queue<File> toProcess = new LinkedList<File>();
     	toProcess.add(new File("resource"));
     	
@@ -718,6 +728,8 @@ public class Main
     			}
     		}
     	}
+    	*/
+    	xsltFile = this.getClass().getResourceAsStream("/" + xsltFileName);
     
         if(xsltFile == null)
         {
@@ -788,7 +800,49 @@ public class Main
 
 
 
+    private static void createXcodeProject(XmlvmArguments args) throws FileNotFoundException, Exception
+    {
+    	// Copy compatibility library
+    	String from = "./src/xmlvm2objc/compat-lib/objc/";
+    	String to = args.option_out();
+    	if (!to.endsWith(File.separator))
+            to += File.separator;
+    	UtilCopy uc = new UtilCopy();
+    	uc.xCopy(to, from);
+    	
+    	// Create MakeVars
+    	Writer makeVars = new BufferedWriter(new FileWriter(to + "MakeVars"));
+    	makeVars.write("PRODUCT_NAME=" + args.option_iphone_app() + "\n\n");
+    	makeVars.write("SOURCES=");
+    	FileSet fs = new FileSet(to + "*.m");
+    	for (File f : fs) {
+    		makeVars.write(" \\\n" + f.getName());
+    	}
+    	makeVars.write("\n");
+    	makeVars.close();
+    	
+    	// Create Info.plist
+    	BufferedReader infoIn = new BufferedReader(new FileReader("./var/iphone/Info.plist"));
+    	BufferedWriter infoOut = new BufferedWriter(new FileWriter(to + "Info.plist"));
+    	String line = null;
+    	while ((line = infoIn.readLine()) != null) {
+    		line = line.replaceAll("XMLVM_APP", args.option_iphone_app());
+    		infoOut.write(line + "\n");
+    	}
+    	infoIn.close();
+    	infoOut.close();
+    	
+    	// Copy Makefile
+    	infoIn = new BufferedReader(new FileReader("./var/iphone/Makefile"));
+    	infoOut = new BufferedWriter(new FileWriter(to + "Makefile"));
+    	while ((line = infoIn.readLine()) != null) {
+    		infoOut.write(line + "\n");
+    	}
+    	infoIn.close();
+    	infoOut.close();
+    }
 
+    
     private static void pack(String argv[]) throws Exception
     {
         final String ARG_DESTINATION = "--destination=";
@@ -1049,7 +1103,7 @@ public class Main
             }
 
             // the output stream will not be opened if
-            // the java option is choosen
+            // the java option is chosen
 
             if (!(args.option_java() || args.option_objc())) {
                 try {
@@ -1059,6 +1113,9 @@ public class Main
                     System.err.println("Error closing output file.");
                 }
             }
+        }
+        if (args.option_iphone_app() != null) {
+        	createXcodeProject(args);
         }
     }
 }

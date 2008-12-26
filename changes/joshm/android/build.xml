@@ -135,7 +135,7 @@
 
       </manifest>
       <fileset dir="${xmlvm.main}"/>
-
+      <fileset dir="./src/xmlvm2objc/xsl"/>
     </jar>
   </target>
 
@@ -220,68 +220,53 @@
 
   <target name = "cc-androidcompatlib" depends ="android-compatlib-jar">
     <mkdir dir="${xmlvm.demo}/android-compat"/>
-    <apply executable ="java" dir="${xmlvm.dist}" relative="false">
+    <exec executable ="java">
       <arg value ="-jar"/>
-      <arg value ="xmlvm.jar"/>
-      <arg value ="--out=../${xmlvm.demo}/android-compat" />
+      <arg value ="${xmlvm.dist}/xmlvm.jar"/>
+      <arg value ="--out=${xmlvm.demo}/android-compat" />
       <arg value ="--objc" />
-      <srcfile/>
-      <fileset dir="${xmlvm.androidcompat}"/>
-    </apply>
+      <arg value ="${xmlvm.androidcompat}/*.class"/>
+    </exec>
 
-    <copy todir="${xmlvm.demo}/ifireworks/objc">
+    <copy todir="${xmlvm.demo}/ifireworks/iphone">
       <fileset dir="var/iphone" >
         <include name = "star*.png/" />
       </fileset>
     </copy>
 
-    <mkdir dir="${xmlvm.demo}/ifireworks/objc/compat-lib"/>
-    <copy todir="${xmlvm.demo}/ifireworks/objc/compat-lib">
+    <mkdir dir="${xmlvm.demo}/ifireworks/iphone/compat-lib"/>
+    <copy todir="${xmlvm.demo}/ifireworks/iphone/compat-lib">
       <fileset dir="${xmlvm.resource}/xmlvm2objc/compat-lib" />
     </copy>
 
   </target>
   
   <target name = "cc-ifireworks" depends ="xmlvmjar">
-    <mkdir dir="${xmlvm.demo}/ifireworks/objc"/>
-    <apply executable ="java" dir="${xmlvm.dist}" relative="false">
+    <mkdir dir="${xmlvm.demo}/ifireworks/iphone"/>
+    <exec executable ="java">
       <arg value ="-jar"/>
-      <arg value ="xmlvm.jar"/>
-      <arg value ="--out=../${xmlvm.demo}/ifireworks/objc" />
-      <arg value ="--objc" />
-      <srcfile/>
-      <fileset dir="${xmlvm.ifireworks}"/>
-    </apply>
+      <arg value ="${xmlvm.dist}/xmlvm.jar"/>
+      <arg value ="--out=${xmlvm.demo}/ifireworks/iphone" />
+      <arg value ="--iphone-app=iFireworks" />
+      <arg value ="${xmlvm.ifireworks}/*.class"/>
+    </exec>
     
-    <copy todir="${xmlvm.demo}/ifireworks/objc">
+    <copy todir="${xmlvm.demo}/ifireworks/iphone">
       <fileset dir="var/iphone" >
         <include name = "star*.png/" />
       </fileset>
     </copy>
-
-    <mkdir dir="${xmlvm.demo}/ifireworks/objc/compat-lib"/>
-    <copy todir="${xmlvm.demo}/ifireworks/objc/compat-lib">
-      <fileset dir="${xmlvm.resource}/xmlvm2objc/compat-lib" />
-    </copy>
-    
   </target>
 
   <target name = "cc-ihelloworld" depends ="xmlvmjar">
-    <mkdir dir="${xmlvm.demo}/ihelloworld/objc"/>
-    <apply executable ="java" dir="${xmlvm.dist}" relative="false">
+    <mkdir dir="${xmlvm.demo}/ihelloworld/iphone"/>
+    <exec executable ="java">
       <arg value ="-jar"/>
-      <arg value ="xmlvm.jar"/>
-      <arg value ="--out=../${xmlvm.demo}/ihelloworld/objc" />
-      <arg value ="--objc" />
-      <srcfile/>
-      <fileset dir="${xmlvm.ifireworks}"/>
-    </apply>
-
-
-    <mkdir dir="${xmlvm.demo}/ihelloworld/objc/compat-lib"/>
-    <copy todir="${xmlvm.demo}/ihelloworld/objc/compat-lib">
-      <fileset dir="${xmlvm.resource}/xmlvm2objc/compat-lib" />
-    </copy>
+      <arg value ="${xmlvl.dist}/xmlvm.jar"/>
+      <arg value ="--out=${xmlvm.demo}/ihelloworld/iphone" />
+      <arg value ="--iphone-app=ihelloworld" />
+      <arg value ="${xmlvm.ihelloworld}/*.class"/>
+    </exec>
   </target>
   
   <target name = "ifireworks-jar" depends ="build-ifireworks">
@@ -318,27 +303,22 @@
   </target>
 
   <target name = "cc-sim-androidfw" depends ="sim-androidfw">
-    <mkdir dir="${xmlvm.demo}/androidfireworks/objc"/>
-    <apply executable ="java" dir="${xmlvm.dist}" relative="false">
-      <arg value ="-jar"/>
-      <arg value ="xmlvm.jar"/>
-      <arg value ="--out=../${xmlvm.demo}/androidfireworks/objc" />
-      <arg value ="--objc" />
-      <srcfile/>
-      <fileset dir="${xmlvm.afireworks}"/>
-    </apply>
+    <mkdir dir="${xmlvm.demo}/androidfireworks/iphone"/>
 
-    <mkdir dir="${xmlvm.demo}/androidfireworks/objc/compat-lib"/>
-    <copy todir="${xmlvm.demo}/androidfireworks/objc/compat-lib">
-      <fileset dir="${xmlvm.resource}/xmlvm2objc/compat-lib" />
-    </copy>
-
-    <mkdir dir="${xmlvm.demo}/androidfireworks/objc/android-compat-lib"/>
-    <copy todir="${xmlvm.demo}/androidfireworks/objc/android-compat-lib">
+  	<mkdir dir="${xmlvm.demo}/androidfireworks/iphone/android-compat-lib"/>
+    <copy todir="${xmlvm.demo}/androidfireworks/iphone/android-compat-lib">
       <fileset dir="${xmlvm.demo}/android-compat" />
     </copy>
 
-    <copy todir="${xmlvm.demo}/androidfireworks/objc">
+    <exec executable ="java">
+      <arg value ="-jar"/>
+      <arg value ="${xmlvm.dist}/xmlvm.jar"/>
+      <arg value ="--out=${xmlvm.demo}/androidfireworks/iphone" />
+      <arg value ="--iphone-app=androidfireworks" />
+      <arg value ="${xmlvm.afireworks}/*.class"/>
+    </exec>
+
+    <copy todir="${xmlvm.demo}/androidfireworks/iphone">
       <fileset dir="var/iphone" >
         <include name = "star*.png/" />
       </fileset>
