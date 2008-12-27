@@ -220,13 +220,11 @@
 
   <target name = "cc-androidcompatlib" depends ="android-compatlib-jar">
     <mkdir dir="${xmlvm.demo}/android-compat"/>
-    <exec executable ="java">
-      <arg value ="-jar"/>
-      <arg value ="${xmlvm.dist}/xmlvm.jar"/>
+    <java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
       <arg value ="--out=${xmlvm.demo}/android-compat" />
       <arg value ="--objc" />
       <arg value ="${xmlvm.androidcompat}/*.class"/>
-    </exec>
+    </java>
 
     <copy todir="${xmlvm.demo}/ifireworks/iphone">
       <fileset dir="var/iphone" >
@@ -243,13 +241,11 @@
   
   <target name = "cc-ifireworks" depends ="xmlvmjar">
     <mkdir dir="${xmlvm.demo}/ifireworks/iphone"/>
-    <exec executable ="java">
-      <arg value ="-jar"/>
-      <arg value ="${xmlvm.dist}/xmlvm.jar"/>
+    <java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
       <arg value ="--out=${xmlvm.demo}/ifireworks/iphone" />
       <arg value ="--iphone-app=iFireworks" />
       <arg value ="${xmlvm.ifireworks}/*.class"/>
-    </exec>
+    </java>
     
     <copy todir="${xmlvm.demo}/ifireworks/iphone">
       <fileset dir="var/iphone" >
@@ -260,13 +256,11 @@
 
   <target name = "cc-ihelloworld" depends ="xmlvmjar">
     <mkdir dir="${xmlvm.demo}/ihelloworld/iphone"/>
-    <exec executable ="java">
-      <arg value ="-jar"/>
-      <arg value ="${xmlvl.dist}/xmlvm.jar"/>
+    <java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
       <arg value ="--out=${xmlvm.demo}/ihelloworld/iphone" />
       <arg value ="--iphone-app=ihelloworld" />
       <arg value ="${xmlvm.ihelloworld}/*.class"/>
-    </exec>
+    </java>
   </target>
   
   <target name = "ifireworks-jar" depends ="build-ifireworks">
