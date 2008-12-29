@@ -42,38 +42,39 @@ import org.jdom.transform.JDOMSource;
 import org.xmlvm.dep.Import;
 import org.xmlvm.dep.Recursion;
 import org.xmlvm.util.FileSet;
+import org.xmlvm.util.JarUtil;
 
 import com.crazilec.util.UtilCopy;
 
 
 import java.io.ByteArrayOutputStream;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.io.Reader;
 import java.io.Writer;
 
 
-import javax.naming.spi.DirectoryManager;
 import javax.xml.transform.TransformerException;
 import java.io.StringReader;
-import java.net.URL;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
+import java.util.jar.JarInputStream;
 
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
@@ -803,13 +804,16 @@ public class Main
     private static void createXcodeProject(XmlvmArguments args) throws FileNotFoundException, Exception
     {
     	// Copy compatibility library
-    	String from = "./src/xmlvm2objc/compat-lib/objc/";
     	String to = args.option_out();
     	if (!to.endsWith(File.separator))
             to += File.separator;
-    	UtilCopy uc = new UtilCopy();
-    	uc.xCopy(to, from);
+    	JarUtil.copy("/iphone/compat-lib.jar", to);
     	
+    	// Check if we need to copy the Android compat libs (--android2iphone)
+    	if (args.option_android2iphone()) {
+        	JarUtil.copy("/iphone/android-compat-lib.jar", to);
+    	}
+
     	// Create MakeVars
     	Writer makeVars = new BufferedWriter(new FileWriter(to + "MakeVars"));
     	makeVars.write("PRODUCT_NAME=" + args.option_iphone_app() + "\n\n");
@@ -822,7 +826,7 @@ public class Main
     	makeVars.close();
     	
     	// Create Info.plist
-    	BufferedReader infoIn = new BufferedReader(new FileReader("./var/iphone/Info.plist"));
+    	BufferedReader infoIn = JarUtil.getFile("/iphone/Info.plist");
     	BufferedWriter infoOut = new BufferedWriter(new FileWriter(to + "Info.plist"));
     	String line = null;
     	while ((line = infoIn.readLine()) != null) {
@@ -833,7 +837,7 @@ public class Main
     	infoOut.close();
     	
     	// Copy Makefile
-    	infoIn = new BufferedReader(new FileReader("./var/iphone/Makefile"));
+    	infoIn = JarUtil.getFile("/iphone/Makefile");
     	infoOut = new BufferedWriter(new FileWriter(to + "Makefile"));
     	while ((line = infoIn.readLine()) != null) {
     		infoOut.write(line + "\n");
@@ -951,7 +955,6 @@ public class Main
 
     public static void main(String[] argv) throws Exception
     {
-
         XmlvmArguments args = new XmlvmArguments(argv);
         if (args.option_pack()) {
             pack(argv);

@@ -10,8 +10,11 @@
   
   <property name="xmlvm.demo" value="./dist/demo" />
   
-  <property name="xmlvm.main" value="build/xmlvm" />
-
+  <property name="xmlvm.build" value="build/base" />
+  <property name="xmlvm.build.main" value="${xmlvm.build}/main" />
+  <property name="xmlvm.build.lib" value="${xmlvm.build}/lib" />
+  <property name="xmlvm.bin" value="build/bin"/>
+	
   <property name="xmlvm.objccompat" value="build/objcCompat" />
   <property name="xmlvm.androidcompat" value="build/androidCompat" />
 
@@ -44,8 +47,8 @@
   </path>
 
   <path id="classpath.run">
-    <pathelement location="${xmlvm.main}" />
-    <pathelement location="src/xmlvm2js" />
+    <pathelement location="${xmlvm.bin}" />
+  	<pathelement location="src/xmlvm2objc/xsl"/>
     <pathelement location="lib/bcel.jar" />
     <pathelement location="lib/mbel.jar" />
     <pathelement location="lib/jdom.jar" />
@@ -55,87 +58,63 @@
   </path>
 
 
-  <target name="xmlvmjar" depends="build-xmlvm">
+  <target name="xmlvmjar" depends="cc-androidcompatlib">
 
-    <!-- libary jar files go here
-		-->
-    <copy todir="${xmlvm.libjars}">
-      <fileset dir="lib" >
-        <include name = "**/*.jar/" />
-      </fileset>
-    </copy>
-
-    <!-- Where all the associated crud that xmlvm uses goes (
-		transforms, etc... 
-		-->
-    <copy todir="${xmlvm.resource}">
-      <fileset dir="lib" >
-        <exclude name = "**/*jar/" />
-      </fileset>
-    </copy>
-    
-
-    <copy todir="${xmlvm.resource}/xmlvm2cpp">
-      <fileset dir="src/xmlvm2cpp"/>
-    </copy>
-
-    <copy todir="${xmlvm.resource}/xmlvm2js">
-      <fileset dir="src/xmlvm2js"/>
-    </copy>
-    
-    <copy todir="${xmlvm.resource}/clr2jvm" includeEmptyDirs="false" >
-      <fileset dir="src/clr2jvm">
-        <exclude name = "**/*.java/" />
-      </fileset>
-    </copy>
-    
-    <copy todir="${xmlvm.resource}/jvm2clr">
-      <fileset dir="src/jvm2clr">
-      </fileset>
-    </copy>
-
-    <copy todir="${xmlvm.resource}/xmlvm2objc" includeEmptyDirs="false" >
-      <fileset dir="src/xmlvm2objc" >
-        <exclude name = "**/*.java/" />
-      </fileset>
-    </copy>
-    
-    <!-- Auto create a class path for the JAR -->
-    <pathconvert property="libs.project" pathsep=" ">
-      <mapper>
-        <chainedmapper>
-
-          <!-- remove absolute path -->
-          <flattenmapper />
-
-          <!-- add lib/ prefix -->
-          <globmapper from="*" to="lib/*" />
-        </chainedmapper>
-      </mapper>
-
-      <path>
-        <!-- xmlvm.libjars contains all jar files, in several subdirectories -->
-        <fileset dir="${xmlvm.libjars}">
-          <include name="**/*.jar" />
+  	<copy todir="${xmlvm.build.lib}">
+        <fileset dir="lib" >
+          <include name = "**/*.jar/" />
+          <exclude name="one-jar-boot.jar" />
         </fileset>
-      </path>
-    </pathconvert>
+    </copy>
 
+  	<unjar src="lib/one-jar-boot.jar" dest="${xmlvm.build}">
+  		<patternset>
+  		    <include name="**/*.class"/>
+  			<exclude name="OneJar.class"/>
+  		</patternset>
+  	</unjar>
 
-    <jar destfile="${xmlvm.jar}">
+  	<copy todir="${xmlvm.bin}" flatten="true">
+  	  <fileset dir="src">
+  		<include name="**/*.xsl"/>
+  	  </fileset>
+  	</copy>
+  		
+    <jar destfile="${xmlvm.bin}/iphone/compat-lib.jar">
+      <fileset dir="src/xmlvm2objc/compat-lib/objc/" />
+    </jar>
+  	
+    <jar destfile="${xmlvm.bin}/iphone/android-compat-lib.jar">
+      <fileset dir="${xmlvm.demo}/android-compat" />
+    </jar>
+  	
+  	<copy todir="${xmlvm.bin}/iphone">
+      <fileset file="var/iphone/Makefile"/>
+      <fileset file="var/iphone/Info.plist"/>
+  	</copy>
+  		
+  	<jar destfile="${xmlvm.build.main}/main.jar"
+  	     basedir="${xmlvm.bin}">
       <manifest>
-        <!-- Who is building this jar? -->
         <attribute name="Built-By" value="${user.name}"/>
-        <!-- Information about the program itself -->
         <attribute name="Implementation-Vendor" value="xmlvm.org"/>
         <attribute name="Implementation-Title" value="XMLVM"/>
         <attribute name="Implementation-Version" value="alpha"/>
-        <attribute name="Main-Class" value="org.xmlvm.Main"/>
-        <attribute name="Class-Path" value="${libs.project}" />
-
+        <attribute name="Main-Class" value="com.simontuffs.onejar.Boot"/>
+    	<attribute name="One-Jar-Main-Class" value="org.xmlvm.Main"/>
       </manifest>
-      <fileset dir="${xmlvm.main}"/>
-      <fileset dir="./src/xmlvm2objc/xsl"/>
+  	</jar>
+  		
+  	<jar destfile="${xmlvm.jar}">
+      <manifest>
+        <attribute name="Built-By" value="${user.name}"/>
+        <attribute name="Implementation-Vendor" value="xmlvm.org"/>
+        <attribute name="Implementation-Title" value="XMLVM"/>
+        <attribute name="Implementation-Version" value="alpha"/>
+        <attribute name="Main-Class" value="com.simontuffs.onejar.Boot"/>
+      	<attribute name="One-Jar-Main-Class" value="org.xmlvm.Main"/>
+      </manifest>
+      <fileset dir="${xmlvm.build}"/>
     </jar>
   </target>
 
@@ -147,6 +126,11 @@
     <mkdir dir="${xmlvm.demo}"/>
     <mkdir dir="${xmlvm.libjars}"/>
     <mkdir dir="${xmlvm.resource}"/>
+  	<mkdir dir="${xmlvm.build}"/>
+  	<mkdir dir="${xmlvm.build.main}"/>
+  	<mkdir dir="${xmlvm.build.lib}"/>
+  	<mkdir dir="${xmlvm.bin}"/>
+  	<mkdir dir="${xmlvm.bin}/iphone"/>
   </target>
 
   <target name ="objc-compat-jar" depends ="build-objccompat">
@@ -185,10 +169,10 @@
   </target>
   
   <target name="build-xmlvm" depends="init">
-    <mkdir dir="${xmlvm.main}" />
+    <mkdir dir="${xmlvm.build.main}" />
     <echo message="Compiling XMLVM"/>
     <javac srcdir="src/xmlvm"
-           destdir="${xmlvm.main}"
+           destdir="${xmlvm.bin}"
            debug="${debug}">
       <classpath refid="classpath.compile" />
       <include name="**/*.java" />
@@ -218,25 +202,14 @@
     </jar>
   </target>
 
-  <target name = "cc-androidcompatlib" depends ="android-compatlib-jar">
+  <target name = "cc-androidcompatlib" depends ="android-compatlib-jar,build-xmlvm">
     <mkdir dir="${xmlvm.demo}/android-compat"/>
-    <java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
+  	<java classname="org.xmlvm.Main">
       <arg value ="--out=${xmlvm.demo}/android-compat" />
       <arg value ="--objc" />
       <arg value ="${xmlvm.androidcompat}/*.class"/>
-    </java>
-
-    <copy todir="${xmlvm.demo}/ifireworks/iphone">
-      <fileset dir="var/iphone" >
-        <include name = "star*.png/" />
-      </fileset>
-    </copy>
-
-    <mkdir dir="${xmlvm.demo}/ifireworks/iphone/compat-lib"/>
-    <copy todir="${xmlvm.demo}/ifireworks/iphone/compat-lib">
-      <fileset dir="${xmlvm.resource}/xmlvm2objc/compat-lib" />
-    </copy>
-
+  	  <classpath refid="classpath.run" />
+  	</java>
   </target>
   
   <target name = "cc-ifireworks" depends ="xmlvmjar">
@@ -299,18 +272,11 @@
   <target name = "cc-sim-androidfw" depends ="sim-androidfw">
     <mkdir dir="${xmlvm.demo}/androidfireworks/iphone"/>
 
-  	<mkdir dir="${xmlvm.demo}/androidfireworks/iphone/android-compat-lib"/>
-    <copy todir="${xmlvm.demo}/androidfireworks/iphone/android-compat-lib">
-      <fileset dir="${xmlvm.demo}/android-compat" />
-    </copy>
-
-    <exec executable ="java">
-      <arg value ="-jar"/>
-      <arg value ="${xmlvm.dist}/xmlvm.jar"/>
+    <java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
       <arg value ="--out=${xmlvm.demo}/androidfireworks/iphone" />
-      <arg value ="--iphone-app=androidfireworks" />
+      <arg value ="--android2iphone=androidfireworks" />
       <arg value ="${xmlvm.afireworks}/*.class"/>
-    </exec>
+    </java>
 
     <copy todir="${xmlvm.demo}/androidfireworks/iphone">
       <fileset dir="var/iphone" >
