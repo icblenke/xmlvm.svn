@@ -1,4 +1,4 @@
-package edu.sfsu.AndroidFireworks;
+package org.xmlvm.AndroidFireworks;
 
 
 

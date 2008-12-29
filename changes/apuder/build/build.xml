@@ -158,7 +158,7 @@
 
   <target name="android-compatlib" depends="objc-compat-jar">
     <mkdir dir="${xmlvm.androidcompat}" />
-    <javac srcdir="android2iphone"
+    <javac srcdir="./src/android2iphone"
            destdir="${xmlvm.androidcompat}"
            debug="${debug}">
       <classpath>
@@ -299,7 +299,7 @@
         <attribute name="Built-By" value="${user.name}"/>
         <!-- Information about the program itself -->
         <attribute name="Implementation-Vendor" value="xmlvm.org"/>
-        <attribute name="Main-Class" value="edu.sfsu.AndroidFireworks.AndroidFireworks"/>
+        <attribute name="Main-Class" value="org.xmlvm.AndroidFireworks.AndroidFireworks"/>
         <attribute name="Class-Path" value="../../lib/objc-compat.jar ../../lib/android-compat.jar" />
       </manifest>
       <fileset dir="${xmlvm.afireworks}"/>
@@ -308,7 +308,7 @@
   
   <target name="sim-androidfw" depends="android-compatlib-jar">
     <mkdir dir="${xmlvm.afireworks}" />
-    <javac srcdir="AndroidFireworks"
+    <javac srcdir="./src/demo/AndroidFireworks"
            destdir="${xmlvm.afireworks}"
            debug="${debug}">
       <classpath>
