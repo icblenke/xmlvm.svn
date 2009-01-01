@@ -3,7 +3,6 @@ package org.xmlvm.iphone.internal;
 
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.net.URL;
 
 
 
@@ -14,7 +13,7 @@ public class FileImageLoader
     public Image loadImage(String imageName)
     {
     	Image toRet;
-    	toRet = Toolkit.getDefaultToolkit().getImage(imageName);
+    	toRet = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/" + imageName));
     	return toRet;
     	
     }

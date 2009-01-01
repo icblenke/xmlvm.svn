@@ -68,7 +68,7 @@ $(PRODUCT_ABS): $(APP_ABS) $(OBJECTS_ABS)
 $(APP_ABS): $(INFOPLIST_ABS)
 	mkdir -p $(APP_ABS)
 	cp $(INFOPLIST_ABS) $(APP_ABS)/
-	cp -R $(SRCROOT)/$(RESOURCES)/*.png $(APP_ABS)/
+	find $(SRCROOT) -name "*.png" -exec cp {} $(APP_ABS)/ \;
 
 $(CONFIGURATION_TEMP_DIR)/%.o: $(SRCROOT)/%.m
 	mkdir -p $(dir $@)
