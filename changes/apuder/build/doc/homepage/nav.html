@@ -1,18 +1,18 @@
 <?php 
-
-function printLink($dir, $dsc) {
-
-  if(stripos($_SERVER['REQUEST_URI'],$dir))
+function printLink($dir, $title, $last = false) {
+  if(stripos($_SERVER['REQUEST_URI'], $dir))
   {
-		echo ("<b>" . $dsc . "</b> |");
+	  echo("<b>$title</b>");
   }
   else
   {
-        echo ("<a href=../" . $dir . ">" . $dsc . "</a> |");
+    echo("<a href=../$dir>$title</a>");
+  }
+  if(!$last) {
+    echo(" |");
   }
 }
 ?>
-
 
 <tr>
   <td>
@@ -22,7 +22,7 @@ function printLink($dir, $dsc) {
       <?php printLink("clr2jvm","CLR to JVM") ?>
       <?php printLink("javascript","JavaScript") ?>
       <?php printLink("iphone","iPhone/Objective-C") ?>
-      <?php printLink("android","Android to iPhone") ?>
+      <?php printLink("android","Android to iPhone", true) ?>
     </div>
   </td>
 </tr>
