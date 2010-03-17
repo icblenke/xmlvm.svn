@@ -1,0 +1,1434 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		100000 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100001 /* OpenGLES.framework */; };
+		100002 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100003 /* Foundation.framework */; };
+		100004 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100005 /* AVFoundation.framework */; };
+		100006 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100007 /* UIKit.framework */; };
+		100008 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100009 /* QuartzCore.framework */; };
+		100010 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100011 /* CoreGraphics.framework */; };
+		1002 /* org_xmlvm_demo_isound_ISound_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1001 /* org_xmlvm_demo_isound_ISound_1.m */; };
+		1005 /* org_xmlvm_demo_isound_ISound_2.m in Sources */ = {isa = PBXBuildFile; fileRef = 1004 /* org_xmlvm_demo_isound_ISound_2.m */; };
+		1008 /* org_xmlvm_demo_isound_ISound.m in Sources */ = {isa = PBXBuildFile; fileRef = 1007 /* org_xmlvm_demo_isound_ISound.m */; };
+		1011 /* java_io_BufferedInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1010 /* java_io_BufferedInputStream.m */; };
+		1014 /* java_io_BufferedOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1013 /* java_io_BufferedOutputStream.m */; };
+		1017 /* java_io_BufferedReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1016 /* java_io_BufferedReader.m */; };
+		1020 /* java_io_BufferedWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1019 /* java_io_BufferedWriter.m */; };
+		1023 /* java_io_ByteArrayInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1022 /* java_io_ByteArrayInputStream.m */; };
+		1026 /* java_io_ByteArrayOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1025 /* java_io_ByteArrayOutputStream.m */; };
+		1029 /* java_io_DataInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1028 /* java_io_DataInputStream.m */; };
+		1032 /* java_io_DataOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1031 /* java_io_DataOutputStream.m */; };
+		1035 /* java_io_EOFException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1034 /* java_io_EOFException.m */; };
+		1038 /* java_io_File.m in Sources */ = {isa = PBXBuildFile; fileRef = 1037 /* java_io_File.m */; };
+		1041 /* java_io_FileDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1040 /* java_io_FileDescriptor.m */; };
+		1044 /* java_io_FileInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1043 /* java_io_FileInputStream.m */; };
+		1047 /* java_io_FileNotFoundException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1046 /* java_io_FileNotFoundException.m */; };
+		1050 /* java_io_FileOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1049 /* java_io_FileOutputStream.m */; };
+		1053 /* java_io_FileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1052 /* java_io_FileReader.m */; };
+		1056 /* java_io_FileWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1055 /* java_io_FileWriter.m */; };
+		1059 /* java_io_FilenameFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1058 /* java_io_FilenameFilter.m */; };
+		1062 /* java_io_IOException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1061 /* java_io_IOException.m */; };
+		1065 /* java_io_InputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1064 /* java_io_InputStream.m */; };
+		1068 /* java_io_InputStreamReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1067 /* java_io_InputStreamReader.m */; };
+		1071 /* java_io_ObjectInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1070 /* java_io_ObjectInputStream.m */; };
+		1074 /* java_io_ObjectOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1073 /* java_io_ObjectOutputStream.m */; };
+		1077 /* java_io_OutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1076 /* java_io_OutputStream.m */; };
+		1080 /* java_io_PrintStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1079 /* java_io_PrintStream.m */; };
+		1083 /* java_io_Reader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1082 /* java_io_Reader.m */; };
+		1087 /* java_io_UnsupportedEncodingException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1086 /* java_io_UnsupportedEncodingException.m */; };
+		1090 /* java_io_Writer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1089 /* java_io_Writer.m */; };
+		1093 /* java_lang_ArrayIndexOutOfBoundsException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1092 /* java_lang_ArrayIndexOutOfBoundsException.m */; };
+		1096 /* java_lang_AssertionError.m in Sources */ = {isa = PBXBuildFile; fileRef = 1095 /* java_lang_AssertionError.m */; };
+		1099 /* java_lang_Boolean.m in Sources */ = {isa = PBXBuildFile; fileRef = 1098 /* java_lang_Boolean.m */; };
+		1102 /* java_lang_Byte.m in Sources */ = {isa = PBXBuildFile; fileRef = 1101 /* java_lang_Byte.m */; };
+		1106 /* java_lang_Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 1105 /* java_lang_Character.m */; };
+		1109 /* java_lang_Class.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108 /* java_lang_Class.m */; };
+		1112 /* java_lang_ClassNotFoundException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1111 /* java_lang_ClassNotFoundException.m */; };
+		1116 /* java_lang_Double.m in Sources */ = {isa = PBXBuildFile; fileRef = 1115 /* java_lang_Double.m */; };
+		1119 /* java_lang_Enum.m in Sources */ = {isa = PBXBuildFile; fileRef = 1118 /* java_lang_Enum.m */; };
+		1122 /* java_lang_Exception.m in Sources */ = {isa = PBXBuildFile; fileRef = 1121 /* java_lang_Exception.m */; };
+		1125 /* java_lang_Float.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124 /* java_lang_Float.m */; };
+		1128 /* java_lang_IllegalAccessException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1127 /* java_lang_IllegalAccessException.m */; };
+		1131 /* java_lang_IllegalArgumentException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1130 /* java_lang_IllegalArgumentException.m */; };
+		1134 /* java_lang_IllegalStateException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1133 /* java_lang_IllegalStateException.m */; };
+		1137 /* java_lang_IndexOutOfBoundsException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1136 /* java_lang_IndexOutOfBoundsException.m */; };
+		1140 /* java_lang_InstantiationException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1139 /* java_lang_InstantiationException.m */; };
+		1143 /* java_lang_Integer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1142 /* java_lang_Integer.m */; };
+		1146 /* java_lang_InterruptedException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1145 /* java_lang_InterruptedException.m */; };
+		1149 /* java_lang_Long.m in Sources */ = {isa = PBXBuildFile; fileRef = 1148 /* java_lang_Long.m */; };
+		1152 /* java_lang_Math.m in Sources */ = {isa = PBXBuildFile; fileRef = 1151 /* java_lang_Math.m */; };
+		1155 /* java_lang_NegativeArraySizeException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1154 /* java_lang_NegativeArraySizeException.m */; };
+		1158 /* java_lang_NoSuchFieldError.m in Sources */ = {isa = PBXBuildFile; fileRef = 1157 /* java_lang_NoSuchFieldError.m */; };
+		1161 /* java_lang_NoSuchFieldException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1160 /* java_lang_NoSuchFieldException.m */; };
+		1164 /* java_lang_NoSuchMethodException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1163 /* java_lang_NoSuchMethodException.m */; };
+		1167 /* java_lang_NullPointerException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1166 /* java_lang_NullPointerException.m */; };
+		1170 /* java_lang_NumberFormatException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1169 /* java_lang_NumberFormatException.m */; };
+		1173 /* java_lang_Object.m in Sources */ = {isa = PBXBuildFile; fileRef = 1172 /* java_lang_Object.m */; };
+		1177 /* java_lang_Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 1176 /* java_lang_Runtime.m */; };
+		1180 /* java_lang_RuntimeException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1179 /* java_lang_RuntimeException.m */; };
+		1183 /* java_lang_SecurityException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1182 /* java_lang_SecurityException.m */; };
+		1186 /* java_lang_Short.m in Sources */ = {isa = PBXBuildFile; fileRef = 1185 /* java_lang_Short.m */; };
+		1189 /* java_lang_String.m in Sources */ = {isa = PBXBuildFile; fileRef = 1188 /* java_lang_String.m */; };
+		1192 /* java_lang_StringBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1191 /* java_lang_StringBuffer.m */; };
+		1195 /* java_lang_StringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1194 /* java_lang_StringBuilder.m */; };
+		1198 /* java_lang_System.m in Sources */ = {isa = PBXBuildFile; fileRef = 1197 /* java_lang_System.m */; };
+		1201 /* java_lang_Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = 1200 /* java_lang_Thread.m */; };
+		1204 /* java_lang_Throwable.m in Sources */ = {isa = PBXBuildFile; fileRef = 1203 /* java_lang_Throwable.m */; };
+		1207 /* java_lang_UnsupportedOperationException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1206 /* java_lang_UnsupportedOperationException.m */; };
+		1212 /* java_lang_reflect_Array.m in Sources */ = {isa = PBXBuildFile; fileRef = 1211 /* java_lang_reflect_Array.m */; };
+		1215 /* java_lang_reflect_Constructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1214 /* java_lang_reflect_Constructor.m */; };
+		1218 /* java_lang_reflect_Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 1217 /* java_lang_reflect_Field.m */; };
+		1221 /* java_lang_reflect_InvocationTargetException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1220 /* java_lang_reflect_InvocationTargetException.m */; };
+		1224 /* java_lang_reflect_Method.m in Sources */ = {isa = PBXBuildFile; fileRef = 1223 /* java_lang_reflect_Method.m */; };
+		1227 /* java_net_URI.m in Sources */ = {isa = PBXBuildFile; fileRef = 1226 /* java_net_URI.m */; };
+		1230 /* java_net_URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 1229 /* java_net_URL.m */; };
+		1234 /* java_nio_ByteBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1233 /* java_nio_ByteBuffer.m */; };
+		1237 /* java_nio_FloatBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1236 /* java_nio_FloatBuffer.m */; };
+		1240 /* java_nio_IntBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1239 /* java_nio_IntBuffer.m */; };
+		1243 /* java_sql_Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1242 /* java_sql_Connection.m */; };
+		1246 /* java_sql_DriverManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1245 /* java_sql_DriverManager.m */; };
+		1249 /* java_sql_ResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1248 /* java_sql_ResultSet.m */; };
+		1252 /* java_sql_ResultSetMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1251 /* java_sql_ResultSetMetaData.m */; };
+		1255 /* java_sql_SQLException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1254 /* java_sql_SQLException.m */; };
+		1258 /* java_sql_Statement.m in Sources */ = {isa = PBXBuildFile; fileRef = 1257 /* java_sql_Statement.m */; };
+		1261 /* java_util_ArrayList.m in Sources */ = {isa = PBXBuildFile; fileRef = 1260 /* java_util_ArrayList.m */; };
+		1264 /* java_util_Arrays.m in Sources */ = {isa = PBXBuildFile; fileRef = 1263 /* java_util_Arrays.m */; };
+		1269 /* java_util_HashMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 1268 /* java_util_HashMap.m */; };
+		1272 /* java_util_HashSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1271 /* java_util_HashSet.m */; };
+		1276 /* java_util_IteratorImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1275 /* java_util_IteratorImpl.m */; };
+		1279 /* java_util_LinkedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 1278 /* java_util_LinkedList.m */; };
+		1284 /* java_util_Locale.m in Sources */ = {isa = PBXBuildFile; fileRef = 1283 /* java_util_Locale.m */; };
+		1287 /* java_util_Map.m in Sources */ = {isa = PBXBuildFile; fileRef = 1286 /* java_util_Map.m */; };
+		1290 /* java_util_Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 1289 /* java_util_Random.m */; };
+		1293 /* java_util_Set.m in Sources */ = {isa = PBXBuildFile; fileRef = 1292 /* java_util_Set.m */; };
+		1296 /* java_util_SortedSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1295 /* java_util_SortedSet.m */; };
+		1299 /* java_util_Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 1298 /* java_util_Stack.m */; };
+		1302 /* java_util_StringTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1301 /* java_util_StringTokenizer.m */; };
+		1305 /* java_util_Vector.m in Sources */ = {isa = PBXBuildFile; fileRef = 1304 /* java_util_Vector.m */; };
+		1308 /* org_xmlvm_iphone_AVAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1307 /* org_xmlvm_iphone_AVAudioPlayer.m */; };
+		1312 /* org_xmlvm_iphone_CALayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1311 /* org_xmlvm_iphone_CALayer.m */; };
+		1315 /* org_xmlvm_iphone_CGAffineTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 1314 /* org_xmlvm_iphone_CGAffineTransform.m */; };
+		1318 /* org_xmlvm_iphone_CGBitmapContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1317 /* org_xmlvm_iphone_CGBitmapContext.m */; };
+		1321 /* org_xmlvm_iphone_CGContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1320 /* org_xmlvm_iphone_CGContext.m */; };
+		1324 /* org_xmlvm_iphone_CGDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1323 /* org_xmlvm_iphone_CGDataProvider.m */; };
+		1327 /* org_xmlvm_iphone_CGFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 1326 /* org_xmlvm_iphone_CGFont.m */; };
+		1330 /* org_xmlvm_iphone_CGImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1329 /* org_xmlvm_iphone_CGImage.m */; };
+		1333 /* org_xmlvm_iphone_CGLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1332 /* org_xmlvm_iphone_CGLayer.m */; };
+		1336 /* org_xmlvm_iphone_CGPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 1335 /* org_xmlvm_iphone_CGPoint.m */; };
+		1339 /* org_xmlvm_iphone_CGRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 1338 /* org_xmlvm_iphone_CGRect.m */; };
+		1342 /* org_xmlvm_iphone_CGRectNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 1341 /* org_xmlvm_iphone_CGRectNull.m */; };
+		1345 /* org_xmlvm_iphone_CGSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 1344 /* org_xmlvm_iphone_CGSize.m */; };
+		1348 /* org_xmlvm_iphone_NSBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1347 /* org_xmlvm_iphone_NSBundle.m */; };
+		1351 /* org_xmlvm_iphone_NSData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1350 /* org_xmlvm_iphone_NSData.m */; };
+		1354 /* org_xmlvm_iphone_NSError.m in Sources */ = {isa = PBXBuildFile; fileRef = 1353 /* org_xmlvm_iphone_NSError.m */; };
+		1357 /* org_xmlvm_iphone_NSErrorHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1356 /* org_xmlvm_iphone_NSErrorHolder.m */; };
+		1360 /* org_xmlvm_iphone_NSHTTPURLResponseHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1359 /* org_xmlvm_iphone_NSHTTPURLResponseHolder.m */; };
+		1363 /* org_xmlvm_iphone_NSIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 1362 /* org_xmlvm_iphone_NSIndexPath.m */; };
+		1366 /* org_xmlvm_iphone_NSMutableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1365 /* org_xmlvm_iphone_NSMutableData.m */; };
+		1369 /* org_xmlvm_iphone_NSMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1368 /* org_xmlvm_iphone_NSMutableURLRequest.m */; };
+		1372 /* org_xmlvm_iphone_NSNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 1371 /* org_xmlvm_iphone_NSNotification.m */; };
+		1375 /* org_xmlvm_iphone_NSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1374 /* org_xmlvm_iphone_NSObject.m */; };
+		1378 /* org_xmlvm_iphone_NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1377 /* org_xmlvm_iphone_NSString.m */; };
+		1381 /* org_xmlvm_iphone_NSStringInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1380 /* org_xmlvm_iphone_NSStringInputStream.m */; };
+		1384 /* org_xmlvm_iphone_NSTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1383 /* org_xmlvm_iphone_NSTimer.m */; };
+		1387 /* org_xmlvm_iphone_NSURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 1386 /* org_xmlvm_iphone_NSURL.m */; };
+		1390 /* org_xmlvm_iphone_NSURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1389 /* org_xmlvm_iphone_NSURLConnection.m */; };
+		1393 /* org_xmlvm_iphone_NSURLConnectionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1392 /* org_xmlvm_iphone_NSURLConnectionDelegate.m */; };
+		1396 /* org_xmlvm_iphone_NSURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1395 /* org_xmlvm_iphone_NSURLRequest.m */; };
+		1399 /* org_xmlvm_iphone_NSUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 1398 /* org_xmlvm_iphone_NSUserDefaults.m */; };
+		1402 /* org_xmlvm_iphone_NSXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1401 /* org_xmlvm_iphone_NSXMLParser.m */; };
+		1405 /* org_xmlvm_iphone_NSXMLParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404 /* org_xmlvm_iphone_NSXMLParserDelegate.m */; };
+		1408 /* org_xmlvm_iphone_UIAcceleration.m in Sources */ = {isa = PBXBuildFile; fileRef = 1407 /* org_xmlvm_iphone_UIAcceleration.m */; };
+		1411 /* org_xmlvm_iphone_UIAccelerometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410 /* org_xmlvm_iphone_UIAccelerometer.m */; };
+		1415 /* org_xmlvm_iphone_UIActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1414 /* org_xmlvm_iphone_UIActivityIndicatorView.m */; };
+		1418 /* org_xmlvm_iphone_UIAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1417 /* org_xmlvm_iphone_UIAlertView.m */; };
+		1421 /* org_xmlvm_iphone_UIAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1420 /* org_xmlvm_iphone_UIAlertViewDelegate.m */; };
+		1424 /* org_xmlvm_iphone_UIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423 /* org_xmlvm_iphone_UIApplication.m */; };
+		1427 /* org_xmlvm_iphone_UIBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1426 /* org_xmlvm_iphone_UIBarButtonItem.m */; };
+		1431 /* org_xmlvm_iphone_UIBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1430 /* org_xmlvm_iphone_UIBarItem.m */; };
+		1434 /* org_xmlvm_iphone_UIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1433 /* org_xmlvm_iphone_UIButton.m */; };
+		1437 /* org_xmlvm_iphone_UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1436 /* org_xmlvm_iphone_UIColor.m */; };
+		1440 /* org_xmlvm_iphone_UIControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1439 /* org_xmlvm_iphone_UIControl.m */; };
+		1443 /* org_xmlvm_iphone_UIControlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1442 /* org_xmlvm_iphone_UIControlDelegate.m */; };
+		1446 /* org_xmlvm_iphone_UIEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 1445 /* org_xmlvm_iphone_UIEdgeInsets.m */; };
+		1450 /* org_xmlvm_iphone_UIFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 1449 /* org_xmlvm_iphone_UIFont.m */; };
+		1453 /* org_xmlvm_iphone_UIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1452 /* org_xmlvm_iphone_UIImage.m */; };
+		1456 /* org_xmlvm_iphone_UIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1455 /* org_xmlvm_iphone_UIImageView.m */; };
+		1459 /* org_xmlvm_iphone_UILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1458 /* org_xmlvm_iphone_UILabel.m */; };
+		1462 /* org_xmlvm_iphone_UINavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1461 /* org_xmlvm_iphone_UINavigationBar.m */; };
+		1465 /* org_xmlvm_iphone_UINavigationBarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1464 /* org_xmlvm_iphone_UINavigationBarDelegate.m */; };
+		1468 /* org_xmlvm_iphone_UINavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467 /* org_xmlvm_iphone_UINavigationController.m */; };
+		1471 /* org_xmlvm_iphone_UINavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1470 /* org_xmlvm_iphone_UINavigationControllerDelegate.m */; };
+		1474 /* org_xmlvm_iphone_UINavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1473 /* org_xmlvm_iphone_UINavigationItem.m */; };
+		1477 /* org_xmlvm_iphone_UIPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1476 /* org_xmlvm_iphone_UIPickerView.m */; };
+		1480 /* org_xmlvm_iphone_UIPickerViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1479 /* org_xmlvm_iphone_UIPickerViewDataSource.m */; };
+		1483 /* org_xmlvm_iphone_UIPickerViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1482 /* org_xmlvm_iphone_UIPickerViewDelegate.m */; };
+		1486 /* org_xmlvm_iphone_UIProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1485 /* org_xmlvm_iphone_UIProgressView.m */; };
+		1489 /* org_xmlvm_iphone_UIResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1488 /* org_xmlvm_iphone_UIResponder.m */; };
+		1493 /* org_xmlvm_iphone_UIScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 1492 /* org_xmlvm_iphone_UIScreen.m */; };
+		1496 /* org_xmlvm_iphone_UIScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1495 /* org_xmlvm_iphone_UIScrollView.m */; };
+		1499 /* org_xmlvm_iphone_UISegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498 /* org_xmlvm_iphone_UISegmentedControl.m */; };
+		1502 /* org_xmlvm_iphone_UISlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1501 /* org_xmlvm_iphone_UISlider.m */; };
+		1505 /* org_xmlvm_iphone_UISwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1504 /* org_xmlvm_iphone_UISwitch.m */; };
+		1508 /* org_xmlvm_iphone_UITabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1507 /* org_xmlvm_iphone_UITabBar.m */; };
+		1511 /* org_xmlvm_iphone_UITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1510 /* org_xmlvm_iphone_UITabBarController.m */; };
+		1514 /* org_xmlvm_iphone_UITabBarControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1513 /* org_xmlvm_iphone_UITabBarControllerDelegate.m */; };
+		1517 /* org_xmlvm_iphone_UITabBarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1516 /* org_xmlvm_iphone_UITabBarDelegate.m */; };
+		1520 /* org_xmlvm_iphone_UITabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1519 /* org_xmlvm_iphone_UITabBarItem.m */; };
+		1523 /* org_xmlvm_iphone_UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1522 /* org_xmlvm_iphone_UITableView.m */; };
+		1526 /* org_xmlvm_iphone_UITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1525 /* org_xmlvm_iphone_UITableViewCell.m */; };
+		1529 /* org_xmlvm_iphone_UITableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1528 /* org_xmlvm_iphone_UITableViewDataSource.m */; };
+		1532 /* org_xmlvm_iphone_UITableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1531 /* org_xmlvm_iphone_UITableViewDelegate.m */; };
+		1535 /* org_xmlvm_iphone_UITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1534 /* org_xmlvm_iphone_UITextField.m */; };
+		1538 /* org_xmlvm_iphone_UITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1537 /* org_xmlvm_iphone_UITextView.m */; };
+		1541 /* org_xmlvm_iphone_UIToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1540 /* org_xmlvm_iphone_UIToolbar.m */; };
+		1544 /* org_xmlvm_iphone_UITouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1543 /* org_xmlvm_iphone_UITouch.m */; };
+		1547 /* org_xmlvm_iphone_UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1546 /* org_xmlvm_iphone_UIView.m */; };
+		1550 /* org_xmlvm_iphone_UIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1549 /* org_xmlvm_iphone_UIViewController.m */; };
+		1553 /* org_xmlvm_iphone_UIViewGL.m in Sources */ = {isa = PBXBuildFile; fileRef = 1552 /* org_xmlvm_iphone_UIViewGL.m */; };
+		1556 /* org_xmlvm_iphone_UIWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1555 /* org_xmlvm_iphone_UIWebView.m */; };
+		1559 /* org_xmlvm_iphone_UIWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1558 /* org_xmlvm_iphone_UIWindow.m */; };
+		1563 /* org_xmlvm_iphone_gl_BufferUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1562 /* org_xmlvm_iphone_gl_BufferUtils.m */; };
+		1566 /* org_xmlvm_iphone_gl_CAEAGLLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1565 /* org_xmlvm_iphone_gl_CAEAGLLayer.m */; };
+		1569 /* org_xmlvm_iphone_gl_EAGLContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1568 /* org_xmlvm_iphone_gl_EAGLContext.m */; };
+		1572 /* org_xmlvm_iphone_gl_EAGLDrawable.m in Sources */ = {isa = PBXBuildFile; fileRef = 1571 /* org_xmlvm_iphone_gl_EAGLDrawable.m */; };
+		1575 /* org_xmlvm_iphone_gl_GL.m in Sources */ = {isa = PBXBuildFile; fileRef = 1574 /* org_xmlvm_iphone_gl_GL.m */; };
+		1578 /* org_xmlvm_iphone_gl_GLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1577 /* org_xmlvm_iphone_gl_GLView.m */; };
+		1581 /* xmlvm.m in Sources */ = {isa = PBXBuildFile; fileRef = 1580 /* xmlvm.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1 /* iSound.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSound.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8 /* iSound-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "iSound-Info.plist" ; path = "sys/iSound-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		100001 /* OpenGLES.framework */ = { isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		100003 /* Foundation.framework */ = { isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		100005 /* AVFoundation.framework */ = { isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		100007 /* UIKit.framework */ = { isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		100009 /* QuartzCore.framework */ = { isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		100011 /* CoreGraphics.framework */ = { isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1000 /* org_xmlvm_demo_isound_ISound_1.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_demo_isound_ISound_1.h"; sourceTree = "<group>"; };
+		1001 /* org_xmlvm_demo_isound_ISound_1.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_demo_isound_ISound_1.m"; sourceTree = "<group>"; };
+		1003 /* org_xmlvm_demo_isound_ISound_2.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_demo_isound_ISound_2.h"; sourceTree = "<group>"; };
+		1004 /* org_xmlvm_demo_isound_ISound_2.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_demo_isound_ISound_2.m"; sourceTree = "<group>"; };
+		1006 /* org_xmlvm_demo_isound_ISound.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_demo_isound_ISound.h"; sourceTree = "<group>"; };
+		1007 /* org_xmlvm_demo_isound_ISound.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_demo_isound_ISound.m"; sourceTree = "<group>"; };
+		1009 /* java_io_BufferedInputStream.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_BufferedInputStream.h"; sourceTree = "<group>"; };
+		1010 /* java_io_BufferedInputStream.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_BufferedInputStream.m"; sourceTree = "<group>"; };
+		1012 /* java_io_BufferedOutputStream.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_BufferedOutputStream.h"; sourceTree = "<group>"; };
+		1013 /* java_io_BufferedOutputStream.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_BufferedOutputStream.m"; sourceTree = "<group>"; };
+		1015 /* java_io_BufferedReader.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_BufferedReader.h"; sourceTree = "<group>"; };
+		1016 /* java_io_BufferedReader.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_BufferedReader.m"; sourceTree = "<group>"; };
+		1018 /* java_io_BufferedWriter.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_BufferedWriter.h"; sourceTree = "<group>"; };
+		1019 /* java_io_BufferedWriter.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_BufferedWriter.m"; sourceTree = "<group>"; };
+		1021 /* java_io_ByteArrayInputStream.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_ByteArrayInputStream.h"; sourceTree = "<group>"; };
+		1022 /* java_io_ByteArrayInputStream.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_ByteArrayInputStream.m"; sourceTree = "<group>"; };
+		1024 /* java_io_ByteArrayOutputStream.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_ByteArrayOutputStream.h"; sourceTree = "<group>"; };
+		1025 /* java_io_ByteArrayOutputStream.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_ByteArrayOutputStream.m"; sourceTree = "<group>"; };
+		1027 /* java_io_DataInputStream.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_DataInputStream.h"; sourceTree = "<group>"; };
+		1028 /* java_io_DataInputStream.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_DataInputStream.m"; sourceTree = "<group>"; };
+		1030 /* java_io_DataOutputStream.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_DataOutputStream.h"; sourceTree = "<group>"; };
+		1031 /* java_io_DataOutputStream.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_DataOutputStream.m"; sourceTree = "<group>"; };
+		1033 /* java_io_EOFException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_EOFException.h"; sourceTree = "<group>"; };
+		1034 /* java_io_EOFException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_EOFException.m"; sourceTree = "<group>"; };
+		1036 /* java_io_File.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_File.h"; sourceTree = "<group>"; };
+		1037 /* java_io_File.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_File.m"; sourceTree = "<group>"; };
+		1039 /* java_io_FileDescriptor.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_FileDescriptor.h"; sourceTree = "<group>"; };
+		1040 /* java_io_FileDescriptor.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_FileDescriptor.m"; sourceTree = "<group>"; };
+		1042 /* java_io_FileInputStream.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_FileInputStream.h"; sourceTree = "<group>"; };
+		1043 /* java_io_FileInputStream.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_FileInputStream.m"; sourceTree = "<group>"; };
+		1045 /* java_io_FileNotFoundException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_FileNotFoundException.h"; sourceTree = "<group>"; };
+		1046 /* java_io_FileNotFoundException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_FileNotFoundException.m"; sourceTree = "<group>"; };
+		1048 /* java_io_FileOutputStream.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_FileOutputStream.h"; sourceTree = "<group>"; };
+		1049 /* java_io_FileOutputStream.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_FileOutputStream.m"; sourceTree = "<group>"; };
+		1051 /* java_io_FileReader.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_FileReader.h"; sourceTree = "<group>"; };
+		1052 /* java_io_FileReader.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_FileReader.m"; sourceTree = "<group>"; };
+		1054 /* java_io_FileWriter.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_FileWriter.h"; sourceTree = "<group>"; };
+		1055 /* java_io_FileWriter.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_FileWriter.m"; sourceTree = "<group>"; };
+		1057 /* java_io_FilenameFilter.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_FilenameFilter.h"; sourceTree = "<group>"; };
+		1058 /* java_io_FilenameFilter.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_FilenameFilter.m"; sourceTree = "<group>"; };
+		1060 /* java_io_IOException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_IOException.h"; sourceTree = "<group>"; };
+		1061 /* java_io_IOException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_IOException.m"; sourceTree = "<group>"; };
+		1063 /* java_io_InputStream.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_InputStream.h"; sourceTree = "<group>"; };
+		1064 /* java_io_InputStream.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_InputStream.m"; sourceTree = "<group>"; };
+		1066 /* java_io_InputStreamReader.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_InputStreamReader.h"; sourceTree = "<group>"; };
+		1067 /* java_io_InputStreamReader.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_InputStreamReader.m"; sourceTree = "<group>"; };
+		1069 /* java_io_ObjectInputStream.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_ObjectInputStream.h"; sourceTree = "<group>"; };
+		1070 /* java_io_ObjectInputStream.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_ObjectInputStream.m"; sourceTree = "<group>"; };
+		1072 /* java_io_ObjectOutputStream.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_ObjectOutputStream.h"; sourceTree = "<group>"; };
+		1073 /* java_io_ObjectOutputStream.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_ObjectOutputStream.m"; sourceTree = "<group>"; };
+		1075 /* java_io_OutputStream.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_OutputStream.h"; sourceTree = "<group>"; };
+		1076 /* java_io_OutputStream.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_OutputStream.m"; sourceTree = "<group>"; };
+		1078 /* java_io_PrintStream.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_PrintStream.h"; sourceTree = "<group>"; };
+		1079 /* java_io_PrintStream.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_PrintStream.m"; sourceTree = "<group>"; };
+		1081 /* java_io_Reader.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_Reader.h"; sourceTree = "<group>"; };
+		1082 /* java_io_Reader.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_Reader.m"; sourceTree = "<group>"; };
+		1084 /* java_io_Serializable.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_Serializable.h"; sourceTree = "<group>"; };
+		1085 /* java_io_UnsupportedEncodingException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_UnsupportedEncodingException.h"; sourceTree = "<group>"; };
+		1086 /* java_io_UnsupportedEncodingException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_UnsupportedEncodingException.m"; sourceTree = "<group>"; };
+		1088 /* java_io_Writer.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_io_Writer.h"; sourceTree = "<group>"; };
+		1089 /* java_io_Writer.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_io_Writer.m"; sourceTree = "<group>"; };
+		1091 /* java_lang_ArrayIndexOutOfBoundsException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_ArrayIndexOutOfBoundsException.h"; sourceTree = "<group>"; };
+		1092 /* java_lang_ArrayIndexOutOfBoundsException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_ArrayIndexOutOfBoundsException.m"; sourceTree = "<group>"; };
+		1094 /* java_lang_AssertionError.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_AssertionError.h"; sourceTree = "<group>"; };
+		1095 /* java_lang_AssertionError.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_AssertionError.m"; sourceTree = "<group>"; };
+		1097 /* java_lang_Boolean.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_Boolean.h"; sourceTree = "<group>"; };
+		1098 /* java_lang_Boolean.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_Boolean.m"; sourceTree = "<group>"; };
+		1100 /* java_lang_Byte.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_Byte.h"; sourceTree = "<group>"; };
+		1101 /* java_lang_Byte.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_Byte.m"; sourceTree = "<group>"; };
+		1103 /* java_lang_CharSequence.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_CharSequence.h"; sourceTree = "<group>"; };
+		1104 /* java_lang_Character.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_Character.h"; sourceTree = "<group>"; };
+		1105 /* java_lang_Character.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_Character.m"; sourceTree = "<group>"; };
+		1107 /* java_lang_Class.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_Class.h"; sourceTree = "<group>"; };
+		1108 /* java_lang_Class.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_Class.m"; sourceTree = "<group>"; };
+		1110 /* java_lang_ClassNotFoundException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_ClassNotFoundException.h"; sourceTree = "<group>"; };
+		1111 /* java_lang_ClassNotFoundException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_ClassNotFoundException.m"; sourceTree = "<group>"; };
+		1113 /* java_lang_Comparable.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_Comparable.h"; sourceTree = "<group>"; };
+		1114 /* java_lang_Double.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_Double.h"; sourceTree = "<group>"; };
+		1115 /* java_lang_Double.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_Double.m"; sourceTree = "<group>"; };
+		1117 /* java_lang_Enum.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_Enum.h"; sourceTree = "<group>"; };
+		1118 /* java_lang_Enum.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_Enum.m"; sourceTree = "<group>"; };
+		1120 /* java_lang_Exception.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_Exception.h"; sourceTree = "<group>"; };
+		1121 /* java_lang_Exception.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_Exception.m"; sourceTree = "<group>"; };
+		1123 /* java_lang_Float.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_Float.h"; sourceTree = "<group>"; };
+		1124 /* java_lang_Float.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_Float.m"; sourceTree = "<group>"; };
+		1126 /* java_lang_IllegalAccessException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_IllegalAccessException.h"; sourceTree = "<group>"; };
+		1127 /* java_lang_IllegalAccessException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_IllegalAccessException.m"; sourceTree = "<group>"; };
+		1129 /* java_lang_IllegalArgumentException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_IllegalArgumentException.h"; sourceTree = "<group>"; };
+		1130 /* java_lang_IllegalArgumentException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_IllegalArgumentException.m"; sourceTree = "<group>"; };
+		1132 /* java_lang_IllegalStateException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_IllegalStateException.h"; sourceTree = "<group>"; };
+		1133 /* java_lang_IllegalStateException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_IllegalStateException.m"; sourceTree = "<group>"; };
+		1135 /* java_lang_IndexOutOfBoundsException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_IndexOutOfBoundsException.h"; sourceTree = "<group>"; };
+		1136 /* java_lang_IndexOutOfBoundsException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_IndexOutOfBoundsException.m"; sourceTree = "<group>"; };
+		1138 /* java_lang_InstantiationException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_InstantiationException.h"; sourceTree = "<group>"; };
+		1139 /* java_lang_InstantiationException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_InstantiationException.m"; sourceTree = "<group>"; };
+		1141 /* java_lang_Integer.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_Integer.h"; sourceTree = "<group>"; };
+		1142 /* java_lang_Integer.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_Integer.m"; sourceTree = "<group>"; };
+		1144 /* java_lang_InterruptedException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_InterruptedException.h"; sourceTree = "<group>"; };
+		1145 /* java_lang_InterruptedException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_InterruptedException.m"; sourceTree = "<group>"; };
+		1147 /* java_lang_Long.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_Long.h"; sourceTree = "<group>"; };
+		1148 /* java_lang_Long.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_Long.m"; sourceTree = "<group>"; };
+		1150 /* java_lang_Math.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_Math.h"; sourceTree = "<group>"; };
+		1151 /* java_lang_Math.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_Math.m"; sourceTree = "<group>"; };
+		1153 /* java_lang_NegativeArraySizeException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_NegativeArraySizeException.h"; sourceTree = "<group>"; };
+		1154 /* java_lang_NegativeArraySizeException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_NegativeArraySizeException.m"; sourceTree = "<group>"; };
+		1156 /* java_lang_NoSuchFieldError.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_NoSuchFieldError.h"; sourceTree = "<group>"; };
+		1157 /* java_lang_NoSuchFieldError.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_NoSuchFieldError.m"; sourceTree = "<group>"; };
+		1159 /* java_lang_NoSuchFieldException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_NoSuchFieldException.h"; sourceTree = "<group>"; };
+		1160 /* java_lang_NoSuchFieldException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_NoSuchFieldException.m"; sourceTree = "<group>"; };
+		1162 /* java_lang_NoSuchMethodException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_NoSuchMethodException.h"; sourceTree = "<group>"; };
+		1163 /* java_lang_NoSuchMethodException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_NoSuchMethodException.m"; sourceTree = "<group>"; };
+		1165 /* java_lang_NullPointerException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_NullPointerException.h"; sourceTree = "<group>"; };
+		1166 /* java_lang_NullPointerException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_NullPointerException.m"; sourceTree = "<group>"; };
+		1168 /* java_lang_NumberFormatException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_NumberFormatException.h"; sourceTree = "<group>"; };
+		1169 /* java_lang_NumberFormatException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_NumberFormatException.m"; sourceTree = "<group>"; };
+		1171 /* java_lang_Object.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_Object.h"; sourceTree = "<group>"; };
+		1172 /* java_lang_Object.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_Object.m"; sourceTree = "<group>"; };
+		1174 /* java_lang_Runnable.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_Runnable.h"; sourceTree = "<group>"; };
+		1175 /* java_lang_Runtime.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_Runtime.h"; sourceTree = "<group>"; };
+		1176 /* java_lang_Runtime.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_Runtime.m"; sourceTree = "<group>"; };
+		1178 /* java_lang_RuntimeException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_RuntimeException.h"; sourceTree = "<group>"; };
+		1179 /* java_lang_RuntimeException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_RuntimeException.m"; sourceTree = "<group>"; };
+		1181 /* java_lang_SecurityException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_SecurityException.h"; sourceTree = "<group>"; };
+		1182 /* java_lang_SecurityException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_SecurityException.m"; sourceTree = "<group>"; };
+		1184 /* java_lang_Short.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_Short.h"; sourceTree = "<group>"; };
+		1185 /* java_lang_Short.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_Short.m"; sourceTree = "<group>"; };
+		1187 /* java_lang_String.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_String.h"; sourceTree = "<group>"; };
+		1188 /* java_lang_String.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_String.m"; sourceTree = "<group>"; };
+		1190 /* java_lang_StringBuffer.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_StringBuffer.h"; sourceTree = "<group>"; };
+		1191 /* java_lang_StringBuffer.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_StringBuffer.m"; sourceTree = "<group>"; };
+		1193 /* java_lang_StringBuilder.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_StringBuilder.h"; sourceTree = "<group>"; };
+		1194 /* java_lang_StringBuilder.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_StringBuilder.m"; sourceTree = "<group>"; };
+		1196 /* java_lang_System.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_System.h"; sourceTree = "<group>"; };
+		1197 /* java_lang_System.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_System.m"; sourceTree = "<group>"; };
+		1199 /* java_lang_Thread.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_Thread.h"; sourceTree = "<group>"; };
+		1200 /* java_lang_Thread.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_Thread.m"; sourceTree = "<group>"; };
+		1202 /* java_lang_Throwable.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_Throwable.h"; sourceTree = "<group>"; };
+		1203 /* java_lang_Throwable.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_Throwable.m"; sourceTree = "<group>"; };
+		1205 /* java_lang_UnsupportedOperationException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_UnsupportedOperationException.h"; sourceTree = "<group>"; };
+		1206 /* java_lang_UnsupportedOperationException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_UnsupportedOperationException.m"; sourceTree = "<group>"; };
+		1208 /* java_lang_annotation_Annotation.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_annotation_Annotation.h"; sourceTree = "<group>"; };
+		1209 /* java_lang_annotation_Retention.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_annotation_Retention.h"; sourceTree = "<group>"; };
+		1210 /* java_lang_reflect_Array.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_reflect_Array.h"; sourceTree = "<group>"; };
+		1211 /* java_lang_reflect_Array.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_reflect_Array.m"; sourceTree = "<group>"; };
+		1213 /* java_lang_reflect_Constructor.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_reflect_Constructor.h"; sourceTree = "<group>"; };
+		1214 /* java_lang_reflect_Constructor.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_reflect_Constructor.m"; sourceTree = "<group>"; };
+		1216 /* java_lang_reflect_Field.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_reflect_Field.h"; sourceTree = "<group>"; };
+		1217 /* java_lang_reflect_Field.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_reflect_Field.m"; sourceTree = "<group>"; };
+		1219 /* java_lang_reflect_InvocationTargetException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_reflect_InvocationTargetException.h"; sourceTree = "<group>"; };
+		1220 /* java_lang_reflect_InvocationTargetException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_reflect_InvocationTargetException.m"; sourceTree = "<group>"; };
+		1222 /* java_lang_reflect_Method.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_lang_reflect_Method.h"; sourceTree = "<group>"; };
+		1223 /* java_lang_reflect_Method.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_lang_reflect_Method.m"; sourceTree = "<group>"; };
+		1225 /* java_net_URI.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_net_URI.h"; sourceTree = "<group>"; };
+		1226 /* java_net_URI.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_net_URI.m"; sourceTree = "<group>"; };
+		1228 /* java_net_URL.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_net_URL.h"; sourceTree = "<group>"; };
+		1229 /* java_net_URL.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_net_URL.m"; sourceTree = "<group>"; };
+		1231 /* java_nio_Buffer.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_nio_Buffer.h"; sourceTree = "<group>"; };
+		1232 /* java_nio_ByteBuffer.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_nio_ByteBuffer.h"; sourceTree = "<group>"; };
+		1233 /* java_nio_ByteBuffer.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_nio_ByteBuffer.m"; sourceTree = "<group>"; };
+		1235 /* java_nio_FloatBuffer.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_nio_FloatBuffer.h"; sourceTree = "<group>"; };
+		1236 /* java_nio_FloatBuffer.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_nio_FloatBuffer.m"; sourceTree = "<group>"; };
+		1238 /* java_nio_IntBuffer.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_nio_IntBuffer.h"; sourceTree = "<group>"; };
+		1239 /* java_nio_IntBuffer.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_nio_IntBuffer.m"; sourceTree = "<group>"; };
+		1241 /* java_sql_Connection.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_sql_Connection.h"; sourceTree = "<group>"; };
+		1242 /* java_sql_Connection.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_sql_Connection.m"; sourceTree = "<group>"; };
+		1244 /* java_sql_DriverManager.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_sql_DriverManager.h"; sourceTree = "<group>"; };
+		1245 /* java_sql_DriverManager.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_sql_DriverManager.m"; sourceTree = "<group>"; };
+		1247 /* java_sql_ResultSet.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_sql_ResultSet.h"; sourceTree = "<group>"; };
+		1248 /* java_sql_ResultSet.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_sql_ResultSet.m"; sourceTree = "<group>"; };
+		1250 /* java_sql_ResultSetMetaData.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_sql_ResultSetMetaData.h"; sourceTree = "<group>"; };
+		1251 /* java_sql_ResultSetMetaData.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_sql_ResultSetMetaData.m"; sourceTree = "<group>"; };
+		1253 /* java_sql_SQLException.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_sql_SQLException.h"; sourceTree = "<group>"; };
+		1254 /* java_sql_SQLException.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_sql_SQLException.m"; sourceTree = "<group>"; };
+		1256 /* java_sql_Statement.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_sql_Statement.h"; sourceTree = "<group>"; };
+		1257 /* java_sql_Statement.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_sql_Statement.m"; sourceTree = "<group>"; };
+		1259 /* java_util_ArrayList.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_util_ArrayList.h"; sourceTree = "<group>"; };
+		1260 /* java_util_ArrayList.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_util_ArrayList.m"; sourceTree = "<group>"; };
+		1262 /* java_util_Arrays.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_util_Arrays.h"; sourceTree = "<group>"; };
+		1263 /* java_util_Arrays.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_util_Arrays.m"; sourceTree = "<group>"; };
+		1265 /* java_util_Collection.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_util_Collection.h"; sourceTree = "<group>"; };
+		1266 /* java_util_Comparator.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_util_Comparator.h"; sourceTree = "<group>"; };
+		1267 /* java_util_HashMap.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_util_HashMap.h"; sourceTree = "<group>"; };
+		1268 /* java_util_HashMap.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_util_HashMap.m"; sourceTree = "<group>"; };
+		1270 /* java_util_HashSet.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_util_HashSet.h"; sourceTree = "<group>"; };
+		1271 /* java_util_HashSet.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_util_HashSet.m"; sourceTree = "<group>"; };
+		1273 /* java_util_Iterator.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_util_Iterator.h"; sourceTree = "<group>"; };
+		1274 /* java_util_IteratorImpl.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_util_IteratorImpl.h"; sourceTree = "<group>"; };
+		1275 /* java_util_IteratorImpl.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_util_IteratorImpl.m"; sourceTree = "<group>"; };
+		1277 /* java_util_LinkedList.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_util_LinkedList.h"; sourceTree = "<group>"; };
+		1278 /* java_util_LinkedList.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_util_LinkedList.m"; sourceTree = "<group>"; };
+		1280 /* java_util_List.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_util_List.h"; sourceTree = "<group>"; };
+		1281 /* java_util_ListIterator.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_util_ListIterator.h"; sourceTree = "<group>"; };
+		1282 /* java_util_Locale.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_util_Locale.h"; sourceTree = "<group>"; };
+		1283 /* java_util_Locale.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_util_Locale.m"; sourceTree = "<group>"; };
+		1285 /* java_util_Map.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_util_Map.h"; sourceTree = "<group>"; };
+		1286 /* java_util_Map.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_util_Map.m"; sourceTree = "<group>"; };
+		1288 /* java_util_Random.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_util_Random.h"; sourceTree = "<group>"; };
+		1289 /* java_util_Random.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_util_Random.m"; sourceTree = "<group>"; };
+		1291 /* java_util_Set.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_util_Set.h"; sourceTree = "<group>"; };
+		1292 /* java_util_Set.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_util_Set.m"; sourceTree = "<group>"; };
+		1294 /* java_util_SortedSet.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_util_SortedSet.h"; sourceTree = "<group>"; };
+		1295 /* java_util_SortedSet.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_util_SortedSet.m"; sourceTree = "<group>"; };
+		1297 /* java_util_Stack.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_util_Stack.h"; sourceTree = "<group>"; };
+		1298 /* java_util_Stack.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_util_Stack.m"; sourceTree = "<group>"; };
+		1300 /* java_util_StringTokenizer.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_util_StringTokenizer.h"; sourceTree = "<group>"; };
+		1301 /* java_util_StringTokenizer.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_util_StringTokenizer.m"; sourceTree = "<group>"; };
+		1303 /* java_util_Vector.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "java_util_Vector.h"; sourceTree = "<group>"; };
+		1304 /* java_util_Vector.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "java_util_Vector.m"; sourceTree = "<group>"; };
+		1306 /* org_xmlvm_iphone_AVAudioPlayer.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_AVAudioPlayer.h"; sourceTree = "<group>"; };
+		1307 /* org_xmlvm_iphone_AVAudioPlayer.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_AVAudioPlayer.m"; sourceTree = "<group>"; };
+		1309 /* org_xmlvm_iphone_AVAudioPlayerDelegate.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_AVAudioPlayerDelegate.h"; sourceTree = "<group>"; };
+		1310 /* org_xmlvm_iphone_CALayer.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_CALayer.h"; sourceTree = "<group>"; };
+		1311 /* org_xmlvm_iphone_CALayer.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_CALayer.m"; sourceTree = "<group>"; };
+		1313 /* org_xmlvm_iphone_CGAffineTransform.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_CGAffineTransform.h"; sourceTree = "<group>"; };
+		1314 /* org_xmlvm_iphone_CGAffineTransform.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_CGAffineTransform.m"; sourceTree = "<group>"; };
+		1316 /* org_xmlvm_iphone_CGBitmapContext.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_CGBitmapContext.h"; sourceTree = "<group>"; };
+		1317 /* org_xmlvm_iphone_CGBitmapContext.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_CGBitmapContext.m"; sourceTree = "<group>"; };
+		1319 /* org_xmlvm_iphone_CGContext.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_CGContext.h"; sourceTree = "<group>"; };
+		1320 /* org_xmlvm_iphone_CGContext.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_CGContext.m"; sourceTree = "<group>"; };
+		1322 /* org_xmlvm_iphone_CGDataProvider.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_CGDataProvider.h"; sourceTree = "<group>"; };
+		1323 /* org_xmlvm_iphone_CGDataProvider.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_CGDataProvider.m"; sourceTree = "<group>"; };
+		1325 /* org_xmlvm_iphone_CGFont.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_CGFont.h"; sourceTree = "<group>"; };
+		1326 /* org_xmlvm_iphone_CGFont.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_CGFont.m"; sourceTree = "<group>"; };
+		1328 /* org_xmlvm_iphone_CGImage.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_CGImage.h"; sourceTree = "<group>"; };
+		1329 /* org_xmlvm_iphone_CGImage.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_CGImage.m"; sourceTree = "<group>"; };
+		1331 /* org_xmlvm_iphone_CGLayer.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_CGLayer.h"; sourceTree = "<group>"; };
+		1332 /* org_xmlvm_iphone_CGLayer.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_CGLayer.m"; sourceTree = "<group>"; };
+		1334 /* org_xmlvm_iphone_CGPoint.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_CGPoint.h"; sourceTree = "<group>"; };
+		1335 /* org_xmlvm_iphone_CGPoint.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_CGPoint.m"; sourceTree = "<group>"; };
+		1337 /* org_xmlvm_iphone_CGRect.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_CGRect.h"; sourceTree = "<group>"; };
+		1338 /* org_xmlvm_iphone_CGRect.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_CGRect.m"; sourceTree = "<group>"; };
+		1340 /* org_xmlvm_iphone_CGRectNull.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_CGRectNull.h"; sourceTree = "<group>"; };
+		1341 /* org_xmlvm_iphone_CGRectNull.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_CGRectNull.m"; sourceTree = "<group>"; };
+		1343 /* org_xmlvm_iphone_CGSize.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_CGSize.h"; sourceTree = "<group>"; };
+		1344 /* org_xmlvm_iphone_CGSize.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_CGSize.m"; sourceTree = "<group>"; };
+		1346 /* org_xmlvm_iphone_NSBundle.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_NSBundle.h"; sourceTree = "<group>"; };
+		1347 /* org_xmlvm_iphone_NSBundle.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_NSBundle.m"; sourceTree = "<group>"; };
+		1349 /* org_xmlvm_iphone_NSData.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_NSData.h"; sourceTree = "<group>"; };
+		1350 /* org_xmlvm_iphone_NSData.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_NSData.m"; sourceTree = "<group>"; };
+		1352 /* org_xmlvm_iphone_NSError.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_NSError.h"; sourceTree = "<group>"; };
+		1353 /* org_xmlvm_iphone_NSError.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_NSError.m"; sourceTree = "<group>"; };
+		1355 /* org_xmlvm_iphone_NSErrorHolder.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_NSErrorHolder.h"; sourceTree = "<group>"; };
+		1356 /* org_xmlvm_iphone_NSErrorHolder.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_NSErrorHolder.m"; sourceTree = "<group>"; };
+		1358 /* org_xmlvm_iphone_NSHTTPURLResponseHolder.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_NSHTTPURLResponseHolder.h"; sourceTree = "<group>"; };
+		1359 /* org_xmlvm_iphone_NSHTTPURLResponseHolder.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_NSHTTPURLResponseHolder.m"; sourceTree = "<group>"; };
+		1361 /* org_xmlvm_iphone_NSIndexPath.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_NSIndexPath.h"; sourceTree = "<group>"; };
+		1362 /* org_xmlvm_iphone_NSIndexPath.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_NSIndexPath.m"; sourceTree = "<group>"; };
+		1364 /* org_xmlvm_iphone_NSMutableData.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_NSMutableData.h"; sourceTree = "<group>"; };
+		1365 /* org_xmlvm_iphone_NSMutableData.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_NSMutableData.m"; sourceTree = "<group>"; };
+		1367 /* org_xmlvm_iphone_NSMutableURLRequest.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_NSMutableURLRequest.h"; sourceTree = "<group>"; };
+		1368 /* org_xmlvm_iphone_NSMutableURLRequest.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_NSMutableURLRequest.m"; sourceTree = "<group>"; };
+		1370 /* org_xmlvm_iphone_NSNotification.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_NSNotification.h"; sourceTree = "<group>"; };
+		1371 /* org_xmlvm_iphone_NSNotification.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_NSNotification.m"; sourceTree = "<group>"; };
+		1373 /* org_xmlvm_iphone_NSObject.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_NSObject.h"; sourceTree = "<group>"; };
+		1374 /* org_xmlvm_iphone_NSObject.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_NSObject.m"; sourceTree = "<group>"; };
+		1376 /* org_xmlvm_iphone_NSString.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_NSString.h"; sourceTree = "<group>"; };
+		1377 /* org_xmlvm_iphone_NSString.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_NSString.m"; sourceTree = "<group>"; };
+		1379 /* org_xmlvm_iphone_NSStringInputStream.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_NSStringInputStream.h"; sourceTree = "<group>"; };
+		1380 /* org_xmlvm_iphone_NSStringInputStream.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_NSStringInputStream.m"; sourceTree = "<group>"; };
+		1382 /* org_xmlvm_iphone_NSTimer.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_NSTimer.h"; sourceTree = "<group>"; };
+		1383 /* org_xmlvm_iphone_NSTimer.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_NSTimer.m"; sourceTree = "<group>"; };
+		1385 /* org_xmlvm_iphone_NSURL.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_NSURL.h"; sourceTree = "<group>"; };
+		1386 /* org_xmlvm_iphone_NSURL.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_NSURL.m"; sourceTree = "<group>"; };
+		1388 /* org_xmlvm_iphone_NSURLConnection.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_NSURLConnection.h"; sourceTree = "<group>"; };
+		1389 /* org_xmlvm_iphone_NSURLConnection.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_NSURLConnection.m"; sourceTree = "<group>"; };
+		1391 /* org_xmlvm_iphone_NSURLConnectionDelegate.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_NSURLConnectionDelegate.h"; sourceTree = "<group>"; };
+		1392 /* org_xmlvm_iphone_NSURLConnectionDelegate.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_NSURLConnectionDelegate.m"; sourceTree = "<group>"; };
+		1394 /* org_xmlvm_iphone_NSURLRequest.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_NSURLRequest.h"; sourceTree = "<group>"; };
+		1395 /* org_xmlvm_iphone_NSURLRequest.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_NSURLRequest.m"; sourceTree = "<group>"; };
+		1397 /* org_xmlvm_iphone_NSUserDefaults.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_NSUserDefaults.h"; sourceTree = "<group>"; };
+		1398 /* org_xmlvm_iphone_NSUserDefaults.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_NSUserDefaults.m"; sourceTree = "<group>"; };
+		1400 /* org_xmlvm_iphone_NSXMLParser.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_NSXMLParser.h"; sourceTree = "<group>"; };
+		1401 /* org_xmlvm_iphone_NSXMLParser.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_NSXMLParser.m"; sourceTree = "<group>"; };
+		1403 /* org_xmlvm_iphone_NSXMLParserDelegate.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_NSXMLParserDelegate.h"; sourceTree = "<group>"; };
+		1404 /* org_xmlvm_iphone_NSXMLParserDelegate.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_NSXMLParserDelegate.m"; sourceTree = "<group>"; };
+		1406 /* org_xmlvm_iphone_UIAcceleration.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIAcceleration.h"; sourceTree = "<group>"; };
+		1407 /* org_xmlvm_iphone_UIAcceleration.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIAcceleration.m"; sourceTree = "<group>"; };
+		1409 /* org_xmlvm_iphone_UIAccelerometer.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIAccelerometer.h"; sourceTree = "<group>"; };
+		1410 /* org_xmlvm_iphone_UIAccelerometer.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIAccelerometer.m"; sourceTree = "<group>"; };
+		1412 /* org_xmlvm_iphone_UIAccelerometerDelegate.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIAccelerometerDelegate.h"; sourceTree = "<group>"; };
+		1413 /* org_xmlvm_iphone_UIActivityIndicatorView.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIActivityIndicatorView.h"; sourceTree = "<group>"; };
+		1414 /* org_xmlvm_iphone_UIActivityIndicatorView.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIActivityIndicatorView.m"; sourceTree = "<group>"; };
+		1416 /* org_xmlvm_iphone_UIAlertView.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIAlertView.h"; sourceTree = "<group>"; };
+		1417 /* org_xmlvm_iphone_UIAlertView.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIAlertView.m"; sourceTree = "<group>"; };
+		1419 /* org_xmlvm_iphone_UIAlertViewDelegate.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIAlertViewDelegate.h"; sourceTree = "<group>"; };
+		1420 /* org_xmlvm_iphone_UIAlertViewDelegate.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIAlertViewDelegate.m"; sourceTree = "<group>"; };
+		1422 /* org_xmlvm_iphone_UIApplication.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIApplication.h"; sourceTree = "<group>"; };
+		1423 /* org_xmlvm_iphone_UIApplication.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIApplication.m"; sourceTree = "<group>"; };
+		1425 /* org_xmlvm_iphone_UIBarButtonItem.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIBarButtonItem.h"; sourceTree = "<group>"; };
+		1426 /* org_xmlvm_iphone_UIBarButtonItem.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIBarButtonItem.m"; sourceTree = "<group>"; };
+		1428 /* org_xmlvm_iphone_UIBarButtonItemDelegate.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIBarButtonItemDelegate.h"; sourceTree = "<group>"; };
+		1429 /* org_xmlvm_iphone_UIBarItem.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIBarItem.h"; sourceTree = "<group>"; };
+		1430 /* org_xmlvm_iphone_UIBarItem.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIBarItem.m"; sourceTree = "<group>"; };
+		1432 /* org_xmlvm_iphone_UIButton.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIButton.h"; sourceTree = "<group>"; };
+		1433 /* org_xmlvm_iphone_UIButton.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIButton.m"; sourceTree = "<group>"; };
+		1435 /* org_xmlvm_iphone_UIColor.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIColor.h"; sourceTree = "<group>"; };
+		1436 /* org_xmlvm_iphone_UIColor.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIColor.m"; sourceTree = "<group>"; };
+		1438 /* org_xmlvm_iphone_UIControl.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIControl.h"; sourceTree = "<group>"; };
+		1439 /* org_xmlvm_iphone_UIControl.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIControl.m"; sourceTree = "<group>"; };
+		1441 /* org_xmlvm_iphone_UIControlDelegate.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIControlDelegate.h"; sourceTree = "<group>"; };
+		1442 /* org_xmlvm_iphone_UIControlDelegate.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIControlDelegate.m"; sourceTree = "<group>"; };
+		1444 /* org_xmlvm_iphone_UIEdgeInsets.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIEdgeInsets.h"; sourceTree = "<group>"; };
+		1445 /* org_xmlvm_iphone_UIEdgeInsets.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIEdgeInsets.m"; sourceTree = "<group>"; };
+		1447 /* org_xmlvm_iphone_UIEvent.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIEvent.h"; sourceTree = "<group>"; };
+		1448 /* org_xmlvm_iphone_UIFont.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIFont.h"; sourceTree = "<group>"; };
+		1449 /* org_xmlvm_iphone_UIFont.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIFont.m"; sourceTree = "<group>"; };
+		1451 /* org_xmlvm_iphone_UIImage.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIImage.h"; sourceTree = "<group>"; };
+		1452 /* org_xmlvm_iphone_UIImage.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIImage.m"; sourceTree = "<group>"; };
+		1454 /* org_xmlvm_iphone_UIImageView.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIImageView.h"; sourceTree = "<group>"; };
+		1455 /* org_xmlvm_iphone_UIImageView.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIImageView.m"; sourceTree = "<group>"; };
+		1457 /* org_xmlvm_iphone_UILabel.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UILabel.h"; sourceTree = "<group>"; };
+		1458 /* org_xmlvm_iphone_UILabel.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UILabel.m"; sourceTree = "<group>"; };
+		1460 /* org_xmlvm_iphone_UINavigationBar.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UINavigationBar.h"; sourceTree = "<group>"; };
+		1461 /* org_xmlvm_iphone_UINavigationBar.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UINavigationBar.m"; sourceTree = "<group>"; };
+		1463 /* org_xmlvm_iphone_UINavigationBarDelegate.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UINavigationBarDelegate.h"; sourceTree = "<group>"; };
+		1464 /* org_xmlvm_iphone_UINavigationBarDelegate.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UINavigationBarDelegate.m"; sourceTree = "<group>"; };
+		1466 /* org_xmlvm_iphone_UINavigationController.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UINavigationController.h"; sourceTree = "<group>"; };
+		1467 /* org_xmlvm_iphone_UINavigationController.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UINavigationController.m"; sourceTree = "<group>"; };
+		1469 /* org_xmlvm_iphone_UINavigationControllerDelegate.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UINavigationControllerDelegate.h"; sourceTree = "<group>"; };
+		1470 /* org_xmlvm_iphone_UINavigationControllerDelegate.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UINavigationControllerDelegate.m"; sourceTree = "<group>"; };
+		1472 /* org_xmlvm_iphone_UINavigationItem.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UINavigationItem.h"; sourceTree = "<group>"; };
+		1473 /* org_xmlvm_iphone_UINavigationItem.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UINavigationItem.m"; sourceTree = "<group>"; };
+		1475 /* org_xmlvm_iphone_UIPickerView.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIPickerView.h"; sourceTree = "<group>"; };
+		1476 /* org_xmlvm_iphone_UIPickerView.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIPickerView.m"; sourceTree = "<group>"; };
+		1478 /* org_xmlvm_iphone_UIPickerViewDataSource.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIPickerViewDataSource.h"; sourceTree = "<group>"; };
+		1479 /* org_xmlvm_iphone_UIPickerViewDataSource.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIPickerViewDataSource.m"; sourceTree = "<group>"; };
+		1481 /* org_xmlvm_iphone_UIPickerViewDelegate.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIPickerViewDelegate.h"; sourceTree = "<group>"; };
+		1482 /* org_xmlvm_iphone_UIPickerViewDelegate.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIPickerViewDelegate.m"; sourceTree = "<group>"; };
+		1484 /* org_xmlvm_iphone_UIProgressView.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIProgressView.h"; sourceTree = "<group>"; };
+		1485 /* org_xmlvm_iphone_UIProgressView.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIProgressView.m"; sourceTree = "<group>"; };
+		1487 /* org_xmlvm_iphone_UIResponder.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIResponder.h"; sourceTree = "<group>"; };
+		1488 /* org_xmlvm_iphone_UIResponder.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIResponder.m"; sourceTree = "<group>"; };
+		1490 /* org_xmlvm_iphone_UIResponderDelegate.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIResponderDelegate.h"; sourceTree = "<group>"; };
+		1491 /* org_xmlvm_iphone_UIScreen.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIScreen.h"; sourceTree = "<group>"; };
+		1492 /* org_xmlvm_iphone_UIScreen.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIScreen.m"; sourceTree = "<group>"; };
+		1494 /* org_xmlvm_iphone_UIScrollView.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIScrollView.h"; sourceTree = "<group>"; };
+		1495 /* org_xmlvm_iphone_UIScrollView.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIScrollView.m"; sourceTree = "<group>"; };
+		1497 /* org_xmlvm_iphone_UISegmentedControl.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UISegmentedControl.h"; sourceTree = "<group>"; };
+		1498 /* org_xmlvm_iphone_UISegmentedControl.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UISegmentedControl.m"; sourceTree = "<group>"; };
+		1500 /* org_xmlvm_iphone_UISlider.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UISlider.h"; sourceTree = "<group>"; };
+		1501 /* org_xmlvm_iphone_UISlider.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UISlider.m"; sourceTree = "<group>"; };
+		1503 /* org_xmlvm_iphone_UISwitch.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UISwitch.h"; sourceTree = "<group>"; };
+		1504 /* org_xmlvm_iphone_UISwitch.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UISwitch.m"; sourceTree = "<group>"; };
+		1506 /* org_xmlvm_iphone_UITabBar.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UITabBar.h"; sourceTree = "<group>"; };
+		1507 /* org_xmlvm_iphone_UITabBar.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UITabBar.m"; sourceTree = "<group>"; };
+		1509 /* org_xmlvm_iphone_UITabBarController.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UITabBarController.h"; sourceTree = "<group>"; };
+		1510 /* org_xmlvm_iphone_UITabBarController.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UITabBarController.m"; sourceTree = "<group>"; };
+		1512 /* org_xmlvm_iphone_UITabBarControllerDelegate.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UITabBarControllerDelegate.h"; sourceTree = "<group>"; };
+		1513 /* org_xmlvm_iphone_UITabBarControllerDelegate.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UITabBarControllerDelegate.m"; sourceTree = "<group>"; };
+		1515 /* org_xmlvm_iphone_UITabBarDelegate.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UITabBarDelegate.h"; sourceTree = "<group>"; };
+		1516 /* org_xmlvm_iphone_UITabBarDelegate.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UITabBarDelegate.m"; sourceTree = "<group>"; };
+		1518 /* org_xmlvm_iphone_UITabBarItem.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UITabBarItem.h"; sourceTree = "<group>"; };
+		1519 /* org_xmlvm_iphone_UITabBarItem.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UITabBarItem.m"; sourceTree = "<group>"; };
+		1521 /* org_xmlvm_iphone_UITableView.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UITableView.h"; sourceTree = "<group>"; };
+		1522 /* org_xmlvm_iphone_UITableView.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UITableView.m"; sourceTree = "<group>"; };
+		1524 /* org_xmlvm_iphone_UITableViewCell.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UITableViewCell.h"; sourceTree = "<group>"; };
+		1525 /* org_xmlvm_iphone_UITableViewCell.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UITableViewCell.m"; sourceTree = "<group>"; };
+		1527 /* org_xmlvm_iphone_UITableViewDataSource.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UITableViewDataSource.h"; sourceTree = "<group>"; };
+		1528 /* org_xmlvm_iphone_UITableViewDataSource.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UITableViewDataSource.m"; sourceTree = "<group>"; };
+		1530 /* org_xmlvm_iphone_UITableViewDelegate.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UITableViewDelegate.h"; sourceTree = "<group>"; };
+		1531 /* org_xmlvm_iphone_UITableViewDelegate.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UITableViewDelegate.m"; sourceTree = "<group>"; };
+		1533 /* org_xmlvm_iphone_UITextField.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UITextField.h"; sourceTree = "<group>"; };
+		1534 /* org_xmlvm_iphone_UITextField.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UITextField.m"; sourceTree = "<group>"; };
+		1536 /* org_xmlvm_iphone_UITextView.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UITextView.h"; sourceTree = "<group>"; };
+		1537 /* org_xmlvm_iphone_UITextView.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UITextView.m"; sourceTree = "<group>"; };
+		1539 /* org_xmlvm_iphone_UIToolbar.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIToolbar.h"; sourceTree = "<group>"; };
+		1540 /* org_xmlvm_iphone_UIToolbar.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIToolbar.m"; sourceTree = "<group>"; };
+		1542 /* org_xmlvm_iphone_UITouch.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UITouch.h"; sourceTree = "<group>"; };
+		1543 /* org_xmlvm_iphone_UITouch.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UITouch.m"; sourceTree = "<group>"; };
+		1545 /* org_xmlvm_iphone_UIView.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIView.h"; sourceTree = "<group>"; };
+		1546 /* org_xmlvm_iphone_UIView.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIView.m"; sourceTree = "<group>"; };
+		1548 /* org_xmlvm_iphone_UIViewController.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIViewController.h"; sourceTree = "<group>"; };
+		1549 /* org_xmlvm_iphone_UIViewController.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIViewController.m"; sourceTree = "<group>"; };
+		1551 /* org_xmlvm_iphone_UIViewGL.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIViewGL.h"; sourceTree = "<group>"; };
+		1552 /* org_xmlvm_iphone_UIViewGL.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIViewGL.m"; sourceTree = "<group>"; };
+		1554 /* org_xmlvm_iphone_UIWebView.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIWebView.h"; sourceTree = "<group>"; };
+		1555 /* org_xmlvm_iphone_UIWebView.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIWebView.m"; sourceTree = "<group>"; };
+		1557 /* org_xmlvm_iphone_UIWindow.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_UIWindow.h"; sourceTree = "<group>"; };
+		1558 /* org_xmlvm_iphone_UIWindow.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_UIWindow.m"; sourceTree = "<group>"; };
+		1560 /* org_xmlvm_iphone_XMLVMNoAutoReleasePool.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_XMLVMNoAutoReleasePool.h"; sourceTree = "<group>"; };
+		1561 /* org_xmlvm_iphone_gl_BufferUtils.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_gl_BufferUtils.h"; sourceTree = "<group>"; };
+		1562 /* org_xmlvm_iphone_gl_BufferUtils.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_gl_BufferUtils.m"; sourceTree = "<group>"; };
+		1564 /* org_xmlvm_iphone_gl_CAEAGLLayer.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_gl_CAEAGLLayer.h"; sourceTree = "<group>"; };
+		1565 /* org_xmlvm_iphone_gl_CAEAGLLayer.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_gl_CAEAGLLayer.m"; sourceTree = "<group>"; };
+		1567 /* org_xmlvm_iphone_gl_EAGLContext.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_gl_EAGLContext.h"; sourceTree = "<group>"; };
+		1568 /* org_xmlvm_iphone_gl_EAGLContext.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_gl_EAGLContext.m"; sourceTree = "<group>"; };
+		1570 /* org_xmlvm_iphone_gl_EAGLDrawable.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_gl_EAGLDrawable.h"; sourceTree = "<group>"; };
+		1571 /* org_xmlvm_iphone_gl_EAGLDrawable.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_gl_EAGLDrawable.m"; sourceTree = "<group>"; };
+		1573 /* org_xmlvm_iphone_gl_GL.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_gl_GL.h"; sourceTree = "<group>"; };
+		1574 /* org_xmlvm_iphone_gl_GL.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_gl_GL.m"; sourceTree = "<group>"; };
+		1576 /* org_xmlvm_iphone_gl_GLView.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "org_xmlvm_iphone_gl_GLView.h"; sourceTree = "<group>"; };
+		1577 /* org_xmlvm_iphone_gl_GLView.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "org_xmlvm_iphone_gl_GLView.m"; sourceTree = "<group>"; };
+		1579 /* xmlvm.h */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "xmlvm.h"; sourceTree = "<group>"; };
+		1580 /* xmlvm.m */ = { isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "xmlvm.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				100000 /* OpenGLES.framework in Frameworks */,
+				100002 /* Foundation.framework in Frameworks */,
+				100004 /* AVFoundation.framework in Frameworks */,
+				100006 /* UIKit.framework in Frameworks */,
+				100008 /* QuartzCore.framework in Frameworks */,
+				100010 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		24 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				1000 /* org_xmlvm_demo_isound_ISound_1.h */,
+				1001 /* org_xmlvm_demo_isound_ISound_1.m */,
+				1003 /* org_xmlvm_demo_isound_ISound_2.h */,
+				1004 /* org_xmlvm_demo_isound_ISound_2.m */,
+				1006 /* org_xmlvm_demo_isound_ISound.h */,
+				1007 /* org_xmlvm_demo_isound_ISound.m */,
+			);
+			name = Application;
+			path = src/xmlvm/app;
+			sourceTree = "<group>";
+		};
+		25 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				26 /* iPhone */,
+				27 /* Android */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		27 /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				1009 /* java_io_BufferedInputStream.h */,
+				1010 /* java_io_BufferedInputStream.m */,
+				1012 /* java_io_BufferedOutputStream.h */,
+				1013 /* java_io_BufferedOutputStream.m */,
+				1015 /* java_io_BufferedReader.h */,
+				1016 /* java_io_BufferedReader.m */,
+				1018 /* java_io_BufferedWriter.h */,
+				1019 /* java_io_BufferedWriter.m */,
+				1021 /* java_io_ByteArrayInputStream.h */,
+				1022 /* java_io_ByteArrayInputStream.m */,
+				1024 /* java_io_ByteArrayOutputStream.h */,
+				1025 /* java_io_ByteArrayOutputStream.m */,
+				1027 /* java_io_DataInputStream.h */,
+				1028 /* java_io_DataInputStream.m */,
+				1030 /* java_io_DataOutputStream.h */,
+				1031 /* java_io_DataOutputStream.m */,
+				1033 /* java_io_EOFException.h */,
+				1034 /* java_io_EOFException.m */,
+				1036 /* java_io_File.h */,
+				1037 /* java_io_File.m */,
+				1039 /* java_io_FileDescriptor.h */,
+				1040 /* java_io_FileDescriptor.m */,
+				1042 /* java_io_FileInputStream.h */,
+				1043 /* java_io_FileInputStream.m */,
+				1045 /* java_io_FileNotFoundException.h */,
+				1046 /* java_io_FileNotFoundException.m */,
+				1048 /* java_io_FileOutputStream.h */,
+				1049 /* java_io_FileOutputStream.m */,
+				1051 /* java_io_FileReader.h */,
+				1052 /* java_io_FileReader.m */,
+				1054 /* java_io_FileWriter.h */,
+				1055 /* java_io_FileWriter.m */,
+				1057 /* java_io_FilenameFilter.h */,
+				1058 /* java_io_FilenameFilter.m */,
+				1060 /* java_io_IOException.h */,
+				1061 /* java_io_IOException.m */,
+				1063 /* java_io_InputStream.h */,
+				1064 /* java_io_InputStream.m */,
+				1066 /* java_io_InputStreamReader.h */,
+				1067 /* java_io_InputStreamReader.m */,
+				1069 /* java_io_ObjectInputStream.h */,
+				1070 /* java_io_ObjectInputStream.m */,
+				1072 /* java_io_ObjectOutputStream.h */,
+				1073 /* java_io_ObjectOutputStream.m */,
+				1075 /* java_io_OutputStream.h */,
+				1076 /* java_io_OutputStream.m */,
+				1078 /* java_io_PrintStream.h */,
+				1079 /* java_io_PrintStream.m */,
+				1081 /* java_io_Reader.h */,
+				1082 /* java_io_Reader.m */,
+				1084 /* java_io_Serializable.h */,
+				1085 /* java_io_UnsupportedEncodingException.h */,
+				1086 /* java_io_UnsupportedEncodingException.m */,
+				1088 /* java_io_Writer.h */,
+				1089 /* java_io_Writer.m */,
+				1091 /* java_lang_ArrayIndexOutOfBoundsException.h */,
+				1092 /* java_lang_ArrayIndexOutOfBoundsException.m */,
+				1094 /* java_lang_AssertionError.h */,
+				1095 /* java_lang_AssertionError.m */,
+				1097 /* java_lang_Boolean.h */,
+				1098 /* java_lang_Boolean.m */,
+				1100 /* java_lang_Byte.h */,
+				1101 /* java_lang_Byte.m */,
+				1103 /* java_lang_CharSequence.h */,
+				1104 /* java_lang_Character.h */,
+				1105 /* java_lang_Character.m */,
+				1107 /* java_lang_Class.h */,
+				1108 /* java_lang_Class.m */,
+				1110 /* java_lang_ClassNotFoundException.h */,
+				1111 /* java_lang_ClassNotFoundException.m */,
+				1113 /* java_lang_Comparable.h */,
+				1114 /* java_lang_Double.h */,
+				1115 /* java_lang_Double.m */,
+				1117 /* java_lang_Enum.h */,
+				1118 /* java_lang_Enum.m */,
+				1120 /* java_lang_Exception.h */,
+				1121 /* java_lang_Exception.m */,
+				1123 /* java_lang_Float.h */,
+				1124 /* java_lang_Float.m */,
+				1126 /* java_lang_IllegalAccessException.h */,
+				1127 /* java_lang_IllegalAccessException.m */,
+				1129 /* java_lang_IllegalArgumentException.h */,
+				1130 /* java_lang_IllegalArgumentException.m */,
+				1132 /* java_lang_IllegalStateException.h */,
+				1133 /* java_lang_IllegalStateException.m */,
+				1135 /* java_lang_IndexOutOfBoundsException.h */,
+				1136 /* java_lang_IndexOutOfBoundsException.m */,
+				1138 /* java_lang_InstantiationException.h */,
+				1139 /* java_lang_InstantiationException.m */,
+				1141 /* java_lang_Integer.h */,
+				1142 /* java_lang_Integer.m */,
+				1144 /* java_lang_InterruptedException.h */,
+				1145 /* java_lang_InterruptedException.m */,
+				1147 /* java_lang_Long.h */,
+				1148 /* java_lang_Long.m */,
+				1150 /* java_lang_Math.h */,
+				1151 /* java_lang_Math.m */,
+				1153 /* java_lang_NegativeArraySizeException.h */,
+				1154 /* java_lang_NegativeArraySizeException.m */,
+				1156 /* java_lang_NoSuchFieldError.h */,
+				1157 /* java_lang_NoSuchFieldError.m */,
+				1159 /* java_lang_NoSuchFieldException.h */,
+				1160 /* java_lang_NoSuchFieldException.m */,
+				1162 /* java_lang_NoSuchMethodException.h */,
+				1163 /* java_lang_NoSuchMethodException.m */,
+				1165 /* java_lang_NullPointerException.h */,
+				1166 /* java_lang_NullPointerException.m */,
+				1168 /* java_lang_NumberFormatException.h */,
+				1169 /* java_lang_NumberFormatException.m */,
+				1171 /* java_lang_Object.h */,
+				1172 /* java_lang_Object.m */,
+				1174 /* java_lang_Runnable.h */,
+				1175 /* java_lang_Runtime.h */,
+				1176 /* java_lang_Runtime.m */,
+				1178 /* java_lang_RuntimeException.h */,
+				1179 /* java_lang_RuntimeException.m */,
+				1181 /* java_lang_SecurityException.h */,
+				1182 /* java_lang_SecurityException.m */,
+				1184 /* java_lang_Short.h */,
+				1185 /* java_lang_Short.m */,
+				1187 /* java_lang_String.h */,
+				1188 /* java_lang_String.m */,
+				1190 /* java_lang_StringBuffer.h */,
+				1191 /* java_lang_StringBuffer.m */,
+				1193 /* java_lang_StringBuilder.h */,
+				1194 /* java_lang_StringBuilder.m */,
+				1196 /* java_lang_System.h */,
+				1197 /* java_lang_System.m */,
+				1199 /* java_lang_Thread.h */,
+				1200 /* java_lang_Thread.m */,
+				1202 /* java_lang_Throwable.h */,
+				1203 /* java_lang_Throwable.m */,
+				1205 /* java_lang_UnsupportedOperationException.h */,
+				1206 /* java_lang_UnsupportedOperationException.m */,
+				1208 /* java_lang_annotation_Annotation.h */,
+				1209 /* java_lang_annotation_Retention.h */,
+				1210 /* java_lang_reflect_Array.h */,
+				1211 /* java_lang_reflect_Array.m */,
+				1213 /* java_lang_reflect_Constructor.h */,
+				1214 /* java_lang_reflect_Constructor.m */,
+				1216 /* java_lang_reflect_Field.h */,
+				1217 /* java_lang_reflect_Field.m */,
+				1219 /* java_lang_reflect_InvocationTargetException.h */,
+				1220 /* java_lang_reflect_InvocationTargetException.m */,
+				1222 /* java_lang_reflect_Method.h */,
+				1223 /* java_lang_reflect_Method.m */,
+				1225 /* java_net_URI.h */,
+				1226 /* java_net_URI.m */,
+				1228 /* java_net_URL.h */,
+				1229 /* java_net_URL.m */,
+				1231 /* java_nio_Buffer.h */,
+				1232 /* java_nio_ByteBuffer.h */,
+				1233 /* java_nio_ByteBuffer.m */,
+				1235 /* java_nio_FloatBuffer.h */,
+				1236 /* java_nio_FloatBuffer.m */,
+				1238 /* java_nio_IntBuffer.h */,
+				1239 /* java_nio_IntBuffer.m */,
+				1241 /* java_sql_Connection.h */,
+				1242 /* java_sql_Connection.m */,
+				1244 /* java_sql_DriverManager.h */,
+				1245 /* java_sql_DriverManager.m */,
+				1247 /* java_sql_ResultSet.h */,
+				1248 /* java_sql_ResultSet.m */,
+				1250 /* java_sql_ResultSetMetaData.h */,
+				1251 /* java_sql_ResultSetMetaData.m */,
+				1253 /* java_sql_SQLException.h */,
+				1254 /* java_sql_SQLException.m */,
+				1256 /* java_sql_Statement.h */,
+				1257 /* java_sql_Statement.m */,
+				1259 /* java_util_ArrayList.h */,
+				1260 /* java_util_ArrayList.m */,
+				1262 /* java_util_Arrays.h */,
+				1263 /* java_util_Arrays.m */,
+				1265 /* java_util_Collection.h */,
+				1266 /* java_util_Comparator.h */,
+				1267 /* java_util_HashMap.h */,
+				1268 /* java_util_HashMap.m */,
+				1270 /* java_util_HashSet.h */,
+				1271 /* java_util_HashSet.m */,
+				1273 /* java_util_Iterator.h */,
+				1274 /* java_util_IteratorImpl.h */,
+				1275 /* java_util_IteratorImpl.m */,
+				1277 /* java_util_LinkedList.h */,
+				1278 /* java_util_LinkedList.m */,
+				1280 /* java_util_List.h */,
+				1281 /* java_util_ListIterator.h */,
+				1282 /* java_util_Locale.h */,
+				1283 /* java_util_Locale.m */,
+				1285 /* java_util_Map.h */,
+				1286 /* java_util_Map.m */,
+				1288 /* java_util_Random.h */,
+				1289 /* java_util_Random.m */,
+				1291 /* java_util_Set.h */,
+				1292 /* java_util_Set.m */,
+				1294 /* java_util_SortedSet.h */,
+				1295 /* java_util_SortedSet.m */,
+				1297 /* java_util_Stack.h */,
+				1298 /* java_util_Stack.m */,
+				1300 /* java_util_StringTokenizer.h */,
+				1301 /* java_util_StringTokenizer.m */,
+				1303 /* java_util_Vector.h */,
+				1304 /* java_util_Vector.m */,
+				1306 /* org_xmlvm_iphone_AVAudioPlayer.h */,
+				1307 /* org_xmlvm_iphone_AVAudioPlayer.m */,
+				1309 /* org_xmlvm_iphone_AVAudioPlayerDelegate.h */,
+				1310 /* org_xmlvm_iphone_CALayer.h */,
+				1311 /* org_xmlvm_iphone_CALayer.m */,
+				1313 /* org_xmlvm_iphone_CGAffineTransform.h */,
+				1314 /* org_xmlvm_iphone_CGAffineTransform.m */,
+				1316 /* org_xmlvm_iphone_CGBitmapContext.h */,
+				1317 /* org_xmlvm_iphone_CGBitmapContext.m */,
+				1319 /* org_xmlvm_iphone_CGContext.h */,
+				1320 /* org_xmlvm_iphone_CGContext.m */,
+				1322 /* org_xmlvm_iphone_CGDataProvider.h */,
+				1323 /* org_xmlvm_iphone_CGDataProvider.m */,
+				1325 /* org_xmlvm_iphone_CGFont.h */,
+				1326 /* org_xmlvm_iphone_CGFont.m */,
+				1328 /* org_xmlvm_iphone_CGImage.h */,
+				1329 /* org_xmlvm_iphone_CGImage.m */,
+				1331 /* org_xmlvm_iphone_CGLayer.h */,
+				1332 /* org_xmlvm_iphone_CGLayer.m */,
+				1334 /* org_xmlvm_iphone_CGPoint.h */,
+				1335 /* org_xmlvm_iphone_CGPoint.m */,
+				1337 /* org_xmlvm_iphone_CGRect.h */,
+				1338 /* org_xmlvm_iphone_CGRect.m */,
+				1340 /* org_xmlvm_iphone_CGRectNull.h */,
+				1341 /* org_xmlvm_iphone_CGRectNull.m */,
+				1343 /* org_xmlvm_iphone_CGSize.h */,
+				1344 /* org_xmlvm_iphone_CGSize.m */,
+				1346 /* org_xmlvm_iphone_NSBundle.h */,
+				1347 /* org_xmlvm_iphone_NSBundle.m */,
+				1349 /* org_xmlvm_iphone_NSData.h */,
+				1350 /* org_xmlvm_iphone_NSData.m */,
+				1352 /* org_xmlvm_iphone_NSError.h */,
+				1353 /* org_xmlvm_iphone_NSError.m */,
+				1355 /* org_xmlvm_iphone_NSErrorHolder.h */,
+				1356 /* org_xmlvm_iphone_NSErrorHolder.m */,
+				1358 /* org_xmlvm_iphone_NSHTTPURLResponseHolder.h */,
+				1359 /* org_xmlvm_iphone_NSHTTPURLResponseHolder.m */,
+				1361 /* org_xmlvm_iphone_NSIndexPath.h */,
+				1362 /* org_xmlvm_iphone_NSIndexPath.m */,
+				1364 /* org_xmlvm_iphone_NSMutableData.h */,
+				1365 /* org_xmlvm_iphone_NSMutableData.m */,
+				1367 /* org_xmlvm_iphone_NSMutableURLRequest.h */,
+				1368 /* org_xmlvm_iphone_NSMutableURLRequest.m */,
+				1370 /* org_xmlvm_iphone_NSNotification.h */,
+				1371 /* org_xmlvm_iphone_NSNotification.m */,
+				1373 /* org_xmlvm_iphone_NSObject.h */,
+				1374 /* org_xmlvm_iphone_NSObject.m */,
+				1376 /* org_xmlvm_iphone_NSString.h */,
+				1377 /* org_xmlvm_iphone_NSString.m */,
+				1379 /* org_xmlvm_iphone_NSStringInputStream.h */,
+				1380 /* org_xmlvm_iphone_NSStringInputStream.m */,
+				1382 /* org_xmlvm_iphone_NSTimer.h */,
+				1383 /* org_xmlvm_iphone_NSTimer.m */,
+				1385 /* org_xmlvm_iphone_NSURL.h */,
+				1386 /* org_xmlvm_iphone_NSURL.m */,
+				1388 /* org_xmlvm_iphone_NSURLConnection.h */,
+				1389 /* org_xmlvm_iphone_NSURLConnection.m */,
+				1391 /* org_xmlvm_iphone_NSURLConnectionDelegate.h */,
+				1392 /* org_xmlvm_iphone_NSURLConnectionDelegate.m */,
+				1394 /* org_xmlvm_iphone_NSURLRequest.h */,
+				1395 /* org_xmlvm_iphone_NSURLRequest.m */,
+				1397 /* org_xmlvm_iphone_NSUserDefaults.h */,
+				1398 /* org_xmlvm_iphone_NSUserDefaults.m */,
+				1400 /* org_xmlvm_iphone_NSXMLParser.h */,
+				1401 /* org_xmlvm_iphone_NSXMLParser.m */,
+				1403 /* org_xmlvm_iphone_NSXMLParserDelegate.h */,
+				1404 /* org_xmlvm_iphone_NSXMLParserDelegate.m */,
+				1406 /* org_xmlvm_iphone_UIAcceleration.h */,
+				1407 /* org_xmlvm_iphone_UIAcceleration.m */,
+				1409 /* org_xmlvm_iphone_UIAccelerometer.h */,
+				1410 /* org_xmlvm_iphone_UIAccelerometer.m */,
+				1412 /* org_xmlvm_iphone_UIAccelerometerDelegate.h */,
+				1413 /* org_xmlvm_iphone_UIActivityIndicatorView.h */,
+				1414 /* org_xmlvm_iphone_UIActivityIndicatorView.m */,
+				1416 /* org_xmlvm_iphone_UIAlertView.h */,
+				1417 /* org_xmlvm_iphone_UIAlertView.m */,
+				1419 /* org_xmlvm_iphone_UIAlertViewDelegate.h */,
+				1420 /* org_xmlvm_iphone_UIAlertViewDelegate.m */,
+				1422 /* org_xmlvm_iphone_UIApplication.h */,
+				1423 /* org_xmlvm_iphone_UIApplication.m */,
+				1425 /* org_xmlvm_iphone_UIBarButtonItem.h */,
+				1426 /* org_xmlvm_iphone_UIBarButtonItem.m */,
+				1428 /* org_xmlvm_iphone_UIBarButtonItemDelegate.h */,
+				1429 /* org_xmlvm_iphone_UIBarItem.h */,
+				1430 /* org_xmlvm_iphone_UIBarItem.m */,
+				1432 /* org_xmlvm_iphone_UIButton.h */,
+				1433 /* org_xmlvm_iphone_UIButton.m */,
+				1435 /* org_xmlvm_iphone_UIColor.h */,
+				1436 /* org_xmlvm_iphone_UIColor.m */,
+				1438 /* org_xmlvm_iphone_UIControl.h */,
+				1439 /* org_xmlvm_iphone_UIControl.m */,
+				1441 /* org_xmlvm_iphone_UIControlDelegate.h */,
+				1442 /* org_xmlvm_iphone_UIControlDelegate.m */,
+				1444 /* org_xmlvm_iphone_UIEdgeInsets.h */,
+				1445 /* org_xmlvm_iphone_UIEdgeInsets.m */,
+				1447 /* org_xmlvm_iphone_UIEvent.h */,
+				1448 /* org_xmlvm_iphone_UIFont.h */,
+				1449 /* org_xmlvm_iphone_UIFont.m */,
+				1451 /* org_xmlvm_iphone_UIImage.h */,
+				1452 /* org_xmlvm_iphone_UIImage.m */,
+				1454 /* org_xmlvm_iphone_UIImageView.h */,
+				1455 /* org_xmlvm_iphone_UIImageView.m */,
+				1457 /* org_xmlvm_iphone_UILabel.h */,
+				1458 /* org_xmlvm_iphone_UILabel.m */,
+				1460 /* org_xmlvm_iphone_UINavigationBar.h */,
+				1461 /* org_xmlvm_iphone_UINavigationBar.m */,
+				1463 /* org_xmlvm_iphone_UINavigationBarDelegate.h */,
+				1464 /* org_xmlvm_iphone_UINavigationBarDelegate.m */,
+				1466 /* org_xmlvm_iphone_UINavigationController.h */,
+				1467 /* org_xmlvm_iphone_UINavigationController.m */,
+				1469 /* org_xmlvm_iphone_UINavigationControllerDelegate.h */,
+				1470 /* org_xmlvm_iphone_UINavigationControllerDelegate.m */,
+				1472 /* org_xmlvm_iphone_UINavigationItem.h */,
+				1473 /* org_xmlvm_iphone_UINavigationItem.m */,
+				1475 /* org_xmlvm_iphone_UIPickerView.h */,
+				1476 /* org_xmlvm_iphone_UIPickerView.m */,
+				1478 /* org_xmlvm_iphone_UIPickerViewDataSource.h */,
+				1479 /* org_xmlvm_iphone_UIPickerViewDataSource.m */,
+				1481 /* org_xmlvm_iphone_UIPickerViewDelegate.h */,
+				1482 /* org_xmlvm_iphone_UIPickerViewDelegate.m */,
+				1484 /* org_xmlvm_iphone_UIProgressView.h */,
+				1485 /* org_xmlvm_iphone_UIProgressView.m */,
+				1487 /* org_xmlvm_iphone_UIResponder.h */,
+				1488 /* org_xmlvm_iphone_UIResponder.m */,
+				1490 /* org_xmlvm_iphone_UIResponderDelegate.h */,
+				1491 /* org_xmlvm_iphone_UIScreen.h */,
+				1492 /* org_xmlvm_iphone_UIScreen.m */,
+				1494 /* org_xmlvm_iphone_UIScrollView.h */,
+				1495 /* org_xmlvm_iphone_UIScrollView.m */,
+				1497 /* org_xmlvm_iphone_UISegmentedControl.h */,
+				1498 /* org_xmlvm_iphone_UISegmentedControl.m */,
+				1500 /* org_xmlvm_iphone_UISlider.h */,
+				1501 /* org_xmlvm_iphone_UISlider.m */,
+				1503 /* org_xmlvm_iphone_UISwitch.h */,
+				1504 /* org_xmlvm_iphone_UISwitch.m */,
+				1506 /* org_xmlvm_iphone_UITabBar.h */,
+				1507 /* org_xmlvm_iphone_UITabBar.m */,
+				1509 /* org_xmlvm_iphone_UITabBarController.h */,
+				1510 /* org_xmlvm_iphone_UITabBarController.m */,
+				1512 /* org_xmlvm_iphone_UITabBarControllerDelegate.h */,
+				1513 /* org_xmlvm_iphone_UITabBarControllerDelegate.m */,
+				1515 /* org_xmlvm_iphone_UITabBarDelegate.h */,
+				1516 /* org_xmlvm_iphone_UITabBarDelegate.m */,
+				1518 /* org_xmlvm_iphone_UITabBarItem.h */,
+				1519 /* org_xmlvm_iphone_UITabBarItem.m */,
+				1521 /* org_xmlvm_iphone_UITableView.h */,
+				1522 /* org_xmlvm_iphone_UITableView.m */,
+				1524 /* org_xmlvm_iphone_UITableViewCell.h */,
+				1525 /* org_xmlvm_iphone_UITableViewCell.m */,
+				1527 /* org_xmlvm_iphone_UITableViewDataSource.h */,
+				1528 /* org_xmlvm_iphone_UITableViewDataSource.m */,
+				1530 /* org_xmlvm_iphone_UITableViewDelegate.h */,
+				1531 /* org_xmlvm_iphone_UITableViewDelegate.m */,
+				1533 /* org_xmlvm_iphone_UITextField.h */,
+				1534 /* org_xmlvm_iphone_UITextField.m */,
+				1536 /* org_xmlvm_iphone_UITextView.h */,
+				1537 /* org_xmlvm_iphone_UITextView.m */,
+				1539 /* org_xmlvm_iphone_UIToolbar.h */,
+				1540 /* org_xmlvm_iphone_UIToolbar.m */,
+				1542 /* org_xmlvm_iphone_UITouch.h */,
+				1543 /* org_xmlvm_iphone_UITouch.m */,
+				1545 /* org_xmlvm_iphone_UIView.h */,
+				1546 /* org_xmlvm_iphone_UIView.m */,
+				1548 /* org_xmlvm_iphone_UIViewController.h */,
+				1549 /* org_xmlvm_iphone_UIViewController.m */,
+				1551 /* org_xmlvm_iphone_UIViewGL.h */,
+				1552 /* org_xmlvm_iphone_UIViewGL.m */,
+				1554 /* org_xmlvm_iphone_UIWebView.h */,
+				1555 /* org_xmlvm_iphone_UIWebView.m */,
+				1557 /* org_xmlvm_iphone_UIWindow.h */,
+				1558 /* org_xmlvm_iphone_UIWindow.m */,
+				1560 /* org_xmlvm_iphone_XMLVMNoAutoReleasePool.h */,
+				1561 /* org_xmlvm_iphone_gl_BufferUtils.h */,
+				1562 /* org_xmlvm_iphone_gl_BufferUtils.m */,
+				1564 /* org_xmlvm_iphone_gl_CAEAGLLayer.h */,
+				1565 /* org_xmlvm_iphone_gl_CAEAGLLayer.m */,
+				1567 /* org_xmlvm_iphone_gl_EAGLContext.h */,
+				1568 /* org_xmlvm_iphone_gl_EAGLContext.m */,
+				1570 /* org_xmlvm_iphone_gl_EAGLDrawable.h */,
+				1571 /* org_xmlvm_iphone_gl_EAGLDrawable.m */,
+				1573 /* org_xmlvm_iphone_gl_GL.h */,
+				1574 /* org_xmlvm_iphone_gl_GL.m */,
+				1576 /* org_xmlvm_iphone_gl_GLView.h */,
+				1577 /* org_xmlvm_iphone_gl_GLView.m */,
+				1579 /* xmlvm.h */,
+				1580 /* xmlvm.m */,
+			);
+			name = iPhone;
+			path = src/xmlvm/lib/iphone;
+			sourceTree = "<group>";
+		};
+		26 /* Android */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Android;
+			path = src/xmlvm/lib/android;
+			sourceTree = "<group>";
+		};
+		11 /* MainGroup */ = {
+			isa = PBXGroup;
+			children = (
+				24 /* 	Application */,
+				25 /* Library */,
+				12 /* Resources */,
+				13 /* Frameworks */,
+				10 /* Products */,
+			);
+			name = MainGroup;
+			sourceTree = "<group>";
+		};
+		12 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8 /* iSound-Info.plist */,
+			);
+			name = Resources;
+			path = resources;
+			sourceTree = "<group>";
+		};
+		13 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				100001 /* OpenGLES.framework */,
+				100003 /* Foundation.framework */,
+				100005 /* AVFoundation.framework */,
+				100007 /* UIKit.framework */,
+				100009 /* QuartzCore.framework */,
+				100011 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		10 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1 /* iSound.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		14 /* iSound */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15 /* Build configuration list for PBXNativeTarget "iSound" */;
+			buildPhases = (
+				16 /* Other Resources */,
+				17 /* Sources */,
+				9 /* Frameworks */,
+				34 /* XMLVM Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iSound;
+			productName = iSound;
+			productReference = 1 /* iSound.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		18 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 19 /* Build configuration list for PBXProject "iSound" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 11 /* MainGroup */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				14 /* iSound */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		16 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		34 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "if [ -d ${SOURCE_ROOT}/resources/app ] ; then\n\tRESDEST=${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\n\tmkdir -p ${RESDEST}\t\n\tcp -r ${SOURCE_ROOT}/resources/app/* ${RESDEST}/\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		17 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1002 /* org_xmlvm_demo_isound_ISound_1.m */,
+				1005 /* org_xmlvm_demo_isound_ISound_2.m */,
+				1008 /* org_xmlvm_demo_isound_ISound.m */,
+				1011 /* java_io_BufferedInputStream.m */,
+				1014 /* java_io_BufferedOutputStream.m */,
+				1017 /* java_io_BufferedReader.m */,
+				1020 /* java_io_BufferedWriter.m */,
+				1023 /* java_io_ByteArrayInputStream.m */,
+				1026 /* java_io_ByteArrayOutputStream.m */,
+				1029 /* java_io_DataInputStream.m */,
+				1032 /* java_io_DataOutputStream.m */,
+				1035 /* java_io_EOFException.m */,
+				1038 /* java_io_File.m */,
+				1041 /* java_io_FileDescriptor.m */,
+				1044 /* java_io_FileInputStream.m */,
+				1047 /* java_io_FileNotFoundException.m */,
+				1050 /* java_io_FileOutputStream.m */,
+				1053 /* java_io_FileReader.m */,
+				1056 /* java_io_FileWriter.m */,
+				1059 /* java_io_FilenameFilter.m */,
+				1062 /* java_io_IOException.m */,
+				1065 /* java_io_InputStream.m */,
+				1068 /* java_io_InputStreamReader.m */,
+				1071 /* java_io_ObjectInputStream.m */,
+				1074 /* java_io_ObjectOutputStream.m */,
+				1077 /* java_io_OutputStream.m */,
+				1080 /* java_io_PrintStream.m */,
+				1083 /* java_io_Reader.m */,
+				1087 /* java_io_UnsupportedEncodingException.m */,
+				1090 /* java_io_Writer.m */,
+				1093 /* java_lang_ArrayIndexOutOfBoundsException.m */,
+				1096 /* java_lang_AssertionError.m */,
+				1099 /* java_lang_Boolean.m */,
+				1102 /* java_lang_Byte.m */,
+				1106 /* java_lang_Character.m */,
+				1109 /* java_lang_Class.m */,
+				1112 /* java_lang_ClassNotFoundException.m */,
+				1116 /* java_lang_Double.m */,
+				1119 /* java_lang_Enum.m */,
+				1122 /* java_lang_Exception.m */,
+				1125 /* java_lang_Float.m */,
+				1128 /* java_lang_IllegalAccessException.m */,
+				1131 /* java_lang_IllegalArgumentException.m */,
+				1134 /* java_lang_IllegalStateException.m */,
+				1137 /* java_lang_IndexOutOfBoundsException.m */,
+				1140 /* java_lang_InstantiationException.m */,
+				1143 /* java_lang_Integer.m */,
+				1146 /* java_lang_InterruptedException.m */,
+				1149 /* java_lang_Long.m */,
+				1152 /* java_lang_Math.m */,
+				1155 /* java_lang_NegativeArraySizeException.m */,
+				1158 /* java_lang_NoSuchFieldError.m */,
+				1161 /* java_lang_NoSuchFieldException.m */,
+				1164 /* java_lang_NoSuchMethodException.m */,
+				1167 /* java_lang_NullPointerException.m */,
+				1170 /* java_lang_NumberFormatException.m */,
+				1173 /* java_lang_Object.m */,
+				1177 /* java_lang_Runtime.m */,
+				1180 /* java_lang_RuntimeException.m */,
+				1183 /* java_lang_SecurityException.m */,
+				1186 /* java_lang_Short.m */,
+				1189 /* java_lang_String.m */,
+				1192 /* java_lang_StringBuffer.m */,
+				1195 /* java_lang_StringBuilder.m */,
+				1198 /* java_lang_System.m */,
+				1201 /* java_lang_Thread.m */,
+				1204 /* java_lang_Throwable.m */,
+				1207 /* java_lang_UnsupportedOperationException.m */,
+				1212 /* java_lang_reflect_Array.m */,
+				1215 /* java_lang_reflect_Constructor.m */,
+				1218 /* java_lang_reflect_Field.m */,
+				1221 /* java_lang_reflect_InvocationTargetException.m */,
+				1224 /* java_lang_reflect_Method.m */,
+				1227 /* java_net_URI.m */,
+				1230 /* java_net_URL.m */,
+				1234 /* java_nio_ByteBuffer.m */,
+				1237 /* java_nio_FloatBuffer.m */,
+				1240 /* java_nio_IntBuffer.m */,
+				1243 /* java_sql_Connection.m */,
+				1246 /* java_sql_DriverManager.m */,
+				1249 /* java_sql_ResultSet.m */,
+				1252 /* java_sql_ResultSetMetaData.m */,
+				1255 /* java_sql_SQLException.m */,
+				1258 /* java_sql_Statement.m */,
+				1261 /* java_util_ArrayList.m */,
+				1264 /* java_util_Arrays.m */,
+				1269 /* java_util_HashMap.m */,
+				1272 /* java_util_HashSet.m */,
+				1276 /* java_util_IteratorImpl.m */,
+				1279 /* java_util_LinkedList.m */,
+				1284 /* java_util_Locale.m */,
+				1287 /* java_util_Map.m */,
+				1290 /* java_util_Random.m */,
+				1293 /* java_util_Set.m */,
+				1296 /* java_util_SortedSet.m */,
+				1299 /* java_util_Stack.m */,
+				1302 /* java_util_StringTokenizer.m */,
+				1305 /* java_util_Vector.m */,
+				1308 /* org_xmlvm_iphone_AVAudioPlayer.m */,
+				1312 /* org_xmlvm_iphone_CALayer.m */,
+				1315 /* org_xmlvm_iphone_CGAffineTransform.m */,
+				1318 /* org_xmlvm_iphone_CGBitmapContext.m */,
+				1321 /* org_xmlvm_iphone_CGContext.m */,
+				1324 /* org_xmlvm_iphone_CGDataProvider.m */,
+				1327 /* org_xmlvm_iphone_CGFont.m */,
+				1330 /* org_xmlvm_iphone_CGImage.m */,
+				1333 /* org_xmlvm_iphone_CGLayer.m */,
+				1336 /* org_xmlvm_iphone_CGPoint.m */,
+				1339 /* org_xmlvm_iphone_CGRect.m */,
+				1342 /* org_xmlvm_iphone_CGRectNull.m */,
+				1345 /* org_xmlvm_iphone_CGSize.m */,
+				1348 /* org_xmlvm_iphone_NSBundle.m */,
+				1351 /* org_xmlvm_iphone_NSData.m */,
+				1354 /* org_xmlvm_iphone_NSError.m */,
+				1357 /* org_xmlvm_iphone_NSErrorHolder.m */,
+				1360 /* org_xmlvm_iphone_NSHTTPURLResponseHolder.m */,
+				1363 /* org_xmlvm_iphone_NSIndexPath.m */,
+				1366 /* org_xmlvm_iphone_NSMutableData.m */,
+				1369 /* org_xmlvm_iphone_NSMutableURLRequest.m */,
+				1372 /* org_xmlvm_iphone_NSNotification.m */,
+				1375 /* org_xmlvm_iphone_NSObject.m */,
+				1378 /* org_xmlvm_iphone_NSString.m */,
+				1381 /* org_xmlvm_iphone_NSStringInputStream.m */,
+				1384 /* org_xmlvm_iphone_NSTimer.m */,
+				1387 /* org_xmlvm_iphone_NSURL.m */,
+				1390 /* org_xmlvm_iphone_NSURLConnection.m */,
+				1393 /* org_xmlvm_iphone_NSURLConnectionDelegate.m */,
+				1396 /* org_xmlvm_iphone_NSURLRequest.m */,
+				1399 /* org_xmlvm_iphone_NSUserDefaults.m */,
+				1402 /* org_xmlvm_iphone_NSXMLParser.m */,
+				1405 /* org_xmlvm_iphone_NSXMLParserDelegate.m */,
+				1408 /* org_xmlvm_iphone_UIAcceleration.m */,
+				1411 /* org_xmlvm_iphone_UIAccelerometer.m */,
+				1415 /* org_xmlvm_iphone_UIActivityIndicatorView.m */,
+				1418 /* org_xmlvm_iphone_UIAlertView.m */,
+				1421 /* org_xmlvm_iphone_UIAlertViewDelegate.m */,
+				1424 /* org_xmlvm_iphone_UIApplication.m */,
+				1427 /* org_xmlvm_iphone_UIBarButtonItem.m */,
+				1431 /* org_xmlvm_iphone_UIBarItem.m */,
+				1434 /* org_xmlvm_iphone_UIButton.m */,
+				1437 /* org_xmlvm_iphone_UIColor.m */,
+				1440 /* org_xmlvm_iphone_UIControl.m */,
+				1443 /* org_xmlvm_iphone_UIControlDelegate.m */,
+				1446 /* org_xmlvm_iphone_UIEdgeInsets.m */,
+				1450 /* org_xmlvm_iphone_UIFont.m */,
+				1453 /* org_xmlvm_iphone_UIImage.m */,
+				1456 /* org_xmlvm_iphone_UIImageView.m */,
+				1459 /* org_xmlvm_iphone_UILabel.m */,
+				1462 /* org_xmlvm_iphone_UINavigationBar.m */,
+				1465 /* org_xmlvm_iphone_UINavigationBarDelegate.m */,
+				1468 /* org_xmlvm_iphone_UINavigationController.m */,
+				1471 /* org_xmlvm_iphone_UINavigationControllerDelegate.m */,
+				1474 /* org_xmlvm_iphone_UINavigationItem.m */,
+				1477 /* org_xmlvm_iphone_UIPickerView.m */,
+				1480 /* org_xmlvm_iphone_UIPickerViewDataSource.m */,
+				1483 /* org_xmlvm_iphone_UIPickerViewDelegate.m */,
+				1486 /* org_xmlvm_iphone_UIProgressView.m */,
+				1489 /* org_xmlvm_iphone_UIResponder.m */,
+				1493 /* org_xmlvm_iphone_UIScreen.m */,
+				1496 /* org_xmlvm_iphone_UIScrollView.m */,
+				1499 /* org_xmlvm_iphone_UISegmentedControl.m */,
+				1502 /* org_xmlvm_iphone_UISlider.m */,
+				1505 /* org_xmlvm_iphone_UISwitch.m */,
+				1508 /* org_xmlvm_iphone_UITabBar.m */,
+				1511 /* org_xmlvm_iphone_UITabBarController.m */,
+				1514 /* org_xmlvm_iphone_UITabBarControllerDelegate.m */,
+				1517 /* org_xmlvm_iphone_UITabBarDelegate.m */,
+				1520 /* org_xmlvm_iphone_UITabBarItem.m */,
+				1523 /* org_xmlvm_iphone_UITableView.m */,
+				1526 /* org_xmlvm_iphone_UITableViewCell.m */,
+				1529 /* org_xmlvm_iphone_UITableViewDataSource.m */,
+				1532 /* org_xmlvm_iphone_UITableViewDelegate.m */,
+				1535 /* org_xmlvm_iphone_UITextField.m */,
+				1538 /* org_xmlvm_iphone_UITextView.m */,
+				1541 /* org_xmlvm_iphone_UIToolbar.m */,
+				1544 /* org_xmlvm_iphone_UITouch.m */,
+				1547 /* org_xmlvm_iphone_UIView.m */,
+				1550 /* org_xmlvm_iphone_UIViewController.m */,
+				1553 /* org_xmlvm_iphone_UIViewGL.m */,
+				1556 /* org_xmlvm_iphone_UIWebView.m */,
+				1559 /* org_xmlvm_iphone_UIWindow.m */,
+				1563 /* org_xmlvm_iphone_gl_BufferUtils.m */,
+				1566 /* org_xmlvm_iphone_gl_CAEAGLLayer.m */,
+				1569 /* org_xmlvm_iphone_gl_EAGLContext.m */,
+				1572 /* org_xmlvm_iphone_gl_EAGLDrawable.m */,
+				1575 /* org_xmlvm_iphone_gl_GL.m */,
+				1578 /* org_xmlvm_iphone_gl_GLView.m */,
+				1581 /* xmlvm.m */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		22 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.1;
+			};
+			name = Debug;
+		};
+		23 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.1;
+			};
+			name = Release;
+		};
+		20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "resources/sys/iSound-Info.plist";
+				PRODUCT_NAME = iSound;
+			};
+			name = Debug;
+		};
+		21 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "resources/sys/iSound-Info.plist";
+				PRODUCT_NAME = iSound;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		19 /* Build configuration list for PBXProject "iSound" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22 /* Debug */,
+				23 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15 /* Build configuration list for PBXNativeTarget "iSound" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20 /* Debug */,
+				21 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 18 /* Project object */;
+}
