@@ -1,0 +1,83 @@
+<project name="TestGame">
+	<property name="workspace" value="c:\personal\home"/>
+	<property name="aboid.iphone" value="${workspace}\aboid-iphone"/>
+	<property name="aboid.android" value="${workspace}\aboid-android"/>
+	<property name="aboid.applet" value="${workspace}\aboid-applet"/>
+	<property name="aboid.api" value="${workspace}\aboid"/>
+	<property name="objc.compat" value="${workspace}\objc-compat"/>
+	<!-- location of the XMLVM JAR -->
+	<property name="xmlvm.dist" value="C:\personal\home"/>	
+	
+	<property name="build.dir" value="target"/>	
+	
+	<target name="init">
+		<delete dir="${build.dir}"/>
+	</target>
+	
+	<target name="build" depends="init">
+		<mkdir dir="${build.dir}/classes"/>
+		<delete dir="lib"/>
+		<mkdir dir="lib"/>
+		
+		<propertyfile file="version">
+			<entry key="build" type="int" operation="+" value="1"/>
+	    </propertyfile>
+	    <property file="version" prefix="version"/>
+		
+		<javac includes="org/newdawn/**" debug="true" srcdir="${aboid.api}\src" 
+			   destdir="${build.dir}/classes" target="1.4" source="1.4">
+		</javac>
+		<javac includes="org/newdawn/**" debug="true" srcdir="${aboid.applet}\src" 
+			   destdir="${build.dir}/classes" target="1.4" source="1.4">
+		</javac>
+		<javac excludes="org/newdawn/testgame/android/** org/newdawn/testgame/iphone/**"
+			   includes="org/newdawn/**" debug="true" srcdir="src" 
+			   destdir="${build.dir}/classes" target="1.4" source="1.4">
+			   <classpath>
+			      <pathelement path="${build.dir}/classes"/>
+			    </classpath>
+		</javac>
+		
+		<jar destfile="lib/testgame-${version.build}.jar" 
+			 basedir="${build.dir}/classes" includes="org/newdawn/**"/>
+		<jar update="true" destfile="lib/testgame-${version.build}.jar" 
+			 basedir="." includes="assets/**"/>
+	</target>
+		
+	<target name="iphone" depends="init">
+		<mkdir dir="${build.dir}/iphone/classes"/>
+		<mkdir dir="${build.dir}/iphone/compat"/>
+		<mkdir dir="${build.dir}/iphone/output"/>
+		
+		<javac includes="**" debug="true" srcdir="${objc.compat}\java" 
+			   destdir="${build.dir}/iphone/compat" target="1.6" source="1.6">
+		</javac>
+		<javac includes="org/newdawn/**" debug="true" srcdir="${aboid.api}\src" 
+			   destdir="${build.dir}/iphone/classes" target="1.6" source="1.6">
+		</javac>
+		<javac includes="org/newdawn/**" debug="true" srcdir="${aboid.iphone}\src" 
+			   destdir="${build.dir}/iphone/classes" target="1.6" source="1.6">
+			   <classpath>
+			      <pathelement path="${build.dir}/iphone/classes"/>
+			      <pathelement path="${build.dir}/iphone/compat"/>
+			   </classpath>
+		</javac>
+		<javac excludes="org/newdawn/testgame/android/**" includes="org/newdawn/**" debug="true" srcdir="src" 
+			   destdir="${build.dir}/iphone/classes" target="1.6" source="1.6">
+			   <classpath>
+			      <pathelement path="${build.dir}/iphone/classes"/>
+			      <pathelement path="${build.dir}/iphone/compat"/>
+			   </classpath>
+		</javac>
+		
+		<java jar="${xmlvm.dist}/xmlvm.jar" fork="true">
+			<arg value="--out=${build.dir}/iphone/output" />
+			<arg value="--iphone-app=FunkyFootball" />
+			<arg value="${build.dir}/iphone/classes/*.class" />
+		</java>
+
+		<copy todir="${build.dir}/iphone/output">
+			<fileset dir="." includes="assets/**"/>
+		</copy>
+	</target>
+</project>
