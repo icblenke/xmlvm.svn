@@ -1,0 +1,19 @@
+This is a github clone of the XMLVM project:
+
+	http://www.xmlvm.org
+
+This repo is a git-svn clone of:
+
+	 https://xmlvm.svn.sourceforge.net/svnroot/xmlvm
+
+Essentially, this:
+
+	git svn clone https://xmlvm.svn.sourceforge.net/svnroot/xmlvm
+
+It may or may not be kept in svn sync with a periodic "git svn fetch".
+
+Note: I am _NOT_ a xmlvm maintainer, or even a contributor (yet).
+
+If anything, I am but a user.
+
+This is my personal clone of this project.
